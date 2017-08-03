@@ -52,7 +52,7 @@
     </div>
 
     <div class="section hero is-primary hero-level">
-      <div class="container">
+      <!-- <div class="container"> -->
         <div class="level">
 
           <div class="level-item has-text-centered">
@@ -84,7 +84,7 @@
           </div>
 
         </div>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </template>

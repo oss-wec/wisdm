@@ -9,12 +9,15 @@
 <script>
 import Navigation from './components/Nav'
 import Footer from './components/Footer'
+import store from './store'
 
 import 'font-awesome/css/font-awesome.css'
 import 'bulma/css/bulma.css'
 
 export default {
   name: 'app',
+
+  store,
 
   components: {
     Navigation,
