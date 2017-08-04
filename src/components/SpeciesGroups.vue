@@ -31,5 +31,8 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+  .container {
+    padding: 10px 0 25px 0;
+  }
 </style>

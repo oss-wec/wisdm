@@ -10,9 +10,21 @@ const state = {
 
 const getters = {
   speciesGroups: state => {
-    return [...new Set(state.species.map(s => {
+    let groups = [...new Set(state.species.map(s => {
       return s.grouping
-    }))]
+    }))].sort()
+    let arr = []
+
+    groups.forEach(g => {
+      let species = state.species.filter(v => v.grouping === g)
+      arr.push({
+        name: g,
+        species: species,
+        numSpecies: species.length
+      })
+    })
+
+    return arr
   }
 }
 
