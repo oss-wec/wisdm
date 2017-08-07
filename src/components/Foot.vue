@@ -23,9 +23,12 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Foot'
 }
 </script>
 
 <style lang="css">
+footer {
+  margin-top: 30px;
+}
 </style>

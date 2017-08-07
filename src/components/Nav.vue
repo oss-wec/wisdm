@@ -16,12 +16,11 @@
       <div class="navbar-menu" :class="{'is-active': burger}">
         <div class="navbar-start">
           <a href="#" class="navbar-item">Animal Log</a>
-          <router-link :to="{ name: 'Groups' }" class="navbar-item">Species Groups</router-link>
 
           <div class="navbar-item has-dropdown is-hoverable">
             <a href="#" class="navbar-link">Features</a>
             <div class="navbar-dropdown">
-              <a href="#" class="navbar-item">Feature 1</a>
+              <router-link :to="{ name: 'Groups' }" class="navbar-item">Species Groups</router-link>
               <a href="#" class="navbar-item">Feature 2</a>
               <a href="#" class="navbar-item">Feature 3</a>
             </div>

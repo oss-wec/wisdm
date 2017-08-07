@@ -3,18 +3,29 @@
     <div class="topic-card" :style="bgImg">
       <div class="topic-contianer has-text-centered">
         <h2 class="title topic-title">{{ capitalize(group.name) }}</h2>
-        <a href="#" class="button is-info is-inverted is-outlined is-large">
+
+        <a class="button is-info is-inverted is-outlined is-large" @click="goToGroup">
           <p class="trans">
             <span>{{ group.numSpecies }} Species</span>
             <span class="icon"><i class="fa fa-chevron-right"></i></span>
           </p>
         </a>
+
+        <!-- <router-link :to="{ name: 'SpeciesGroup' }" class="button is-info is-inverted is-outlined is-large" @click="goToGroup">
+          <p class="trans">
+            <span>{{ group.numSpecies }} Species</span>
+            <span class="icon"><i class="fa fa-chevron-right"></i></span>
+          </p>
+        </router-link> -->
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import router from '../router'
+
 export default {
   name: 'GroupCard',
 
@@ -63,6 +74,11 @@ export default {
 
     capitalize (string) {
       return string.charAt(0).toUpperCase() + string.slice(1)
+    },
+
+    goToGroup () {
+      this.$store.dispatch('changeGroup', { group: this.group })
+      router.push('species')
     }
   },
 

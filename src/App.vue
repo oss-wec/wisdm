@@ -2,13 +2,13 @@
   <div id="app">
     <Navigation></Navigation>
     <router-view></router-view>
-    <Footer></Footer>
+    <Foot></Foot>
   </div>
 </template>
 
 <script>
 import Navigation from './components/Nav'
-import Footer from './components/Footer'
+import Foot from './components/Foot'
 import store from './store'
 
 import 'font-awesome/css/font-awesome.css'
@@ -21,7 +21,7 @@ export default {
 
   components: {
     Navigation,
-    Footer
+    Foot
   }
 }
 </script>
