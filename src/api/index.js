@@ -12,3 +12,7 @@ export function getSpecies () {
 export function getAnimals () {
   return api.get('/elements')
 }
+
+export function createProject (data) {
+  return api.post('/projects', data)
+}

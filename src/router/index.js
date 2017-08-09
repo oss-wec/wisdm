@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import SpeciesGroups from '@/components/SpeciesGroups'
 import SpeciesGroup from '@/components/SpeciesGroup'
 import AnimalLog from '@/components/AnimalLog'
+import NewProject from '@/components/NewProject'
 
 Vue.use(Router)
 
@@ -25,6 +26,10 @@ export default new Router({
       path: '/animal-log',
       name: 'AnimalLog',
       component: AnimalLog
+    }, {
+      path: '/projects/new',
+      name: 'NewProject',
+      component: NewProject
     }
   ]
 })
