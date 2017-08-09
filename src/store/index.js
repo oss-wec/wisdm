@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getSpecies } from '../api'
+import { getSpecies, getAnimals } from '../api'
 
 Vue.use(Vuex)
 
 const state = {
   species: [],
 
-  speciesByGroup: []
+  speciesByGroup: [],
+
+  animals: []
 }
 
 const getters = {
@@ -38,6 +40,11 @@ const actions = {
 
   changeGroup ({ commit }, payload) {
     commit('setSpeciesByGroup', { group: payload.group })
+  },
+
+  getAnimals ({ commit }) {
+    getAnimals()
+    .then(response => commit('setAnimals', { animals: response.data.data }))
   }
 }
 
@@ -48,6 +55,10 @@ const mutations = {
 
   setSpeciesByGroup (state, payload) {
     state.speciesByGroup = payload.group
+  },
+
+  setAnimals (state, payload) {
+    state.animals = payload.animals
   }
 }
 

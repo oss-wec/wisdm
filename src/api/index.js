@@ -8,3 +8,7 @@ const api = axios.create({
 export function getSpecies () {
   return api.get('/lists/species/all')
 }
+
+export function getAnimals () {
+  return api.get('/elements')
+}
