@@ -33,8 +33,8 @@
               <span class="icon"><i class="fa fa-plus color"></i></span>
             </a>
             <div class="navbar-dropdown">
+              <router-link :to="{ name: 'NewProject' }" class="navbar-item">New Project</router-link>
               <a href="#" class="navbar-item">New Encounter</a>
-              <a href="#" class="navbar-item">New Project</a>
               <a href="#" class="navbar-item">New Species</a>
             </div>
           </div>
@@ -76,5 +76,10 @@ export default {
 <style lang="css" scoped>
 i.color {
   color: #269E7F;
+}
+
+.navbar {
+  border-bottom: 1px solid #269E7F;
+  padding: 5px 10px;
 }
 </style>
