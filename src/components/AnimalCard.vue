@@ -54,7 +54,7 @@
 
 </template>
 
-<script scoped>
+<script>
 export default {
   props: ['animal'],
 

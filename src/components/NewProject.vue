@@ -91,7 +91,7 @@
           </div>
 
           <div class="has-text-centered">
-            <button class="button is-info is-medium is-outlined"
+            <button class="button is-info is-medium is-outlined is-fullwidth"
                     :class="{ 'is-loading': submitting }"
                     @click.prevent="submit">Submit Project</button>
           </div>
@@ -133,7 +133,7 @@ export default {
       .then(() => {
         this.toggleSubmit()
         this.error = null
-        router.push({ name: 'Home' })
+        router.push({ name: 'Projects' })
       })
       .catch(error => {
         this.error = error

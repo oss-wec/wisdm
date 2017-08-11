@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .family-head {
   color: #327d88;
   border-bottom: 1px solid#327d88;

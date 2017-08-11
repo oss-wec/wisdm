@@ -13,6 +13,10 @@ export function getAnimals () {
   return api.get('/elements')
 }
 
+export function getProjects () {
+  return api.get('/projects')
+}
+
 export function createProject (data) {
   return api.post('/projects', data)
 }
