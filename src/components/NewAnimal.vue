@@ -28,6 +28,11 @@
           <Marks slot="content"></Marks>
         </Collapse>
 
+        <Collapse :visible="modules.devices.visible" @collapse="toggle('devices')">
+          <p slot="header">Devices</p>
+          <Devices slot="content"></Devices>
+        </Collapse>
+
       </form>
     </div>
   </div>
@@ -38,22 +43,27 @@
 import Collapse from './Collapse'
 import Encounter from './Encounter'
 import Marks from './Marks'
+import Devices from './devices'
 
 export default {
   name: 'NewAnimal',
   components: {
     Collapse,
     Encounter,
-    Marks
+    Marks,
+    Devices
   },
 
   data () {
     return {
       modules: {
         encounter: {
-          visible: true
+          visible: false
         },
         marks: {
+          visible: false
+        },
+        devices: {
           visible: false
         }
       }

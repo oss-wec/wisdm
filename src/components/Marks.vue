@@ -126,7 +126,7 @@
         <div class="field">
           <label for="removed" class="label">Date Removed</label>
           <div class="control">
-            <input type="date" class="input is-warning" name="removed"
+            <input type="date" class="input" name="removed"
                    v-model="mark.removed"
             >
           </div>
