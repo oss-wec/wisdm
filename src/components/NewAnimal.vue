@@ -25,9 +25,7 @@
 
         <Collapse :visible="modules.marks.visible" @collapse="toggle('marks')">
           <p slot="header">Marks</p>
-          <div slot="content">
-            bla bla bla bla
-          </div>
+          <Marks slot="content"></Marks>
         </Collapse>
 
       </form>
@@ -39,12 +37,14 @@
 <script>
 import Collapse from './Collapse'
 import Encounter from './Encounter'
+import Marks from './Marks'
 
 export default {
   name: 'NewAnimal',
   components: {
     Collapse,
-    Encounter
+    Encounter,
+    Marks
   },
 
   data () {
