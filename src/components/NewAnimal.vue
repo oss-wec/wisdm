@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <Collapse>
+        <Collapse :visible="visible">
           <p slot="header">Encounter<p>
           <div slot="content">
             <Encounter></Encounter>

@@ -23,9 +23,17 @@
 export default {
   name: 'Collapse',
 
+  props: {
+    visible: {
+      type: Boolean,
+      required: true,
+      default: false
+    }
+  },
+
   data () {
     return {
-      collapse: false
+      collapse: this.visible
     }
   },
 

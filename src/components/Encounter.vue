@@ -66,7 +66,7 @@
     <div class="field">
       <label for="status" class="label">Status</label>
       <div class="control">
-        <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('status') }">
+        <div class="select is-fullwidth is-warning" :class="{ 'is-danger': errors.has('status') }">
           <select name="status" class="is-fullwidth"
                   v-model="model.status"
                   v-validate="'required'"
@@ -79,6 +79,102 @@
       <p class="help">
         What is the life status of this animal?
         <span class="help is-danger" v-show="errors.has('status')">STATUS IS REQUIRED</span>
+      </p>
+    </div>
+    <!-- sex input -->
+    <div class="field">
+      <label for="sex" class="label">Sex</label>
+      <div class="control">
+        <div class="select is-fullwidth is-warning" :class="{ 'is-danger': errors.has('sex') }">
+          <select name="sex"
+                  v-model="model.sex"
+                  v-validate="'required'"
+          >
+            <option value=""></option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </div>
+      </div>
+      <p class="help">
+        What is the sex of this animal?
+        <span class="help is-danger" v-show="errors.has('sex')">SEX IS REQUIRED</span>
+      </p>
+    </div>
+    <!-- age input -->
+    <div class="field">
+      <label for="age" class="label">Age</label>
+      <div class="control">
+        <div class="select is-fullwidth is-warning" :class="{ 'is-danger': errors.has('age') }">
+          <select name="age"
+                  v-model="model.age"
+                  v-validate="'required'"
+          >
+            <option value=""></option>
+            <option value="neonate">Neonate</option>
+            <option value="juvenile">Juvenile</option>
+            <option value="adult">Adult</option>
+          </select>
+        </div>
+      </div>
+      <p class="help">
+        What is the age of the animal?
+        <span class="help is-danger" v-show="errors.has('age')">AGE IS REQUIRED</span>
+      </p>
+    </div>
+    <!-- encounter method input -->
+    <div class="field">
+      <label for="enc-method" class="label">Encounter Method</label>
+      <div class="control">
+        <div class="select is-fullwidth is-warning" :class="{ 'is-danger': errors.has('enc-method') }">
+          <select name="enc-method"
+                  v-model="model.encMethod"
+                  v-validate="'required'"
+          >
+            <option value=""></option>
+            <option value="basecamp">Basecamp</option>
+            <option value="capture crew">Capture Crew</option>
+            <option value="marked observation">Marked Observation</option>
+            <option value="unmarked observation">Unmarked Observation</option>
+            <option value="marked mortality">Marked Mortality</option>
+            <option value="unmarkec mortality">Unmarked Mortality</option>
+          </select>
+        </div>
+      </div>
+      <p class="help">
+        What method was used to encounter the animal?
+        <span class="help is-danger" v-show="errors.has('enc-method')">ENCOUNTER METHOD IS REQUIRED</span>
+      </p>
+    </div>
+    <!-- encounter reason input -->
+    <div class="field">
+      <label for="enc-reason" class="label">Encounter Reason</label>
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select name="enc-reason"
+                  v-model="model.encReason"
+          >
+            <option value=""></option>
+            <option value="disease surveilance">Disease Surveilance</option>
+            <option value="incidental">Incidental Encounter</option>
+            <option value="population monitoring">Population Monitoring</option>
+            <option value="translocation">Translocation</option>
+          </select>
+        </div>
+      </div>
+      <p class="help">
+        What is the reason for encountering this animal?
+      </p>
+    </div>
+    <!-- comments input -->
+    <div class="field">
+      <label for="comments" class="label">Comments</label>
+      <div class="control">
+        <textarea name="comments" rows="5" class="textarea" placeholder="write as much as your heart desires..."></textarea>
+      </div>
+      <p class="help">
+        Any comments associated with this animal.
       </p>
     </div>
 
