@@ -1,6 +1,6 @@
 {
   "name": "wisdm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "front-end for wildlife data management",
   "author": "Mitchell Gritts <mitchellgritts@gmail.com>",
   "private": true,
