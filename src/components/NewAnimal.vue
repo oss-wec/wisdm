@@ -16,10 +16,17 @@
           </div>
         </div>
 
-        <Collapse :visible="visible">
+        <Collapse :visible="modules.encounter.visible" @collapse="toggle('encounter')">
           <p slot="header">Encounter<p>
           <div slot="content">
             <Encounter></Encounter>
+          </div>
+        </Collapse>
+
+        <Collapse :visible="modules.marks.visible" @collapse="toggle('marks')">
+          <p slot="header">Marks</p>
+          <div slot="content">
+            bla bla bla bla
           </div>
         </Collapse>
 
@@ -42,13 +49,20 @@ export default {
 
   data () {
     return {
-      visible: false
+      modules: {
+        encounter: {
+          visible: true
+        },
+        marks: {
+          visible: false
+        }
+      }
     }
   },
 
   methods: {
-    toggle () {
-      this.visible = !this.visible
+    toggle (module) {
+      this.modules[module].visible = !this.modules[module].visible
     }
   }
 }

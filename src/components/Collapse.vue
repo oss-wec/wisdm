@@ -5,13 +5,13 @@
         <slot name="header"> header </slot></p>
       <a class="card-header-icon">
         <span class="icon">
-          <i class="fa fa-angle-up" v-if="collapse"></i>
-          <i class="fa fa-angle-down" v-if="!collapse"></i>
+          <i class="fa fa-angle-up" v-if="visible"></i>
+          <i class="fa fa-angle-down" v-if="!visible"></i>
         </span>
       </a>
     </header>
 
-    <div class="card-content" v-if="collapse">
+    <div class="card-content" v-if="visible">
       <div class="content">
         <slot name="content"> content </slot>
       </div>
@@ -31,15 +31,9 @@ export default {
     }
   },
 
-  data () {
-    return {
-      collapse: this.visible
-    }
-  },
-
   methods: {
     toggle () {
-      this.collapse = !this.collapse
+      this.$emit('collapse')
     }
   }
 }
