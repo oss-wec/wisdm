@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/oss-wec/wisdm.png?label=ready&title=Ready)](https://waffle.io/oss-wec/wisdm?utm_source=badge)
 # wisdm
 
 > front-end for wildlife data management
