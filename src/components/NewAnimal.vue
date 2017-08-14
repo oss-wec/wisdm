@@ -15,22 +15,27 @@
             All fields in this form are required.
           </div>
         </div>
-
+        <!-- encounter module -->
         <Collapse :visible="modules.encounter.visible" @collapse="toggle('encounter')">
           <p slot="header">Encounter<p>
           <div slot="content">
             <Encounter></Encounter>
           </div>
         </Collapse>
-
+        <!-- marks module -->
         <Collapse :visible="modules.marks.visible" @collapse="toggle('marks')">
           <p slot="header">Marks</p>
           <Marks slot="content"></Marks>
         </Collapse>
-
+        <!-- devices module -->
         <Collapse :visible="modules.devices.visible" @collapse="toggle('devices')">
           <p slot="header">Devices</p>
           <Devices slot="content"></Devices>
+        </Collapse>
+
+        <Collapse :visible="modules.biometrics.visible" @collapse="toggle('biometrics')">
+          <p slot="header">Biometrics</p>
+          <Biometrics slot="content"></Biometrics>
         </Collapse>
 
       </form>
@@ -43,7 +48,8 @@
 import Collapse from './Collapse'
 import Encounter from './Encounter'
 import Marks from './Marks'
-import Devices from './devices'
+import Devices from './Devices'
+import Biometrics from './Biometrics'
 
 export default {
   name: 'NewAnimal',
@@ -51,7 +57,8 @@ export default {
     Collapse,
     Encounter,
     Marks,
-    Devices
+    Devices,
+    Biometrics
   },
 
   data () {
@@ -64,6 +71,9 @@ export default {
           visible: false
         },
         devices: {
+          visible: false
+        },
+        biometrics: {
           visible: false
         }
       }
