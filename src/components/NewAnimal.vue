@@ -76,14 +76,14 @@
 
 <script>
 import Collapse from './Collapse'
-import Encounter from './Encounter'
-import Marks from './Marks'
-import Devices from './Devices'
-import Biometrics from './Biometrics'
-import Vitals from './Vitals'
-import Samples from './Samples'
-import Injuries from './Injuries'
-import Medications from './Medications'
+import Encounter from './encounter-entry/Encounter'
+import Marks from './encounter-entry/Marks'
+import Devices from './encounter-entry/Devices'
+import Biometrics from './encounter-entry/Biometrics'
+import Vitals from './encounter-entry/Vitals'
+import Samples from './encounter-entry/Samples'
+import Injuries from './encounter-entry/Injuries'
+import Medications from './encounter-entry/Medications'
 import Mortality from './encounter-entry/Mortality'
 import Necropsy from './encounter-entry/Necropsy'
 

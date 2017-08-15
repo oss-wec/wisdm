@@ -89,13 +89,17 @@
 </template>
 
 <script>
-import { emptyModel } from '../util'
-
 export default {
   name: 'Vitals',
 
   data () {
     return {
+      model: {
+        time: null,
+        measurement: '',
+        value: null,
+        notes: null
+      },
       vitals: [
         {
           time: null,
@@ -109,7 +113,9 @@ export default {
 
   methods: {
     addDynElement () {
-      this.vitals.push(emptyModel(this.vitals[0]))
+      const model = Object.assign({}, this.model)
+
+      this.vitals.push(model)
     },
 
     deleteDynElement (index) {

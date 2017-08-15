@@ -9,12 +9,12 @@
       <div class="message-body">
         <!-- mark type -->
         <div class="field">
-          <label for="status" class="label">Mark Type
+          <label class="label">Mark Type
             <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
           </label>
           <div class="control">
-            <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('mark-type') }">
-              <select name="mark-type" class="is-fullwidth" required
+            <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('mark-type' + index) }">
+              <select :name="'mark-type' + index" class="is-fullwidth" required
                       v-model="mark.markType"
                       v-validate="'required'"
               >
@@ -29,7 +29,7 @@
           </div>
           <p class="help">
             What type of mark is given to this animal
-            <span class="help is-danger" v-show="errors.has('mark-type')">MARK TYPE IS REQUIRED</span>
+            <span class="help is-danger" v-show="errors.has('mark-type' + index)">MARK TYPE IS REQUIRED</span>
           </p>
         </div>
         <!-- mark id input  -->
@@ -38,15 +38,15 @@
             <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
           </label>
           <div class="control">
-            <input type="text" class="input" placeholder="B13" name="mark-id"
+            <input type="text" class="input" placeholder="B13" :name="'mark-id' + index"
                    v-model="mark.markId"
                    v-validate="'required'"
-                   :class="{ 'is-danger': errors.has('mark-id') }"
+                   :class="{ 'is-danger': errors.has('mark-id' + index) }"
             >
           </div>
           <p class="help">
             What is the ID of the mark given to this animal.
-            <span class="help is-danger" v-show="errors.has('mark-id')">
+            <span class="help is-danger" v-show="errors.has('mark-id' + index)">
               MARK ID IS REQUIRED
             </span>
           </p>
@@ -57,12 +57,12 @@
             <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
           </label>
           <div class="control">
-            <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('mark-color') }">
-              <select name="mark-color" class="is-fullwidth"
+            <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('mark-color' + index) }">
+              <select :name="'mark-color' + index" class="is-fullwidth" required
                       v-model="mark.markColor"
                       v-validate="'required'"
               >
-                <option value=""></option>
+                <option value="">Select Option...</option>
                 <option value="black">Black</option>
                 <option value="blue">Blue</option>
                 <option value="gray">Gray</option>
@@ -81,7 +81,7 @@
           </div>
           <p class="help">
             What is the color of the mark given to this animal? (can be "None")
-            <span class="help is-danger" v-show="errors.has('mark-color')">MARK COLOR IS REQUIRED</span>
+            <span class="help is-danger" v-show="errors.has('mark-color' + index)">MARK COLOR IS REQUIRED</span>
           </p>
         </div>
         <!-- mark location input -->
@@ -90,15 +90,15 @@
             <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
           </label>
           <div class="control">
-            <input type="text" class="input is-warning" placeholder="B13" name="mark-loc"
+            <input type="text" class="input" placeholder="B13" :name="'mark-loc' + index"
                    v-model="mark.markLoc"
                    v-validate="'required'"
-                   :class="{ 'is-danger': errors.has('mark-loc') }"
+                   :class="{ 'is-danger': errors.has('mark-loc' + index) }"
             >
           </div>
           <p class="help">
             Where on the animal is this mark located?
-            <span class="help is-danger" v-show="errors.has('mark-loc')">
+            <span class="help is-danger" v-show="errors.has('mark-loc' + index)">
               MARK LOCATION IS REQUIRED
             </span>
           </p>
@@ -109,15 +109,15 @@
             <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
           </label>
           <div class="control">
-            <input type="date" class="input" name="given"
+            <input type="date" class="input" :name="'given' + index"
                    v-model="mark.given"
                    v-validate="'required'"
-                   :class="{ 'is-danger': errors.has('given') }"
+                   :class="{ 'is-danger': errors.has('given' + index) }"
             >
           </div>
           <p class="help">
             When was this mark given to this animal?
-            <span class="help is-danger" v-show="errors.has('given')">
+            <span class="help is-danger" v-show="errors.has('given' + index)">
               DATE GIVEN IS REQUIRED
             </span>
           </p>
@@ -151,18 +151,19 @@ export default {
 
   data () {
     return {
+      model: {
+        markType: '',
+        markId: null,
+        markColor: '',
+        markLoc: null,
+        given: null,
+        removed: null
+      },
       marks: [
         {
           markType: '',
           markId: null,
-          markColor: null,
-          markLoc: null,
-          given: null,
-          removed: null
-        }, {
-          markType: '',
-          markId: null,
-          markColor: null,
+          markColor: '',
           markLoc: null,
           given: null,
           removed: null
@@ -172,16 +173,10 @@ export default {
   },
 
   methods: {
-    emptyModel () {
-      const obj = Object.assign({}, this.marks[0])
-      for (let k in obj) {
-        obj[k] = null
-      }
-      return obj
-    },
-
     addDynElement () {
-      this.marks.push(this.emptyModel())
+      const model = Object.assign({}, this.model)
+
+      this.marks.push(model)
     },
 
     deleteDynElement (index) {

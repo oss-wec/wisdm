@@ -101,13 +101,17 @@
 </template>
 
 <script>
-import { emptyModel } from '../util'
-
 export default {
   name: 'Biometrics',
 
   data () {
     return {
+      model: {
+        measuremnt: '',
+        value: null,
+        units: '',
+        notes: null
+      },
       biometrics: [
         {
           measuremnt: '',
@@ -126,7 +130,9 @@ export default {
 
   methods: {
     addDynElement () {
-      this.biometrics.push(emptyModel(this.biometrics[0]))
+      const model = Object.assign({}, this.model)
+
+      this.biometrics.push(model)
     },
 
     deleteDynElement (index) {

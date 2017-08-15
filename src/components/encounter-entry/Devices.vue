@@ -115,6 +115,13 @@ export default {
 
   data () {
     return {
+      model: {
+        type: '',
+        serial_num: null,
+        frequency: null,
+        inservice: null,
+        outservice: null
+      },
       devices: [
         {
           type: '',
@@ -128,16 +135,10 @@ export default {
   },
 
   methods: {
-    emptyModel () {
-      const obj = Object.assign({}, this.devices[0])
-      for (let k in obj) {
-        obj[k] = null
-      }
-      return obj
-    },
-
     addDynElement () {
-      this.devices.push(this.emptyModel())
+      const model = Object.assign({}, this.model)
+
+      this.devices.push(model)
     },
 
     deleteDynElement (index) {

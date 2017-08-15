@@ -74,13 +74,16 @@
 </template>
 
 <script>
-import { emptyModel } from '../util'
-
 export default {
   name: 'Samples',
 
   data () {
     return {
+      model: {
+        sample: '',
+        destination: null,
+        notes: null
+      },
       samples: [
         {
           sample: '',
@@ -93,7 +96,9 @@ export default {
 
   methods: {
     addDynElement () {
-      this.samples.push(emptyModel(this.samples[0]))
+      const model = Object.assign({}, this.model)
+
+      this.samples.push(model)
     },
 
     deleteDynElement (index) {
