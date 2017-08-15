@@ -13,8 +13,8 @@
             <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
           </label>
           <div class="control">
-            <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('device-type') }">
-              <select name="device-type" class="is-fullwidth" required
+            <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('device-type' + index) }">
+              <select :name="'device-type' + index" class="is-fullwidth" required
                       v-model="device.type"
                       v-validate="'required'"
               >
@@ -26,7 +26,7 @@
           </div>
           <p class="help">
             What type of device is given to this animal
-            <span class="help is-danger" v-show="errors.has('device-type')">DEVICE TYPE IS REQUIRED</span>
+            <span class="help is-danger" v-show="errors.has('device-type' + index)">DEVICE TYPE IS REQUIRED</span>
           </p>
         </div>
         <!-- device id input  -->
@@ -35,15 +35,15 @@
             <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
           </label>
           <div class="control">
-            <input type="text" class="input" placeholder="013026" name="device-id"
+            <input type="text" class="input" placeholder="013026" :name="'device-id' + index"
                    v-model="device.serial_num"
                    v-validate="'required'"
-                   :class="{ 'is-danger': errors.has('device-id') }"
+                   :class="{ 'is-danger': errors.has('device-id' + index) }"
             >
           </div>
           <p class="help">
             What is the ID of the device given to this animal.
-            <span class="help is-danger" v-show="errors.has('device-id')">
+            <span class="help is-danger" v-show="errors.has('device-id' + index)">
               DEVICE ID IS REQUIRED
             </span>
           </p>
@@ -54,15 +54,15 @@
             <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
           </label>
           <div class="control">
-            <input type="text" class="input" placeholder="013026" name="freq"
+            <input type="text" class="input" placeholder="013026" :name="'freq' + index"
                    v-model="device.frequency"
                    v-validate="'required'"
-                   :class="{ 'is-danger': errors.has('freq') }"
+                   :class="{ 'is-danger': errors.has('freq' + index) }"
             >
           </div>
           <p class="help">
             What is the frequency of the device given to this animal.
-            <span class="help is-danger" v-show="errors.has('greq')">
+            <span class="help is-danger" v-show="errors.has('freq' + index)">
               FREQUENCY IS REQUIRED
             </span>
           </p>
@@ -73,15 +73,15 @@
             <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
           </label>
           <div class="control">
-            <input type="date" class="input" name="inservice"
+            <input type="date" class="input" :name="'inservice' + index"
                    v-model="device.inservice"
                    v-validate="'required'"
-                   :class="{ 'is-danger': errors.has('inservice') }"
+                   :class="{ 'is-danger': errors.has('inservice' + index) }"
             >
           </div>
           <p class="help">
             When was this device given to this animal?
-            <span class="help is-danger" v-show="errors.has('inservice')">
+            <span class="help is-danger" v-show="errors.has('inservice' + index)">
               INSERVICE DATE IS REQUIRED
             </span>
           </p>
