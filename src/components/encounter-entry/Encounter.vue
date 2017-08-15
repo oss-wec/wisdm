@@ -6,7 +6,7 @@
 
       <div class="field has-addons">
         <div class="control is-expanded" :class="{ 'has-icons-left': errors.has('ndowid')}">
-          <input type="text" class="input is-warning" placeholder="10342" name="ndowid"
+          <input type="text" class="input" placeholder="10342" name="ndowid"
                  v-model="model.ndowId"
                  v-validate="'required'"
                  :class="{ 'is-danger': errors.has('ndowid') }"
@@ -26,22 +26,28 @@
       </p>
     </div>
     <!-- species input -->
-    <div class="field">
+    <!-- <div class="field"> -->
       <label for="species" class="label">Species</label>
 
-      <div class="control">
-        <input type="text" class="input is-warning">
-      </div>
+      <Multiselect
+                v-model="model.species"
+                :options="species"
+                label="common_name"
+                :searchable="true"
+                :close-on-select="true"
+                :show-labels="true"
+                placeholder="Pick a value">
+      </Multiselect>
 
       <p class="help">
         What species is this animal?
       </p>
-    </div>
+    <!-- </div> -->
     <!-- project input -->
     <div class="field">
       <label for="project" class="label">Project</label>
       <div class="control">
-        <input type="text" class="input is-warning">
+        <input type="text" class="input">
       </div>
       <p class="help">
         With which project is this animal associated with?
@@ -51,7 +57,7 @@
     <div class="field">
       <label for="date" class="label">Date</label>
       <div class="control">
-        <input type="date" class="input is-warning" name="date"
+        <input type="date" class="input" name="date"
                v-model="model.date"
                v-validate="'required'"
                :class="{ 'is-danger': errors.has('date') }"
@@ -66,7 +72,7 @@
     <div class="field">
       <label for="status" class="label">Status</label>
       <div class="control">
-        <div class="select is-fullwidth is-warning" :class="{ 'is-danger': errors.has('status') }">
+        <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('status') }">
           <select name="status" class="is-fullwidth"
                   v-model="model.status"
                   v-validate="'required'"
@@ -85,7 +91,7 @@
     <div class="field">
       <label for="sex" class="label">Sex</label>
       <div class="control">
-        <div class="select is-fullwidth is-warning" :class="{ 'is-danger': errors.has('sex') }">
+        <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('sex') }">
           <select name="sex"
                   v-model="model.sex"
                   v-validate="'required'"
@@ -106,7 +112,7 @@
     <div class="field">
       <label for="age" class="label">Age</label>
       <div class="control">
-        <div class="select is-fullwidth is-warning" :class="{ 'is-danger': errors.has('age') }">
+        <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('age') }">
           <select name="age"
                   v-model="model.age"
                   v-validate="'required'"
@@ -127,7 +133,7 @@
     <div class="field">
       <label for="enc-method" class="label">Encounter Method</label>
       <div class="control">
-        <div class="select is-fullwidth is-warning" :class="{ 'is-danger': errors.has('enc-method') }">
+        <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('enc-method') }">
           <select name="enc-method"
                   v-model="model.encMethod"
                   v-validate="'required'"
@@ -185,8 +191,13 @@
 </template>
 
 <script>
+import Multiselect from 'vue-multiselect'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Encounter',
+
+  components: { Multiselect },
 
   data () {
     return {
@@ -197,9 +208,24 @@ export default {
         date: null
       }
     }
+  },
+
+  computed: {
+    ...mapGetters({
+      species: 'speciesDropdown'
+    })
   }
 }
 </script>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="css" scoped>
+fieldset {
+  border-width: 0;
+}
+
+li {
+  padding: 0;
+  margin: 0;
+}
 </style>

@@ -91,7 +91,11 @@
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+
+  mounted: function () {
+    this.$store.dispatch('getSpecies')
+  }
 }
 </script>
 

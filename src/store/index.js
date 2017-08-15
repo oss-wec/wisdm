@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { getSpecies, getAnimals } from '../api'
+import encounterEntry from './modules/encounter-entry.js'
 
 Vue.use(Vuex)
 
@@ -69,5 +70,8 @@ export default new Vuex.Store({
   actions,
   getters,
   mutations,
-  strict: debug
+  strict: debug,
+  modules: {
+    encounterEntry
+  }
 })
