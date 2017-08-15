@@ -10,9 +10,9 @@
           </div>
         </div>
 
-        <div class="message is-warning is-small">
+        <div class="message is-danger is-small">
           <div class="message-body">
-            All fields in this form are required.
+            Fields denoted with an <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span> are required.
           </div>
         </div>
         <!-- encounter module -->
@@ -38,6 +38,36 @@
           <Biometrics slot="content"></Biometrics>
         </Collapse>
 
+        <Collapse :visible="modules.vitals.visible" @collapse="toggle('vitals')">
+          <p slot="header">Vitals</p>
+          <Vitals slot="content"></Vitals>
+        </Collapse>
+
+        <Collapse :visible="modules.samples.visible" @collapse="toggle('samples')">
+          <p slot="header">Samples</p>
+          <Samples slot="content"></Samples>
+        </Collapse>
+
+        <Collapse :visible="modules.injuries.visible" @collapse="toggle('injuries')">
+          <p slot="header">Injuries</p>
+          <Injuries slot="content"></Injuries>
+        </Collapse>
+
+        <Collapse :visible="modules.medications.visible" @collapse="toggle('medications')">
+          <p slot="header">Medications</p>
+          <Medications slot="content"></Medications>
+        </Collapse>
+
+        <Collapse :visible="modules.mortality.visible" @collapse="toggle('mortality')">
+          <p slot="header">Mortality</p>
+          <Mortality slot="content"></Mortality>
+        </Collapse>
+
+        <Collapse :visible="modules.necropsy.visible" @collapse="toggle('necropsy')">
+          <p slot="header">Necropsy</p>
+          <Necropsy slot="content"></Necropsy>
+        </Collapse>
+
       </form>
     </div>
   </div>
@@ -50,6 +80,12 @@ import Encounter from './Encounter'
 import Marks from './Marks'
 import Devices from './Devices'
 import Biometrics from './Biometrics'
+import Vitals from './Vitals'
+import Samples from './Samples'
+import Injuries from './Injuries'
+import Medications from './Medications'
+import Mortality from './encounter-entry/Mortality'
+import Necropsy from './encounter-entry/Necropsy'
 
 export default {
   name: 'NewAnimal',
@@ -58,7 +94,13 @@ export default {
     Encounter,
     Marks,
     Devices,
-    Biometrics
+    Biometrics,
+    Vitals,
+    Samples,
+    Injuries,
+    Medications,
+    Mortality,
+    Necropsy
   },
 
   data () {
@@ -74,6 +116,24 @@ export default {
           visible: false
         },
         biometrics: {
+          visible: false
+        },
+        vitals: {
+          visible: false
+        },
+        samples: {
+          visible: false
+        },
+        injuries: {
+          visible: false
+        },
+        medications: {
+          visible: false
+        },
+        mortality: {
+          visible: false
+        },
+        necropsy: {
           visible: false
         }
       }
