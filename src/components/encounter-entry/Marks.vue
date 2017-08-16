@@ -43,7 +43,7 @@
                    v-model="mark.mark_id"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('mark-id' + index) }"
-                   @keyup.stop="updateField"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -97,7 +97,7 @@
                    v-model="mark.mark_loc"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('mark-loc' + index) }"
-                   @keyup="updateField"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -152,45 +152,35 @@
 </template>
 
 <script>
+import { cloneDeep } from 'lodash'
+import { emptyModel } from '../../util'
+
 export default {
   name: 'Marks',
 
   data () {
     return {
-      model: {
-        mark_type: '',
-        mark_id: '',
-        mark_color: '',
-        mark_loc: '',
-        given: '',
-        removed: ''
-      },
-      marks: [
-        {
-          mark_type: '',
-          mark_id: '',
-          mark_color: '',
-          mark_loc: '',
-          given: '',
-          removed: ''
-        }
-      ]
+      marks: cloneDeep(this.$store.state.encounterEntry.marks)
     }
   },
 
   methods: {
     addDynElement () {
-      const model = Object.assign({}, this.model)
+      const model = Object.assign({}, emptyModel(this.marks[0], ''))
       this.marks.push(model)
       this.updateField()
     },
 
     deleteDynElement (index) {
       this.marks.splice(index, 1)
+      this.updateField()
     },
 
     updateField () {
-      this.$store.commit('encounterEntry/updateMarks', this.marks)
+      this.$store.commit('encounterEntry/updateModel', {
+        model: 'marks',
+        data: cloneDeep(this.marks)
+      })
     }
   }
 }

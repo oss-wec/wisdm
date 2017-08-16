@@ -22,6 +22,23 @@ const state = {
       given: '',
       removed: ''
     }
+  ],
+  devices: [
+    {
+      type: '',
+      serial_num: null,
+      frequency: null,
+      inservice: null,
+      outservice: null
+    }
+  ],
+  biometrics: [
+    {
+      measurement: '',
+      value: '',
+      units: '',
+      notes: ''
+    }
   ]
 }
 
@@ -41,8 +58,9 @@ const mutations = {
     Object.assign(state[payload.model], payload.data)
   },
 
-  updateMarks (state, payload) {
-    Object.assign(state.marks, payload)
+  updateModel (state, payload) {
+    // Object.assign(state[payload.model], payload.data)
+    state[payload.model] = payload.data
   }
 }
 
