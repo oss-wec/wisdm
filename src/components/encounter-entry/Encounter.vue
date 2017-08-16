@@ -6,8 +6,8 @@
 
       <div class="field has-addons">
         <div class="control is-expanded" :class="{ 'has-icons-left': errors.has('ndowid')}">
-          <input type="text" class="input" placeholder="10342" name="ndowid"
-                 v-model="model.ndowId"
+          <input type="text" class="input" placeholder="10342" name="ndowid" @keyup.stop="updateField('ndow_id')"
+                 v-model="model.ndow_id"
                  v-validate="'required'"
                  :class="{ 'is-danger': errors.has('ndowid') }"
           >
@@ -47,7 +47,7 @@
     <div class="field">
       <label for="project" class="label">Project</label>
       <div class="control">
-        <input type="text" class="input">
+        <input type="text" class="input" v-model="model.project" @keyup.stop="updateField('project')">
       </div>
       <p class="help">
         With which project is this animal associated with?
@@ -58,7 +58,7 @@
       <label for="date" class="label">Date</label>
       <div class="control">
         <input type="date" class="input" name="date"
-               v-model="model.date"
+               v-model="model.event_date"
                v-validate="'required'"
                :class="{ 'is-danger': errors.has('date') }"
         >
@@ -135,7 +135,7 @@
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('enc-method') }">
           <select name="enc-method"
-                  v-model="model.encMethod"
+                  v-model="model.enc_method"
                   v-validate="'required'"
           >
             <option value=""></option>
@@ -159,7 +159,7 @@
       <div class="control">
         <div class="select is-fullwidth">
           <select name="enc-reason"
-                  v-model="model.encReason"
+                  v-model="model.enc_reason"
           >
             <option value=""></option>
             <option value="disease surveilance">Disease Surveilance</option>
@@ -177,7 +177,7 @@
     <div class="field">
       <label for="comments" class="label">Comments</label>
       <div class="control">
-        <textarea name="comments" rows="5" class="textarea" placeholder="write as much as your heart desires..."></textarea>
+        <textarea name="comments" rows="5" v-model="model.comments" class="textarea" placeholder="write as much as your heart desires..."></textarea>
       </div>
       <p class="help">
         Any comments associated with this animal.
@@ -193,6 +193,7 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import { mapGetters } from 'vuex'
+// import { pick } from '../../util'
 
 export default {
   name: 'Encounter',
@@ -202,18 +203,32 @@ export default {
   data () {
     return {
       model: {
-        ndowId: null,
-        species: null,
+        ndow_id: null,
+        species: { id: null, common_name: null },
         project: null,
-        date: null
+        sex: '',
+        status: '',
+        age: '',
+        event_date: null,
+        enc_method: '',
+        enc_reason: '',
+        comments: null
       }
     }
   },
 
   computed: {
-    ...mapGetters({
+    ...mapGetters('encounterEntry', {
       species: 'speciesDropdown'
     })
+  },
+
+  methods: {
+    updateField (field) {
+      this.$store.commit('encounterEntry/updateAnimal', {
+        [field]: this.model[field]
+      })
+    }
   }
 }
 </script>
@@ -222,10 +237,5 @@ export default {
 <style lang="css" scoped>
 fieldset {
   border-width: 0;
-}
-
-li {
-  padding: 0;
-  margin: 0;
 }
 </style>

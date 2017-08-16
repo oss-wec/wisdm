@@ -1,3 +1,10 @@
+const state = {
+  animal: {
+    ndowId: '',
+    project: ''
+  }
+}
+
 const getters = {
   speciesDropdown (state, getters, rootState, rootGetters) {
     return rootState.species.map(s => {
@@ -9,6 +16,15 @@ const getters = {
   }
 }
 
+const mutations = {
+  updateAnimal (state, animal) {
+    Object.assign(state.animal, animal)
+  }
+}
+
 export default {
-  getters
+  namespaced: true,
+  state,
+  getters,
+  mutations
 }
