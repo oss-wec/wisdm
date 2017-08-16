@@ -6,7 +6,7 @@
 
       <div class="field has-addons">
         <div class="control is-expanded" :class="{ 'has-icons-left': errors.has('ndowid')}">
-          <input type="text" class="input" placeholder="10342" name="ndowid" @keyup.stop="updateField('ndow_id')"
+          <input type="text" class="input" placeholder="10342" name="ndowid" @keyup.stop="updateField('ndow_id', 'animal')"
                  v-model="model.ndow_id"
                  v-validate="'required'"
                  :class="{ 'is-danger': errors.has('ndowid') }"
@@ -36,7 +36,8 @@
                 :searchable="true"
                 :close-on-select="true"
                 :show-labels="true"
-                placeholder="Pick a value">
+                placeholder="Pick a value"
+                @select="updateField('species', 'animal')">  <!-- this isn't working properly for an object -->
       </Multiselect>
 
       <p class="help">
@@ -47,7 +48,7 @@
     <div class="field">
       <label for="project" class="label">Project</label>
       <div class="control">
-        <input type="text" class="input" v-model="model.project" @keyup.stop="updateField('project')">
+        <input type="text" class="input" v-model="model.project" @keyup.stop="updateField('project', 'encounter')">
       </div>
       <p class="help">
         With which project is this animal associated with?
@@ -61,6 +62,7 @@
                v-model="model.event_date"
                v-validate="'required'"
                :class="{ 'is-danger': errors.has('date') }"
+               @change="updateField('event_date', 'encounter')"
         >
       </div>
       <p class="help">
@@ -73,7 +75,7 @@
       <label for="status" class="label">Status</label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('status') }">
-          <select name="status" class="is-fullwidth"
+          <select name="status" class="is-fullwidth" @change="updateField('status', 'encounter')"
                   v-model="model.status"
                   v-validate="'required'"
           >
@@ -95,7 +97,7 @@
           <select name="sex"
                   v-model="model.sex"
                   v-validate="'required'"
-                  @change="updateField('sex')"
+                  @change="updateField('sex', 'animal')"
           >
             <option value=""></option>
             <option value="male">Male</option>
@@ -114,7 +116,7 @@
       <label for="age" class="label">Age</label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('age') }">
-          <select name="age"
+          <select name="age" @change="updateField('age', 'encounter')"
                   v-model="model.age"
                   v-validate="'required'"
           >
@@ -135,7 +137,7 @@
       <label for="enc-method" class="label">Encounter Method</label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('enc-method') }">
-          <select name="enc-method"
+          <select name="enc-method" @change="updateField('enc_method', 'encounter')"
                   v-model="model.enc_method"
                   v-validate="'required'"
           >
@@ -159,7 +161,7 @@
       <label for="enc-reason" class="label">Encounter Reason</label>
       <div class="control">
         <div class="select is-fullwidth">
-          <select name="enc-reason"
+          <select name="enc-reason" @change="updateField('enc_reason', 'encounter')"
                   v-model="model.enc_reason"
           >
             <option value=""></option>
@@ -178,7 +180,9 @@
     <div class="field">
       <label for="comments" class="label">Comments</label>
       <div class="control">
-        <textarea name="comments" rows="5" v-model="model.comments" class="textarea" placeholder="write as much as your heart desires..."></textarea>
+        <textarea name="comments" rows="5" v-model="model.comments" class="textarea" placeholder="write as much as your heart desires..."
+          @keyup.stop="updateField('comments', 'encounter')"
+        ></textarea>
       </div>
       <p class="help">
         Any comments associated with this animal.
@@ -225,11 +229,17 @@ export default {
   },
 
   methods: {
-    updateField (field) {
+    updateField (field, model) {
       this.$store.commit('encounterEntry/updateAnimal', {
-        [field]: this.model[field]
+        // [field]: this.model[field],
+        model: model,
+        data: { [field]: this.model[field] }
       })
     }
+  },
+
+  mounted: function () {
+    this.$store.dispatch('getSpecies')
   }
 }
 </script>

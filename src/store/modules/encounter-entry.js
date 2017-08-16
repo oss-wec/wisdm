@@ -1,8 +1,17 @@
 const state = {
   animal: {
     ndow_id: '',
-    project: '',
+    species: '',
     sex: ''
+  },
+  encounter: {
+    project: '',
+    status: '',
+    age: '',
+    event_date: '',
+    enc_method: '',
+    enc_reason: '',
+    comments: ''
   }
 }
 
@@ -18,8 +27,8 @@ const getters = {
 }
 
 const mutations = {
-  updateAnimal (state, animal) {
-    Object.assign(state.animal, animal)
+  updateAnimal (state, payload) {
+    Object.assign(state[payload.model], payload.data)
   }
 }
 
