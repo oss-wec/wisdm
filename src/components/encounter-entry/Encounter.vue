@@ -95,6 +95,7 @@
           <select name="sex"
                   v-model="model.sex"
                   v-validate="'required'"
+                  @change="updateField('sex')"
           >
             <option value=""></option>
             <option value="male">Male</option>

@@ -1,7 +1,8 @@
 const state = {
   animal: {
-    ndowId: '',
-    project: ''
+    ndow_id: '',
+    project: '',
+    sex: ''
   }
 }
 
