@@ -12,7 +12,17 @@ const state = {
     enc_method: '',
     enc_reason: '',
     comments: ''
-  }
+  },
+  marks: [
+    {
+      mark_type: '',
+      mark_id: '',
+      mark_color: '',
+      mark_loc: '',
+      given: '',
+      removed: ''
+    }
+  ]
 }
 
 const getters = {
@@ -29,6 +39,10 @@ const getters = {
 const mutations = {
   updateAnimal (state, payload) {
     Object.assign(state[payload.model], payload.data)
+  },
+
+  updateMarks (state, payload) {
+    Object.assign(state.marks, payload)
   }
 }
 

@@ -15,8 +15,9 @@
           <div class="control">
             <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('mark-type' + index) }">
               <select :name="'mark-type' + index" class="is-fullwidth" required
-                      v-model="mark.markType"
+                      v-model="mark.mark_type"
                       v-validate="'required'"
+                      @change="updateField"
               >
                 <option value="" disabled>Select Option...</option>
                 <option value="band">Band</option>
@@ -39,9 +40,10 @@
           </label>
           <div class="control">
             <input type="text" class="input" placeholder="B13" :name="'mark-id' + index"
-                   v-model="mark.markId"
+                   v-model="mark.mark_id"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('mark-id' + index) }"
+                   @keyup.stop="updateField"
             >
           </div>
           <p class="help">
@@ -59,8 +61,9 @@
           <div class="control">
             <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('mark-color' + index) }">
               <select :name="'mark-color' + index" class="is-fullwidth" required
-                      v-model="mark.markColor"
+                      v-model="mark.mark_color"
                       v-validate="'required'"
+                      @change="updateField"
               >
                 <option value="">Select Option...</option>
                 <option value="black">Black</option>
@@ -91,9 +94,10 @@
           </label>
           <div class="control">
             <input type="text" class="input" placeholder="B13" :name="'mark-loc' + index"
-                   v-model="mark.markLoc"
+                   v-model="mark.mark_loc"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('mark-loc' + index) }"
+                   @keyup="updateField"
             >
           </div>
           <p class="help">
@@ -113,6 +117,7 @@
                    v-model="mark.given"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('given' + index) }"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -128,6 +133,7 @@
           <div class="control">
             <input type="date" class="input" name="removed"
                    v-model="mark.removed"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -152,21 +158,21 @@ export default {
   data () {
     return {
       model: {
-        markType: '',
-        markId: null,
-        markColor: '',
-        markLoc: null,
-        given: null,
-        removed: null
+        mark_type: '',
+        mark_id: '',
+        mark_color: '',
+        mark_loc: '',
+        given: '',
+        removed: ''
       },
       marks: [
         {
-          markType: '',
-          markId: null,
-          markColor: '',
-          markLoc: null,
-          given: null,
-          removed: null
+          mark_type: '',
+          mark_id: '',
+          mark_color: '',
+          mark_loc: '',
+          given: '',
+          removed: ''
         }
       ]
     }
@@ -175,12 +181,16 @@ export default {
   methods: {
     addDynElement () {
       const model = Object.assign({}, this.model)
-
       this.marks.push(model)
+      this.updateField()
     },
 
     deleteDynElement (index) {
       this.marks.splice(index, 1)
+    },
+
+    updateField () {
+      this.$store.commit('encounterEntry/updateMarks', this.marks)
     }
   }
 }
