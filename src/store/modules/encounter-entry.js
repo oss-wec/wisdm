@@ -39,7 +39,69 @@ const state = {
       units: '',
       notes: ''
     }
-  ]
+  ],
+  vitals: [
+    {
+      time: '',
+      measurement: '',
+      value: '',
+      notes: ''
+    }
+  ],
+  samples: [
+    {
+      sample: '',
+      destination: '',
+      notes: ''
+    }
+  ],
+  injuries: [
+    {
+      side: '',
+      location: '',
+      type: '',
+      description: '',
+      treatment: ''
+    }
+  ],
+  medications: [
+    {
+      medication: '',
+      time: '',
+      dose: '',
+      units: '',
+      method: '',
+      notes: ''
+    }
+  ],
+  mortality: {
+    investigator: null,
+    carcass_age: '',
+    cause: '',
+    certainty: '',
+    mort_description: null,
+    mort_date: null,
+    femur_index: '',
+    gross_diagnosis: null,
+    histological_diagnosis: null
+  },
+  necropsy: {
+    necropsy_date: null,
+    condition: null,
+    integument: null,
+    musculoskeletal: null,
+    body_cavities: null,
+    hemolymphatic: null,
+    respiratory: null,
+    cardiovascular: null,
+    digestive: null,
+    urinary: null,
+    reproductive: null,
+    endocrine: null,
+    nervous: null,
+    sensory: null,
+    lab_studies: null
+  }
 }
 
 const getters = {

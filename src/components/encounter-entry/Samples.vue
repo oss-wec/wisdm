@@ -18,6 +18,7 @@
               <select :name="'sample' + index" required
                       v-model="sample.sample"
                       v-validate="'required'"
+                      @change="updateField"
               >
                 <option value="">Select Option...</option>
                 <option value="heart">Heart</option>
@@ -39,6 +40,7 @@
             <div class="select is-fullwidth">
               <select :name="'destination' + index" required
                       v-model="sample.destination"
+                      @change="updateField"
               >
                 <option value="">Select Option...</option>
                 <option value="waddl">WADDL</option>
@@ -57,7 +59,7 @@
         <div class="field">
           <label class="label">Sample Notes</label>
           <div class="control">
-            <textarea rows="3" class="textarea" v-model="sample.notes"></textarea>
+            <textarea rows="3" class="textarea" v-model="sample.notes" @change="updateField"></textarea>
           </div>
           <p class="help">
             Any notes associated with the collection of this sample.
@@ -74,35 +76,35 @@
 </template>
 
 <script>
+import { cloneDeep } from 'lodash'
+import { emptyModel } from '../../util'
+
 export default {
   name: 'Samples',
 
   data () {
     return {
-      model: {
-        sample: '',
-        destination: null,
-        notes: null
-      },
-      samples: [
-        {
-          sample: '',
-          destination: null,
-          notes: null
-        }
-      ]
+      samples: cloneDeep(this.$store.state.encounterEntry.samples)
     }
   },
 
   methods: {
     addDynElement () {
-      const model = Object.assign({}, this.model)
-
+      const model = Object.assign({}, emptyModel(this.samples[0], ''))
       this.samples.push(model)
+      this.updateField()
     },
 
     deleteDynElement (index) {
       this.samples.splice(index, 1)
+      this.updateField()
+    },
+
+    updateField () {
+      this.$store.commit('encounterEntry/updateModel', {
+        model: 'samples',
+        data: cloneDeep(this.samples)
+      })
     }
   }
 }
