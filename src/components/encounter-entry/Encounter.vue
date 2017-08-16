@@ -1,13 +1,17 @@
 <template lang="html">
   <fieldset>
+
     <!-- ndow id input -->
     <div class="field">
       <label for="ndowid" class="label">NDOW ID</label>
 
       <div class="field has-addons">
         <div class="control is-expanded" :class="{ 'has-icons-left': errors.has('ndowid')}">
-          <input type="text" class="input" placeholder="10342" name="ndowid" @keyup.stop="updateField('ndow_id', 'animal')"
-                 v-model="model.ndow_id"
+          <input type="text" class="input" 
+                 placeholder="10342" 
+                 name="ndowid" 
+                 @change="updateField('animal')"
+                 v-model="animal.ndow_id"
                  v-validate="'required'"
                  :class="{ 'is-danger': errors.has('ndowid') }"
           >
@@ -25,44 +29,50 @@
         <span v-show="errors.has('ndowid')" class="help is-danger">NDOW ID IS REQUIRED</span>
       </p>
     </div>
+
     <!-- species input -->
-    <!-- <div class="field"> -->
       <label for="species" class="label">Species</label>
 
       <Multiselect
-                v-model="model.species"
+                v-model="animal.species"
                 :options="species"
                 label="common_name"
                 :searchable="true"
                 :close-on-select="true"
                 :show-labels="true"
                 placeholder="Pick a value"
-                @select="updateField('species', 'animal')">  <!-- this isn't working properly for an object -->
+                @select="updateField('animal')"> 
       </Multiselect>
 
       <p class="help">
         What species is this animal?
       </p>
-    <!-- </div> -->
+
     <!-- project input -->
     <div class="field">
       <label for="project" class="label">Project</label>
       <div class="control">
-        <input type="text" class="input" v-model="model.project" @keyup.stop="updateField('project', 'encounter')">
+        <input  type="text" 
+                class="input" 
+                v-model="encounter.project" 
+                @change="updateField('encounter')">
       </div>
       <p class="help">
         With which project is this animal associated with?
       </p>
     </div>
+
     <!-- date input -->
     <div class="field">
       <label for="date" class="label">Date</label>
       <div class="control">
-        <input type="date" class="input" name="date"
-               v-model="model.event_date"
-               v-validate="'required'"
-               :class="{ 'is-danger': errors.has('date') }"
-               @change="updateField('event_date', 'encounter')"
+        <input  type="date" 
+                class="input" 
+                name="date"
+                v-model="encounter.event_date"
+                v-validate="'required'"
+                :class="{ 'is-danger': errors.has('date') }"
+                @change="updateField('encounter')"
         >
       </div>
       <p class="help">
@@ -70,17 +80,21 @@
         <span class="help is-danger" v-show="errors.has('date')">DATE IS REQUIRED</span>
       </p>
     </div>
+
     <!-- status input -->
     <div class="field">
       <label for="status" class="label">Status</label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('status') }">
-          <select name="status" class="is-fullwidth" @change="updateField('status', 'encounter')"
-                  v-model="model.status"
+          <select name="status" 
+                  class="is-fullwidth" 
+                  @change="updateField('encounter')"
+                  v-model="encounter.status"
                   v-validate="'required'"
           >
             <option value=""></option>
             <option value="alive">Alive</option>
+            <option value="mortality">Mortality</option>
           </select>
         </div>
       </div>
@@ -89,15 +103,16 @@
         <span class="help is-danger" v-show="errors.has('status')">STATUS IS REQUIRED</span>
       </p>
     </div>
+
     <!-- sex input -->
     <div class="field">
       <label for="sex" class="label">Sex</label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('sex') }">
           <select name="sex"
-                  v-model="model.sex"
+                  v-model="animal.sex"
                   v-validate="'required'"
-                  @change="updateField('sex', 'animal')"
+                  @change="updateField('animal')"
           >
             <option value=""></option>
             <option value="male">Male</option>
@@ -111,13 +126,15 @@
         <span class="help is-danger" v-show="errors.has('sex')">SEX IS REQUIRED</span>
       </p>
     </div>
+
     <!-- age input -->
     <div class="field">
       <label for="age" class="label">Age</label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('age') }">
-          <select name="age" @change="updateField('age', 'encounter')"
-                  v-model="model.age"
+          <select name="age" 
+                  @change="updateField('encounter')"
+                  v-model="encounter.age"
                   v-validate="'required'"
           >
             <option value=""></option>
@@ -132,13 +149,15 @@
         <span class="help is-danger" v-show="errors.has('age')">AGE IS REQUIRED</span>
       </p>
     </div>
+
     <!-- encounter method input -->
     <div class="field">
       <label for="enc-method" class="label">Encounter Method</label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('enc-method') }">
-          <select name="enc-method" @change="updateField('enc_method', 'encounter')"
-                  v-model="model.enc_method"
+          <select name="enc-method" 
+                  @change="updateField('encounter')"
+                  v-model="encounter.enc_method"
                   v-validate="'required'"
           >
             <option value=""></option>
@@ -156,13 +175,15 @@
         <span class="help is-danger" v-show="errors.has('enc-method')">ENCOUNTER METHOD IS REQUIRED</span>
       </p>
     </div>
+
     <!-- encounter reason input -->
     <div class="field">
       <label for="enc-reason" class="label">Encounter Reason</label>
       <div class="control">
         <div class="select is-fullwidth">
-          <select name="enc-reason" @change="updateField('enc_reason', 'encounter')"
-                  v-model="model.enc_reason"
+          <select name="enc-reason" 
+                  @change="updateField('encounter')"
+                  v-model="encounter.enc_reason"
           >
             <option value=""></option>
             <option value="disease surveilance">Disease Surveilance</option>
@@ -176,12 +197,16 @@
         What is the reason for encountering this animal?
       </p>
     </div>
+
     <!-- comments input -->
     <div class="field">
       <label for="comments" class="label">Comments</label>
       <div class="control">
-        <textarea name="comments" rows="5" v-model="model.comments" class="textarea" placeholder="write as much as your heart desires..."
-          @keyup.stop="updateField('comments', 'encounter')"
+        <textarea name="comments" rows="5" 
+                  v-model="encounter.comments" 
+                  class="textarea" 
+                  placeholder="write as much as your heart desires..."
+                  @change="updateField('encounter')"
         ></textarea>
       </div>
       <p class="help">
@@ -192,13 +217,14 @@
     <div>
       <pre><code>{{ $data }}</code></pre>
     </div>
+
   </fieldset>
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect'
 import { mapGetters } from 'vuex'
-// import { pick } from '../../util'
+import { cloneDeep } from 'lodash'
 
 export default {
   name: 'Encounter',
@@ -207,18 +233,8 @@ export default {
 
   data () {
     return {
-      model: {
-        ndow_id: null,
-        species: { id: null, common_name: null },
-        project: null,
-        sex: '',
-        status: '',
-        age: '',
-        event_date: null,
-        enc_method: '',
-        enc_reason: '',
-        comments: null
-      }
+      animal: cloneDeep(this.$store.state.encounterEntry.animal),
+      encounter: cloneDeep(this.$store.state.encounterEntry.encounter)
     }
   },
 
@@ -229,11 +245,10 @@ export default {
   },
 
   methods: {
-    updateField (field, model) {
-      this.$store.commit('encounterEntry/updateAnimal', {
-        // [field]: this.model[field],
+    updateField (model) {
+      this.$store.commit('encounterEntry/updateModel', {
         model: model,
-        data: { [field]: this.model[field] }
+        data: cloneDeep(this[model])
       })
     }
   },

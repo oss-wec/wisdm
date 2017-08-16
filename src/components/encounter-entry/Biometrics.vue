@@ -18,6 +18,7 @@
               <select :name="'measurement' + index" required
                       v-model="metric.measurement"
                       v-validate="'required'"
+                      @change="updateField"
               >
                 <option value="" disabled selected hidden>Select Option...</option>
                 <option value="age numeric">Age - numeric</option>
@@ -51,6 +52,7 @@
                    v-model="metric.value"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('value' + index) }"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -70,6 +72,7 @@
               <select :name="'units' + index" required
                       v-model="metric.unit"
                       v-validate="'required'"
+                      @change="updateField"
               >
                 <option value="" disabled selected hidden>Select Option...</option>
                 <option value="in">inches</option>
@@ -86,7 +89,7 @@
         <div class="field">
           <label class="label">Comments</label>
           <div class="control">
-            <textarea rows="3" class="textarea" v-model="metric.notes"></textarea>
+            <textarea rows="3" class="textarea" v-model="metric.notes" @change="updateField"></textarea>
           </div>
           <p class="help">
             Any notes associated with recording this biometric measurement.
@@ -101,42 +104,35 @@
 </template>
 
 <script>
+import { cloneDeep } from 'lodash'
+import { emptyModel } from '../../util'
+
 export default {
   name: 'Biometrics',
 
   data () {
     return {
-      model: {
-        measuremnt: '',
-        value: null,
-        units: '',
-        notes: null
-      },
-      biometrics: [
-        {
-          measuremnt: '',
-          value: null,
-          units: '',
-          notes: null
-        }, {
-          measuremnt: '',
-          value: null,
-          units: '',
-          notes: null
-        }
-      ]
+      biometrics: cloneDeep(this.$store.state.encounterEntry.biometrics)
     }
   },
 
   methods: {
     addDynElement () {
-      const model = Object.assign({}, this.model)
-
+      const model = Object.assign({}, emptyModel(this.biometrics[0], ''))
       this.biometrics.push(model)
+      this.updateField()
     },
 
     deleteDynElement (index) {
       this.biometrics.splice(index, 1)
+      this.updateField()
+    },
+
+    updateField () {
+      this.$store.commit('encounterEntry/updateModel', {
+        model: 'biometrics',
+        data: cloneDeep(this.biometrics)
+      })
     }
   }
 }

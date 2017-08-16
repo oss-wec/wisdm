@@ -18,6 +18,7 @@
               <select :name="'medication' + index" required
                       v-model="med.medication"
                       v-validate="'required'"
+                      @change="updateField"
               >
                 <option value="">Select Option...</option>
                 <option value="right">med1</option>
@@ -42,6 +43,7 @@
                    v-model="med.time"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('med-time' + index) }"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -59,6 +61,7 @@
                    v-model="med.dose"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('med-dose' + index)  }"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -78,6 +81,7 @@
               <select :name="'med-units' + index" required
                       v-model="med.units"
                       v-validate="'required'"
+                      @change="updateField"
               >
                 <option value="">Select Option...</option>
                 <option value="right">unit1</option>
@@ -102,6 +106,7 @@
               <select :name="'med-method' + index" required
                       v-model="med.method"
                       v-validate="'required'"
+                      @change="updateField"
               >
                 <option value="">Select Option...</option>
                 <option value="right">method 1</option>
@@ -120,7 +125,7 @@
         <div class="field">
           <label class="label">Medication Notes</label>
           <div class="control">
-            <textarea id="" rows="3" class="textarea" v-model="med.notes"></textarea>
+            <textarea id="" rows="3" class="textarea" v-model="med.notes" @change="updateField"></textarea>
           </div>
           <p class="help">
             Any notes associated with administering this medication.
@@ -136,41 +141,35 @@
 </template>
 
 <script>
+import { cloneDeep } from 'lodash'
+import { emptyModel } from '../../util'
+
 export default {
   name: 'Medications',
 
   data () {
     return {
-      model: {
-        medication: '',
-        time: null,
-        dose: null,
-        units: '',
-        method: '',
-        notes: null
-      },
-      medications: [
-        {
-          medication: '',
-          time: null,
-          dose: null,
-          units: '',
-          method: '',
-          notes: null
-        }
-      ]
+      medications: cloneDeep(this.$store.state.encounterEntry.medications)
     }
   },
 
   methods: {
     addDynElement () {
-      const model = Object.assign({}, this.model)
-
+      const model = Object.assign({}, emptyModel(this.medications[0], ''))
       this.medications.push(model)
+      this.updateField()
     },
 
     deleteDynElement (index) {
       this.medications.splice(index, 1)
+      this.updateField()
+    },
+
+    updateField () {
+      this.$store.commit('encounterEntry/updateModel', {
+        model: 'medications',
+        data: cloneDeep(this.medications)
+      })
     }
   }
 }

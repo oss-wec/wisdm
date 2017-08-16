@@ -18,6 +18,7 @@
                    v-model="vital.time"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('vital-time' + index) }"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -35,6 +36,7 @@
               <select :name="'vital-measure' + index" required
                       v-model="vital.measurement"
                       v-validate="'required'"
+                      @change="updateField"
               >
                 <option value="">Select Option...</option>
                 <option value="heart rate">Heart Rate</option>
@@ -60,6 +62,7 @@
                    v-model="vital.value"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('vital-value' + index)  }"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -73,7 +76,7 @@
         <div class="field">
           <label class="label">Vital Notes</label>
           <div class="control">
-            <textarea id="" rows="3" class="textarea" v-model="vital.notes"></textarea>
+            <textarea id="" rows="3" class="textarea" v-model="vital.notes" @change="updateField"></textarea>
           </div>
           <p class="help">
             Any notes associated with the recording of this vital sign.
@@ -89,37 +92,35 @@
 </template>
 
 <script>
+import { cloneDeep } from 'lodash'
+import { emptyModel } from '../../util'
+
 export default {
   name: 'Vitals',
 
   data () {
     return {
-      model: {
-        time: null,
-        measurement: '',
-        value: null,
-        notes: null
-      },
-      vitals: [
-        {
-          time: null,
-          measurement: '',
-          value: null,
-          notes: null
-        }
-      ]
+      vitals: cloneDeep(this.$store.state.encounterEntry.vitals)
     }
   },
 
   methods: {
     addDynElement () {
-      const model = Object.assign({}, this.model)
-
+      const model = Object.assign({}, emptyModel(this.vitals[0], ''))
       this.vitals.push(model)
+      this.updateField()
     },
 
     deleteDynElement (index) {
       this.vitals.splice(index, 1)
+      this.updateField()
+    },
+
+    updateField () {
+      this.$store.commit('encounterEntry/updateModel', {
+        model: 'vitals',
+        data: cloneDeep(this.vitals)
+      })
     }
   }
 }

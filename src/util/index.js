@@ -1,8 +1,8 @@
-export function emptyModel (obj) {
+export function emptyModel (obj, replace) {
   obj = Object.assign({}, obj)
 
   for (let k in obj) {
-    obj[k] = null
+    obj[k] = replace
   }
 
   return obj

@@ -17,6 +17,7 @@
               <select :name="'device-type' + index" class="is-fullwidth" required
                       v-model="device.type"
                       v-validate="'required'"
+                      @change="updateField"
               >
                 <option value="" disabled selected hidden>Select Option...</option>
                 <option value="gps">GPS</option>
@@ -39,6 +40,7 @@
                    v-model="device.serial_num"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('device-id' + index) }"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -58,6 +60,7 @@
                    v-model="device.frequency"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('freq' + index) }"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -77,6 +80,7 @@
                    v-model="device.inservice"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('inservice' + index) }"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -92,6 +96,7 @@
           <div class="control">
             <input type="date" class="input" name="outservice"
                    v-model="device.outservice"
+                   @change="updateField"
             >
           </div>
           <p class="help">
@@ -110,39 +115,34 @@
 </template>
 
 <script>
+import { cloneDeep } from 'lodash'
+import { emptyModel } from '../../util'
+
 export default {
   name: 'Devices',
 
   data () {
     return {
-      model: {
-        type: '',
-        serial_num: null,
-        frequency: null,
-        inservice: null,
-        outservice: null
-      },
-      devices: [
-        {
-          type: '',
-          serial_num: null,
-          frequency: null,
-          inservice: null,
-          outservice: null
-        }
-      ]
+      devices: cloneDeep(this.$store.state.encounterEntry.devices)
     }
   },
 
   methods: {
     addDynElement () {
-      const model = Object.assign({}, this.model)
-
+      const model = Object.assign({}, emptyModel(this.devices[0], ''))
       this.devices.push(model)
+      this.updateField()
     },
 
     deleteDynElement (index) {
       this.devices.splice(index, 1)
+    },
+
+    updateField () {
+      this.$store.commit('encounterEntry/updateModel', {
+        model: 'devices',
+        data: this.devices
+      })
     }
   }
 }
