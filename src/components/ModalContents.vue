@@ -106,8 +106,8 @@ export default {
 
   svg {
     fill: #269E7F;
-    width: 100px;
-    height: 100px;
+    width: 77px;
+    height: 77px;
   }
   
   h2 {
