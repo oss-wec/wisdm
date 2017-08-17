@@ -11,6 +11,8 @@
           </div>
         </div>
 
+        <button class="button btn-main" @click="toggle('modal')">Module Selection</button>
+
         <!-- encounter module -->
         <Collapse :visible="modules.encounter.visible" @collapse="toggle('encounter')">
           <p slot="header">Encounter<p>
@@ -19,47 +21,47 @@
           </div>
         </Collapse>
         <!-- marks module -->
-        <Collapse :visible="modules.marks.visible" @collapse="toggle('marks')">
+        <Collapse :visible="modules.marks.visible" @collapse="toggle('marks')" v-if="moduleSelection.marks">
           <p slot="header">Marks</p>
           <Marks slot="content"></Marks>
         </Collapse>
         <!-- devices module -->
-        <Collapse :visible="modules.devices.visible" @collapse="toggle('devices')">
+        <Collapse :visible="modules.devices.visible" @collapse="toggle('devices')" v-if="moduleSelection.devices">
           <p slot="header">Devices</p>
           <Devices slot="content"></Devices>
         </Collapse>
 
-        <Collapse :visible="modules.biometrics.visible" @collapse="toggle('biometrics')">
+        <Collapse :visible="modules.biometrics.visible" @collapse="toggle('biometrics')" v-if="moduleSelection.biometrics">
           <p slot="header">Biometrics</p>
           <Biometrics slot="content"></Biometrics>
         </Collapse>
 
-        <Collapse :visible="modules.vitals.visible" @collapse="toggle('vitals')">
+        <Collapse :visible="modules.vitals.visible" @collapse="toggle('vitals')" v-if="moduleSelection.vitals">
           <p slot="header">Vitals</p>
           <Vitals slot="content"></Vitals>
         </Collapse>
 
-        <Collapse :visible="modules.samples.visible" @collapse="toggle('samples')">
+        <Collapse :visible="modules.samples.visible" @collapse="toggle('samples')" v-if="moduleSelection.samples">
           <p slot="header">Samples</p>
           <Samples slot="content"></Samples>
         </Collapse>
 
-        <Collapse :visible="modules.injuries.visible" @collapse="toggle('injuries')">
+        <Collapse :visible="modules.injuries.visible" @collapse="toggle('injuries')" v-if="moduleSelection.injuries">
           <p slot="header">Injuries</p>
           <Injuries slot="content"></Injuries>
         </Collapse>
 
-        <Collapse :visible="modules.medications.visible" @collapse="toggle('medications')">
+        <Collapse :visible="modules.medications.visible" @collapse="toggle('medications')" v-if="moduleSelection.medications">
           <p slot="header">Medications</p>
           <Medications slot="content"></Medications>
         </Collapse>
 
-        <Collapse :visible="modules.mortality.visible" @collapse="toggle('mortality')">
+        <Collapse :visible="modules.mortality.visible" @collapse="toggle('mortality')" v-if="moduleSelection.mortality">
           <p slot="header">Mortality</p>
           <Mortality slot="content"></Mortality>
         </Collapse>
 
-        <Collapse :visible="modules.necropsy.visible" @collapse="toggle('necropsy')">
+        <Collapse :visible="modules.necropsy.visible" @collapse="toggle('necropsy')" v-if="moduleSelection.necropsy">
           <p slot="header">Necropsy</p>
           <Necropsy slot="content"></Necropsy>
         </Collapse>
@@ -68,22 +70,7 @@
 
       <pre><code>{{ encounterEvent }}</code></pre> 
 
-      <div class="modal" :class="{ 'is-active': modules.modal.visible }">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Select Data Entry Modules</p>
-            <button class="delete" aria-label="close" @click="toggle('modal')"></button>
-          </header>
-          <section class="modal-card-body">
-            <ModalContents />
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-info">Go!</button>
-            <p>To select a module, click on the icon for that module</p>
-          </footer>
-        </div>
-      </div>
+      <ModalContents :visible="modules.modal.visible" @visible="toggle('modal')" />
 
     </div>
   </div>
@@ -103,7 +90,7 @@ import Medications from './encounter-entry/Medications'
 import Mortality from './encounter-entry/Mortality'
 import Necropsy from './encounter-entry/Necropsy'
 import ModalContents from './ModalContents'
-// import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'NewAnimal',
@@ -165,7 +152,11 @@ export default {
   computed: {
     encounterEvent () {
       return this.$store.state.encounterEntry
-    }
+    },
+
+    ...mapState('encounterEntry', [
+      'moduleSelection'
+    ])
   },
 
   methods: {
@@ -177,4 +168,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  button.btn-main {
+    margin-bottom: 10px;
+    background-color: #269E7F;
+    color: #fff;
+  }
+
+  button.btn-main:hover {
+    background-color: #269e7a;
+  }
 </style>

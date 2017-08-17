@@ -1,88 +1,115 @@
 <template lang="html">
-  <div class="wrapper">
-    <div class="columns is-multiline is-mobile">
+
+  <div class="modal" :class="{ 'is-active': visible }">
+    <div class="modal-background"></div>
+
+    <div class="modal-card">
+
+      <header class="modal-card-head">
+        <p class="modal-card-title md-title">Select Data Entry Modules</p>
+        <button class="delete" @click="toggle()"></button>
+      </header>
+
+      <section class="modal-card-body">
+        <div class="columns is-mobile is-multiline">
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable" @click="selectModule('marks')" :class="{ selected: moduleSelection.marks }">
+              <svg class="icon">
+                <use xlink:href="#tool" />
+              </svg>
+              <h2 class="is-size-4">Marks</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable" @click="selectModule('devices')" :class="{ selected: moduleSelection.devices }">
+              <svg class="icon">
+                <use xlink:href="#worldwide" />
+              </svg>
+              <h2 class="is-size-4">Devices</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable" @click="selectModule('biometrics')" :class="{ selected: moduleSelection.biometrics }">
+              <svg class="icon">
+                <use xlink:href="#construction" />
+              </svg>
+              <h2 class="is-size-4">Biometrics</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable" @click="selectModule('vitals')" :class="{ selected: moduleSelection.vitals }">
+              <svg class="icon">
+                <use xlink:href="#stethoscope" />
+              </svg>
+              <h2 class="is-size-4">Vitals</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable" @click="selectModule('samples')" :class="{ selected: moduleSelection.samples }">
+              <svg class="icon">
+                <use xlink:href="#blood-test" />
+              </svg>
+              <h2 class="is-size-4">Samples</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable" @click="selectModule('injuries')" :class="{ selected: moduleSelection.injuries }">
+              <svg class="icon">
+                <use xlink:href="#bandage" />
+              </svg>
+              <h2 class="is-size-4">Injuries</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable" @click="selectModule('medications')" :class="{ selected: moduleSelection.medications }">
+              <svg class="icon">
+                <use xlink:href="#syringe" />
+              </svg>
+              <h2 class="is-size-4">Medications</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable" @click="selectModule('mortality')" :class="{ selected: moduleSelection.mortality }">
+              <svg class="icon">
+                <use xlink:href="#warning" />
+              </svg>
+              <h2 class="is-size-4">Mortality</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable" @click="selectModule('necropsy')" :class="{ selected: moduleSelection.necropsy }">
+              <svg class="icon">
+                <use xlink:href="#scalpel" />
+              </svg>
+              <h2 class="is-size-4">Necropsy</h2>
+            </div>
+          </div>
+        </div>
+
+        <section class="section">
+          <h3 class="md-title is-size-4">Common Form Configurations</h3>
+          <ul>
+            <li class="config"><a @click="configForm('bigGameCapture')">Big Game Capture</a></li>
+            <li class="config"><a @click="configForm('incidentalObs')">Indcidental Observation</a></li>
+            <li class="config"><a @click="configForm('droppedCollar')">Dropped Collar</a></li>
+          </ul>
+        </section>
       
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#tool" />
-          </svg>
-          <h2 class="is-size-4">Marks</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable selected">
-          <svg class="icon">
-            <use xlink:href="#worldwide" />
-          </svg>
-          <h2 class="is-size-4">Devices</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable selected">
-          <svg class="icon">
-            <use xlink:href="#construction" />
-          </svg>
-          <h2 class="is-size-4">Biometrics</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#stethoscope" />
-          </svg>
-          <h2 class="is-size-4">Vitals</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#blood-test" />
-          </svg>
-          <h2 class="is-size-4">Samples</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable selected">
-          <svg class="icon">
-            <use xlink:href="#bandage" />
-          </svg>
-          <h2 class="is-size-4">Injuries</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#syringe" />
-          </svg>
-          <h2 class="is-size-4">Medications</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#warning" />
-          </svg>
-          <h2 class="is-size-4">Mortality</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#scalpel" />
-          </svg>
-          <h2 class="is-size-4">Necropsy</h2>
-        </div>
-      </div>
-       
+      </section>
+      
+      <footer class="modal-card-foot">
+        <p>Select a module by clicking on its icon</p>
+      </footer>
+    
     </div>
 
     <div class="svg-pack">
@@ -92,22 +119,98 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'ModalContents'
+  name: 'ModalContents',
+
+  props: ['visible'],
+
+  methods: {
+    toggle () {
+      this.$emit('visible')
+    },
+
+    selectModule (module) {
+      this.$store.commit('encounterEntry/toggleModuleSelection', module)
+    },
+
+    configForm (config) {
+      const configs = {
+        bigGameCapture: {
+          marks: true,
+          devices: true,
+          biometrics: true,
+          vitals: true,
+          samples: true,
+          injuries: true,
+          medications: true,
+          mortality: false,
+          necropsy: false
+        },
+        incidentalObs: {
+          marks: false,
+          devices: false,
+          biometrics: false,
+          vitals: false,
+          samples: false,
+          injuries: false,
+          medications: false,
+          mortality: false,
+          necropsy: false
+        },
+        droppedCollar: {
+          marks: true,
+          devices: true,
+          biometrics: false,
+          vitals: false,
+          samples: false,
+          injuries: false,
+          medications: false,
+          mortality: false,
+          necropsy: false
+        }
+      }
+
+      this.$store.commit('encounterEntry/preConfigForm', configs[config])
+    }
+  },
+
+  computed: {
+    ...mapState('encounterEntry', ['moduleSelection'])
+  }
 }
 </script>
 
 <style lang="css" scoped>
+  .column {
+    padding: 7px;
+  }
+
+  .modal-card-head {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    background-color: #fff;
+    border-color: #868787;
+  }
+
+  .modal-card-foot {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-color: #fff;
+    border-color: #868787;
+  }
+
   .module-selector {
     padding: 15px 0;
     border: 1px solid rgba(255, 255, 255, 0);
-    border-radius: 3px;
+    border-radius: 2px;
   }
 
   svg {
     fill: #269E7F;
-    width: 77px;
-    height: 77px;
+    width: 84px;
+    height: 84px;
   }
   
   h2 {
@@ -141,5 +244,23 @@ export default {
 
   .selected h2 {
     color: #fff;
+  }
+
+  section.section {
+    border-top: 1px solid #868787;
+    padding: 15px 5px 5px 5px;
+    margin-top: 40px;
+  }
+
+  .md-title {
+    color: #175d49;
+  }
+
+  li.config > a {
+    color: #269E7F;
+  }
+
+  footer > p {
+    color: #868787
   }
 </style>
