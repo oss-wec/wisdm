@@ -14,7 +14,7 @@
         <div class="columns is-mobile is-multiline">
 
           <div class="column is-4 has-text-centered">
-            <div class="module-selector hoverable" @click="selectModule('marks')">
+            <div class="module-selector hoverable" @click="selectModule('marks')" :class="{ selected: moduleSelection.marks }">
               <svg class="icon">
                 <use xlink:href="#tool" />
               </svg>
@@ -23,7 +23,7 @@
           </div>
 
           <div class="column is-4 has-text-centered">
-            <div class="module-selector hoverable selected">
+            <div class="module-selector hoverable" @click="selectModule('devices')" :class="{ selected: moduleSelection.devices }">
               <svg class="icon">
                 <use xlink:href="#worldwide" />
               </svg>
@@ -32,7 +32,7 @@
           </div>
 
           <div class="column is-4 has-text-centered">
-            <div class="module-selector hoverable selected">
+            <div class="module-selector hoverable" @click="selectModule('biometrics')" :class="{ selected: moduleSelection.biometrics }">
               <svg class="icon">
                 <use xlink:href="#construction" />
               </svg>
@@ -41,7 +41,7 @@
           </div>
 
           <div class="column is-4 has-text-centered">
-            <div class="module-selector hoverable">
+            <div class="module-selector hoverable" @click="selectModule('vitals')" :class="{ selected: moduleSelection.vitals }">
               <svg class="icon">
                 <use xlink:href="#stethoscope" />
               </svg>
@@ -50,7 +50,7 @@
           </div>
 
           <div class="column is-4 has-text-centered">
-            <div class="module-selector hoverable">
+            <div class="module-selector hoverable" @click="selectModule('samples')" :class="{ selected: moduleSelection.samples }">
               <svg class="icon">
                 <use xlink:href="#blood-test" />
               </svg>
@@ -59,7 +59,7 @@
           </div>
 
           <div class="column is-4 has-text-centered">
-            <div class="module-selector hoverable selected">
+            <div class="module-selector hoverable" @click="selectModule('injuries')" :class="{ selected: moduleSelection.injuries }">
               <svg class="icon">
                 <use xlink:href="#bandage" />
               </svg>
@@ -68,7 +68,7 @@
           </div>
 
           <div class="column is-4 has-text-centered">
-            <div class="module-selector hoverable">
+            <div class="module-selector hoverable" @click="selectModule('medications')" :class="{ selected: moduleSelection.medications }">
               <svg class="icon">
                 <use xlink:href="#syringe" />
               </svg>
@@ -77,7 +77,7 @@
           </div>
 
           <div class="column is-4 has-text-centered">
-            <div class="module-selector hoverable">
+            <div class="module-selector hoverable" @click="selectModule('mortality')" :class="{ selected: moduleSelection.mortality }">
               <svg class="icon">
                 <use xlink:href="#warning" />
               </svg>
@@ -86,7 +86,7 @@
           </div>
 
           <div class="column is-4 has-text-centered">
-            <div class="module-selector hoverable">
+            <div class="module-selector hoverable" @click="selectModule('necropsy')" :class="{ selected: moduleSelection.necropsy }">
               <svg class="icon">
                 <use xlink:href="#scalpel" />
               </svg>
@@ -111,6 +111,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'ModalContents',
 
@@ -124,6 +126,10 @@ export default {
     selectModule (module) {
       this.$store.commit('encounterEntry/toggleModuleSelection', module)
     }
+  },
+
+  computed: {
+    ...mapState('encounterEntry', ['moduleSelection'])
   }
 }
 </script>
