@@ -41,7 +41,7 @@
                 :close-on-select="true"
                 :show-labels="true"
                 placeholder="Pick a value"
-                @select="updateField('animal')"> 
+                @input="updateField('animal')"> 
       </Multiselect>
 
       <p class="help">

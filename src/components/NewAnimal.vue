@@ -3,18 +3,14 @@
     <div class="column is-8 is-offset-2">
       <form>
 
-        <legend class="title">Enter New Project Information</legend>
+        <legend class="title">Enter New Animal Encounter</legend>
         <div class="message is-info is-small">
           <div class="message-body">
-            A project is a way to logically group animals into collections. Each project should have several animals and correspond to an actual on the ground capture event. Occasionally a project can be a longer term effort. For instance, collecting hunter harvest samples.
+            <p>Fields denoted with an <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span> are required.</p>
+            <p>Fields will validate after moving out of the field. All data will be validated by the server after submission.</p>
           </div>
         </div>
 
-        <div class="message is-danger is-small">
-          <div class="message-body">
-            Fields denoted with an <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span> are required.
-          </div>
-        </div>
         <!-- encounter module -->
         <Collapse :visible="modules.encounter.visible" @collapse="toggle('encounter')">
           <p slot="header">Encounter<p>
