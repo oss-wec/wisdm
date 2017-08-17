@@ -65,6 +65,26 @@
         </Collapse>
 
       </form>
+
+      <pre><code>{{ encounterEvent }}</code></pre> 
+
+      <div class="modal" :class="{ 'is-active': modules.modal.visible }">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Select Data Entry Modules</p>
+            <button class="delete" aria-label="close" @click="toggle('modal')"></button>
+          </header>
+          <section class="modal-card-body">
+            <ModalContents />
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-info">Go!</button>
+            <p>To select a module, click on the icon for that module</p>
+          </footer>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -82,6 +102,8 @@ import Injuries from './encounter-entry/Injuries'
 import Medications from './encounter-entry/Medications'
 import Mortality from './encounter-entry/Mortality'
 import Necropsy from './encounter-entry/Necropsy'
+import ModalContents from './ModalContents'
+// import { mapState } from 'vuex'
 
 export default {
   name: 'NewAnimal',
@@ -96,7 +118,8 @@ export default {
     Injuries,
     Medications,
     Mortality,
-    Necropsy
+    Necropsy,
+    ModalContents
   },
 
   data () {
@@ -131,8 +154,17 @@ export default {
         },
         necropsy: {
           visible: false
+        },
+        modal: {
+          visible: true
         }
       }
+    }
+  },
+
+  computed: {
+    encounterEvent () {
+      return this.$store.state.encounterEntry
     }
   },
 
