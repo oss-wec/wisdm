@@ -6,7 +6,7 @@
     <div class="modal-card">
 
       <header class="modal-card-head">
-        <p class="modal-card-title">Select Data Entry Modules</p>
+        <p class="modal-card-title md-title">Select Data Entry Modules</p>
         <button class="delete" @click="toggle()"></button>
       </header>
 
@@ -96,7 +96,7 @@
         </div>
 
         <section class="section">
-          <h3 class="config-title is-size-4">Common Form Configurations</h3>
+          <h3 class="md-title is-size-4">Common Form Configurations</h3>
           <ul>
             <li class="config"><a @click="configForm('bigGameCapture')">Big Game Capture</a></li>
             <li class="config"><a @click="configForm('incidentalObs')">Indcidental Observation</a></li>
@@ -183,10 +183,28 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  .column {
+    padding: 7px;
+  }
+
+  .modal-card-head {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    background-color: #fff;
+    border-color: #868787;
+  }
+
+  .modal-card-foot {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-color: #fff;
+    border-color: #868787;
+  }
+
   .module-selector {
     padding: 15px 0;
     border: 1px solid rgba(255, 255, 255, 0);
-    border-radius: 3px;
+    border-radius: 2px;
   }
 
   svg {
@@ -229,12 +247,12 @@ export default {
   }
 
   section.section {
-    border-top: 1px solid #175d49;
+    border-top: 1px solid #868787;
     padding: 15px 5px 5px 5px;
     margin-top: 40px;
   }
 
-  h3.config-title {
+  .md-title {
     color: #175d49;
   }
 
@@ -242,5 +260,7 @@ export default {
     color: #269E7F;
   }
 
-  
+  footer > p {
+    color: #868787
+  }
 </style>
