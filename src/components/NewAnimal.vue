@@ -11,7 +11,7 @@
           </div>
         </div>
 
-        <button class="button is-info" @click="toggle('modal')">Module Selection</button>
+        <button class="button btn-main" @click="toggle('modal')">Module Selection</button>
 
         <!-- encounter module -->
         <Collapse :visible="modules.encounter.visible" @collapse="toggle('encounter')">
@@ -168,4 +168,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  button.btn-main {
+    margin-bottom: 10px;
+    background-color: #269E7F;
+    color: #fff;
+  }
+
+  button.btn-main:hover {
+    background-color: #269e7a;
+  }
 </style>
