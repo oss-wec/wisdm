@@ -11,6 +11,8 @@
           </div>
         </div>
 
+        <button class="button is-info" @click="toggle('modal')">Module Selection</button>
+
         <!-- encounter module -->
         <Collapse :visible="modules.encounter.visible" @collapse="toggle('encounter')">
           <p slot="header">Encounter<p>
@@ -68,22 +70,7 @@
 
       <pre><code>{{ encounterEvent }}</code></pre> 
 
-      <div class="modal" :class="{ 'is-active': modules.modal.visible }">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Select Data Entry Modules</p>
-            <button class="delete" aria-label="close" @click="toggle('modal')"></button>
-          </header>
-          <section class="modal-card-body">
-            <ModalContents />
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-info">Go!</button>
-            <p>To select a module, click on the icon for that module</p>
-          </footer>
-        </div>
-      </div>
+      <ModalContents :visible="modules.modal.visible" @visible="toggle('modal')" />
 
     </div>
   </div>

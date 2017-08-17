@@ -1,88 +1,107 @@
 <template lang="html">
-  <div class="wrapper">
-    <div class="columns is-multiline is-mobile">
+
+  <div class="modal" :class="{ 'is-active': visible }">
+    <div class="modal-background"></div>
+
+    <div class="modal-card">
+
+      <header class="modal-card-head">
+        <p class="modal-card-title">Select Data Entry Modules</p>
+        <button class="delete" @click="toggle()"></button>
+      </header>
+
+      <section class="modal-card-body">
+
+        <div class="columns is-mobile is-multiline">
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable">
+              <svg class="icon">
+                <use xlink:href="#tool" />
+              </svg>
+              <h2 class="is-size-4">Marks</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable selected">
+              <svg class="icon">
+                <use xlink:href="#worldwide" />
+              </svg>
+              <h2 class="is-size-4">Devices</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable selected">
+              <svg class="icon">
+                <use xlink:href="#construction" />
+              </svg>
+              <h2 class="is-size-4">Biometrics</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable">
+              <svg class="icon">
+                <use xlink:href="#stethoscope" />
+              </svg>
+              <h2 class="is-size-4">Vitals</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable">
+              <svg class="icon">
+                <use xlink:href="#blood-test" />
+              </svg>
+              <h2 class="is-size-4">Samples</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable selected">
+              <svg class="icon">
+                <use xlink:href="#bandage" />
+              </svg>
+              <h2 class="is-size-4">Injuries</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable">
+              <svg class="icon">
+                <use xlink:href="#syringe" />
+              </svg>
+              <h2 class="is-size-4">Medications</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable">
+              <svg class="icon">
+                <use xlink:href="#warning" />
+              </svg>
+              <h2 class="is-size-4">Mortality</h2>
+            </div>
+          </div>
+
+          <div class="column is-4 has-text-centered">
+            <div class="module-selector hoverable">
+              <svg class="icon">
+                <use xlink:href="#scalpel" />
+              </svg>
+              <h2 class="is-size-4">Necropsy</h2>
+            </div>
+          </div>
+        </div>
       
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#tool" />
-          </svg>
-          <h2 class="is-size-4">Marks</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable selected">
-          <svg class="icon">
-            <use xlink:href="#worldwide" />
-          </svg>
-          <h2 class="is-size-4">Devices</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable selected">
-          <svg class="icon">
-            <use xlink:href="#construction" />
-          </svg>
-          <h2 class="is-size-4">Biometrics</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#stethoscope" />
-          </svg>
-          <h2 class="is-size-4">Vitals</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#blood-test" />
-          </svg>
-          <h2 class="is-size-4">Samples</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable selected">
-          <svg class="icon">
-            <use xlink:href="#bandage" />
-          </svg>
-          <h2 class="is-size-4">Injuries</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#syringe" />
-          </svg>
-          <h2 class="is-size-4">Medications</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#warning" />
-          </svg>
-          <h2 class="is-size-4">Mortality</h2>
-        </div>
-      </div>
-
-      <div class="column is-4 has-text-centered">
-        <div class="module-selector hoverable">
-          <svg class="icon">
-            <use xlink:href="#scalpel" />
-          </svg>
-          <h2 class="is-size-4">Necropsy</h2>
-        </div>
-      </div>
-       
+      </section>
+      
+      <footer class="modal-card-foot">
+        <button class="button is-info">Go!</button>
+        <p>Select a module by clicking on its icon</p>
+      </footer>
+    
     </div>
 
     <div class="svg-pack">
@@ -93,7 +112,15 @@
 
 <script>
 export default {
-  name: 'ModalContents'
+  name: 'ModalContents',
+
+  props: ['visible'],
+
+  methods: {
+    toggle () {
+      this.$emit('visible')
+    }
+  }
 }
 </script>
 
@@ -106,8 +133,8 @@ export default {
 
   svg {
     fill: #269E7F;
-    width: 77px;
-    height: 77px;
+    width: 84px;
+    height: 84px;
   }
   
   h2 {
