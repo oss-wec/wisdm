@@ -101,6 +101,17 @@ const state = {
     nervous: null,
     sensory: null,
     lab_studies: null
+  },
+  moduleSelection: {
+    marks: false,
+    devices: false,
+    biometrics: false,
+    vitals: false,
+    samples: false,
+    injuries: false,
+    medications: false,
+    mortality: false,
+    necropsy: false
   }
 }
 
@@ -123,6 +134,10 @@ const mutations = {
   updateModel (state, payload) {
     // Object.assign(state[payload.model], payload.data)
     state[payload.model] = payload.data
+  },
+
+  toggleModuleSelection (state, module) {
+    state.moduleSelection[module] = !state.moduleSelection[module]
   }
 }
 

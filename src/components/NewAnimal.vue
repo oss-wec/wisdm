@@ -21,47 +21,47 @@
           </div>
         </Collapse>
         <!-- marks module -->
-        <Collapse :visible="modules.marks.visible" @collapse="toggle('marks')">
+        <Collapse :visible="modules.marks.visible" @collapse="toggle('marks')" v-if="moduleSelection.marks">
           <p slot="header">Marks</p>
           <Marks slot="content"></Marks>
         </Collapse>
         <!-- devices module -->
-        <Collapse :visible="modules.devices.visible" @collapse="toggle('devices')">
+        <Collapse :visible="modules.devices.visible" @collapse="toggle('devices')" v-if="moduleSelection.devices">
           <p slot="header">Devices</p>
           <Devices slot="content"></Devices>
         </Collapse>
 
-        <Collapse :visible="modules.biometrics.visible" @collapse="toggle('biometrics')">
+        <Collapse :visible="modules.biometrics.visible" @collapse="toggle('biometrics')" v-if="moduleSelection.biometrics">
           <p slot="header">Biometrics</p>
           <Biometrics slot="content"></Biometrics>
         </Collapse>
 
-        <Collapse :visible="modules.vitals.visible" @collapse="toggle('vitals')">
+        <Collapse :visible="modules.vitals.visible" @collapse="toggle('vitals')" v-if="moduleSelection.vitals">
           <p slot="header">Vitals</p>
           <Vitals slot="content"></Vitals>
         </Collapse>
 
-        <Collapse :visible="modules.samples.visible" @collapse="toggle('samples')">
+        <Collapse :visible="modules.samples.visible" @collapse="toggle('samples')" v-if="moduleSelection.samples">
           <p slot="header">Samples</p>
           <Samples slot="content"></Samples>
         </Collapse>
 
-        <Collapse :visible="modules.injuries.visible" @collapse="toggle('injuries')">
+        <Collapse :visible="modules.injuries.visible" @collapse="toggle('injuries')" v-if="moduleSelection.injuries">
           <p slot="header">Injuries</p>
           <Injuries slot="content"></Injuries>
         </Collapse>
 
-        <Collapse :visible="modules.medications.visible" @collapse="toggle('medications')">
+        <Collapse :visible="modules.medications.visible" @collapse="toggle('medications')" v-if="moduleSelection.medications">
           <p slot="header">Medications</p>
           <Medications slot="content"></Medications>
         </Collapse>
 
-        <Collapse :visible="modules.mortality.visible" @collapse="toggle('mortality')">
+        <Collapse :visible="modules.mortality.visible" @collapse="toggle('mortality')" v-if="moduleSelection.mortality">
           <p slot="header">Mortality</p>
           <Mortality slot="content"></Mortality>
         </Collapse>
 
-        <Collapse :visible="modules.necropsy.visible" @collapse="toggle('necropsy')">
+        <Collapse :visible="modules.necropsy.visible" @collapse="toggle('necropsy')" v-if="moduleSelection.necropsy">
           <p slot="header">Necropsy</p>
           <Necropsy slot="content"></Necropsy>
         </Collapse>
@@ -90,7 +90,7 @@ import Medications from './encounter-entry/Medications'
 import Mortality from './encounter-entry/Mortality'
 import Necropsy from './encounter-entry/Necropsy'
 import ModalContents from './ModalContents'
-// import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'NewAnimal',
@@ -152,7 +152,11 @@ export default {
   computed: {
     encounterEvent () {
       return this.$store.state.encounterEntry
-    }
+    },
+
+    ...mapState('encounterEntry', [
+      'moduleSelection'
+    ])
   },
 
   methods: {

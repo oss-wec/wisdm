@@ -11,10 +11,10 @@
       </header>
 
       <section class="modal-card-body">
-
         <div class="columns is-mobile is-multiline">
+
           <div class="column is-4 has-text-centered">
-            <div class="module-selector hoverable">
+            <div class="module-selector hoverable" @click="selectModule('marks')">
               <svg class="icon">
                 <use xlink:href="#tool" />
               </svg>
@@ -119,6 +119,10 @@ export default {
   methods: {
     toggle () {
       this.$emit('visible')
+    },
+
+    selectModule (module) {
+      this.$store.commit('encounterEntry/toggleModuleSelection', module)
     }
   }
 }
