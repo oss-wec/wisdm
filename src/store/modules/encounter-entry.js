@@ -138,6 +138,10 @@ const mutations = {
 
   toggleModuleSelection (state, module) {
     state.moduleSelection[module] = !state.moduleSelection[module]
+  },
+
+  preConfigForm (state, payload) {
+    state.moduleSelection = payload
   }
 }
 

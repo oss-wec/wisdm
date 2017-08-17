@@ -94,11 +94,19 @@
             </div>
           </div>
         </div>
+
+        <section class="section">
+          <h3 class="config-title is-size-4">Common Form Configurations</h3>
+          <ul>
+            <li class="config"><a @click="configForm('bigGameCapture')">Big Game Capture</a></li>
+            <li class="config"><a @click="configForm('incidentalObs')">Indcidental Observation</a></li>
+            <li class="config"><a @click="configForm('droppedCollar')">Dropped Collar</a></li>
+          </ul>
+        </section>
       
       </section>
       
       <footer class="modal-card-foot">
-        <button class="button is-info">Go!</button>
         <p>Select a module by clicking on its icon</p>
       </footer>
     
@@ -125,6 +133,46 @@ export default {
 
     selectModule (module) {
       this.$store.commit('encounterEntry/toggleModuleSelection', module)
+    },
+
+    configForm (config) {
+      const configs = {
+        bigGameCapture: {
+          marks: true,
+          devices: true,
+          biometrics: true,
+          vitals: true,
+          samples: true,
+          injuries: true,
+          medications: true,
+          mortality: false,
+          necropsy: false
+        },
+        incidentalObs: {
+          marks: false,
+          devices: false,
+          biometrics: false,
+          vitals: false,
+          samples: false,
+          injuries: false,
+          medications: false,
+          mortality: false,
+          necropsy: false
+        },
+        droppedCollar: {
+          marks: true,
+          devices: true,
+          biometrics: false,
+          vitals: false,
+          samples: false,
+          injuries: false,
+          medications: false,
+          mortality: false,
+          necropsy: false
+        }
+      }
+
+      this.$store.commit('encounterEntry/preConfigForm', configs[config])
     }
   },
 
@@ -179,4 +227,20 @@ export default {
   .selected h2 {
     color: #fff;
   }
+
+  section.section {
+    border-top: 1px solid #175d49;
+    padding: 15px 5px 5px 5px;
+    margin-top: 40px;
+  }
+
+  h3.config-title {
+    color: #175d49;
+  }
+
+  li.config > a {
+    color: #269E7F;
+  }
+
+  
 </style>
