@@ -15,7 +15,7 @@
     <div class="field">
       <label class="label">General Condition</label>
       <div class="control">
-        <textarea rows="3" class="textarea" v-model="necropsy.condition" @change="updateField"></textarea>
+        <textarea rows="3" class="textarea" v-model="necropsy.general_condition" @change="updateField"></textarea>
       </div>
     </div>
     <!-- integument -->

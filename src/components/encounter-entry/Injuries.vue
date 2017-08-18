@@ -16,7 +16,7 @@
           <div class="control">
             <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('injury-side' + index) }">
               <select :name="'injury-side' + index" required
-                      v-model="injury.side"
+                      v-model="injury.injury_side"
                       v-validate="'required'"
                       @change="updateField"
               >
@@ -41,7 +41,7 @@
           <div class="control">
             <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('injury-location' + index) }">
               <select :name="'injury-location' + index" required
-                      v-model="injury.location"
+                      v-model="injury.injury_location"
                       v-validate="'required'"
                       @change="updateField"
               >
@@ -70,7 +70,7 @@
           <div class="control">
             <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('injury-type' + index) }">
               <select :name="'injury-type' + index" required
-                      v-model="injury.type"
+                      v-model="injury.injury_type"
                       v-validate="'required'"
                       @change="updateField"
               >
@@ -94,7 +94,7 @@
         <div class="field">
           <label class="label">Description</label>
           <div class="control">
-            <textarea id="" rows="3" class="textarea" v-model="injury.description" @change="updateField"></textarea>
+            <textarea id="" rows="3" class="textarea" v-model="injury.injury_description" @change="updateField"></textarea>
           </div>
           <p class="help">
             A thurough description of the injury.
@@ -104,7 +104,7 @@
         <div class="field">
           <label class="label">Treatment</label>
           <div class="control">
-            <textarea id="" rows="3" class="textarea" v-model="injury.treatment" @change="updateField"></textarea>
+            <textarea id="" rows="3" class="textarea" v-model="injury.injury_treatment" @change="updateField"></textarea>
           </div>
           <p class="help">
             How was this injury treated?

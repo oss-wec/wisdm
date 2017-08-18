@@ -11,7 +11,7 @@
                  placeholder="10342" 
                  name="ndowid" 
                  @change="updateField('animal')"
-                 v-model="animal.ndow_id"
+                 v-model="animal.animal_id"
                  v-validate="'required'"
                  :class="{ 'is-danger': errors.has('ndowid') }"
           >
@@ -34,7 +34,7 @@
       <label for="species" class="label">Species</label>
 
       <Multiselect
-                v-model="animal.species"
+                v-model="animal.species_id"
                 :options="species"
                 label="common_name"
                 :searchable="true"
@@ -57,7 +57,7 @@
                 v-model="encounter.project" 
                 @change="updateField('encounter')"> -->
         <Multiselect
-          v-model="encounter.project"
+          v-model="encounter.project_id"
           track-by="proj_name"
           label="proj_name"
           :options="projOptions"

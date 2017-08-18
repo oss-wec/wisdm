@@ -55,7 +55,7 @@
           <div class="control">
             <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('cause-death') }">
               <select name="cause-death" required
-                      v-model="mortality.cause"
+                      v-model="mortality.cause_of_death"
                       v-validate="'required'"
                       @change="updateField"
               >
@@ -90,7 +90,7 @@
           <div class="control">
             <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('cause-certainty') }">
               <select name="cause-certainty" required
-                      v-model="mortality.certainty"
+                      v-model="mortality.certainty_of_cause"
                       v-validate="'required'"
                       @change="updateField"
               >
@@ -115,7 +115,7 @@
         <div class="field">
           <label class="label">Description of Mortality</label>
           <div class="control">
-            <textarea id="" rows="5" class="textarea" v-model="mortality.mort_description" @change="updateField"></textarea>
+            <textarea id="" rows="5" class="textarea" v-model="mortality.description" @change="updateField"></textarea>
           </div>
           <p class="help">
             A detailed description of the mortality or animal history. This includes evidence to support cause of death.
@@ -156,7 +156,7 @@
         <div class="field">
           <label class="label">Gross Diagnosis</label>
           <div class="control">
-            <textarea id="" rows="3" class="textarea" v-model="mortality.gross_diagnosis" @change="updateField"></textarea>
+            <textarea id="" rows="3" class="textarea" v-model="mortality.gross_diagnoses" @change="updateField"></textarea>
           </div>
           <p class="help">
             Gross necropsy diagnoses for death.
@@ -164,9 +164,9 @@
         </div>
         <!-- histological diagnosis -->
         <div class="field">
-          <label class="label">Description of Mortality</label>
+          <label class="label">Histologcal Mortality</label>
           <div class="control">
-            <textarea id="" rows="3" class="textarea" v-model="mortality.histological_diagnosis" @change="updateField"></textarea>
+            <textarea id="" rows="3" class="textarea" v-model="mortality.histological_diagnoses" @change="updateField"></textarea>
           </div>
           <p class="help">
             Histologcal diagnoses for death from lab.

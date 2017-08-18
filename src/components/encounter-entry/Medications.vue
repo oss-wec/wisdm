@@ -40,7 +40,7 @@
           </label>
           <div class="control">
             <input type="time" class="input" :name="'med-time' + index"
-                   v-model="med.time"
+                   v-model="med.med_time"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('med-time' + index) }"
                    @change="updateField"
@@ -58,7 +58,7 @@
           </label>
           <div class="control">
             <input type="number" class="input" :name="'med-dose' + index"
-                   v-model="med.dose"
+                   v-model="med.med_dose"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('med-dose' + index)  }"
                    @change="updateField"
@@ -79,7 +79,7 @@
           <div class="control">
             <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('med-units' + index) }">
               <select :name="'med-units' + index" required
-                      v-model="med.units"
+                      v-model="med.med_unit"
                       v-validate="'required'"
                       @change="updateField"
               >
@@ -104,7 +104,7 @@
           <div class="control">
             <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('med-method' + index) }">
               <select :name="'med-method' + index" required
-                      v-model="med.method"
+                      v-model="med.med_method"
                       v-validate="'required'"
                       @change="updateField"
               >
@@ -125,7 +125,7 @@
         <div class="field">
           <label class="label">Medication Notes</label>
           <div class="control">
-            <textarea id="" rows="3" class="textarea" v-model="med.notes" @change="updateField"></textarea>
+            <textarea id="" rows="3" class="textarea" v-model="med.med_notes" @change="updateField"></textarea>
           </div>
           <p class="help">
             Any notes associated with administering this medication.

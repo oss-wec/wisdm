@@ -70,7 +70,7 @@
           <div class="control">
             <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('units' + index) }">
               <select :name="'units' + index" required
-                      v-model="metric.unit"
+                      v-model="metric.units"
                       v-validate="'required'"
                       @change="updateField"
               >

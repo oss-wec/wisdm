@@ -114,7 +114,7 @@
           </label>
           <div class="control">
             <input type="date" class="input" :name="'given' + index"
-                   v-model="mark.given"
+                   v-model="mark.date_given"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('given' + index) }"
                    @change="updateField"
@@ -132,7 +132,7 @@
           <label for="removed" class="label">Date Removed</label>
           <div class="control">
             <input type="date" class="input" name="removed"
-                   v-model="mark.removed"
+                   v-model="mark.date_removed"
                    @change="updateField"
             >
           </div>

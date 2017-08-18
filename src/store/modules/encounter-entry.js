@@ -2,12 +2,12 @@ import { cloneDeep } from 'lodash'
 
 const state = {
   animal: {
-    ndow_id: '',
-    species: '',
+    animal_id: '',
+    species_id: '',
     sex: ''
   },
   encounter: {
-    project: '',
+    project_id: '',
     status: '',
     age: '',
     event_date: '',
@@ -20,9 +20,9 @@ const state = {
       mark_type: '',
       mark_id: '',
       mark_color: '',
-      mark_loc: '',
-      given: '',
-      removed: ''
+      mark_location: '',
+      date_given: '',
+      date_removed: ''
     }
   ],
   devices: [
@@ -44,7 +44,7 @@ const state = {
   ],
   vitals: [
     {
-      time: '',
+      time_rec: '',
       measurement: '',
       value: '',
       notes: ''
@@ -59,37 +59,37 @@ const state = {
   ],
   injuries: [
     {
-      side: '',
-      location: '',
-      type: '',
-      description: '',
-      treatment: ''
+      injury_side: '',
+      injury_location: '',
+      injury_type: '',
+      injury_description: '',
+      injury_treatment: ''
     }
   ],
   medications: [
     {
       medication: '',
-      time: '',
-      dose: '',
-      units: '',
-      method: '',
-      notes: ''
+      med_time: '',
+      med_dose: '',
+      med_unit: '',
+      med_method: '',
+      med_notes: ''
     }
   ],
   mortality: {
     investigator: null,
     carcass_age: '',
-    cause: '',
-    certainty: '',
-    mort_description: null,
+    cause_of_death: '',
+    certainty_of_cause: '',
+    description: null,
     mort_date: null,
     femur_index: '',
-    gross_diagnosis: null,
-    histological_diagnosis: null
+    gross_diagnoses: null,
+    histological_diagnoses: null
   },
   necropsy: {
     necropsy_date: null,
-    condition: null,
+    general_condition: null,
     integument: null,
     musculoskeletal: null,
     body_cavities: null,
@@ -134,8 +134,8 @@ const getters = {
       encounter: cloneDeep(state.encounter)
     }
 
-    data.animal.species = data.animal.species.id
-    data.encounter.project = data.encounter.project.id
+    data.animal.species_id = data.animal.species_id.id
+    data.encounter.project_id = data.encounter.project_id.id
 
     if (modules.marks) data.marks = state.marks
     if (modules.devices) data.devices = state.devices

@@ -15,7 +15,7 @@
           </label>
           <div class="control">
             <input type="time" class="input" :name="'vital-time' + index"
-                   v-model="vital.time"
+                   v-model="vital.time_rec"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('vital-time' + index) }"
                    @change="updateField"
