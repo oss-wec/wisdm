@@ -20,7 +20,7 @@
           </span>
         </div>
         <div class="control">
-          <a class="button is-info">Recapture</a>
+          <a class="button is-info" disabled>Recapture</a>
         </div>
       </div>
 
@@ -39,8 +39,8 @@
                 label="common_name"
                 :searchable="true"
                 :close-on-select="true"
-                :show-labels="true"
-                placeholder="Pick a value"
+                :show-labels="false"
+                placeholder="Type species common name"
                 @input="updateField('animal')"> 
       </Multiselect>
 
@@ -52,10 +52,18 @@
     <div class="field">
       <label for="project" class="label">Project</label>
       <div class="control">
-        <input  type="text" 
+        <!-- <input  type="text" 
                 class="input" 
                 v-model="encounter.project" 
-                @change="updateField('encounter')">
+                @change="updateField('encounter')"> -->
+        <Multiselect
+          v-model="encounter.project"
+          track-by="proj_name"
+          label="proj_name"
+          :options="projOptions"
+          :show-labels="false"
+          :close-on-select="true"
+          @input="updateField('encounter')" />
       </div>
       <p class="help">
         With which project is this animal associated with?
@@ -219,7 +227,7 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 
 export default {
@@ -237,6 +245,10 @@ export default {
   computed: {
     ...mapGetters('encounterEntry', {
       species: 'speciesDropdown'
+    }),
+
+    ...mapState({
+      projOptions: 'projectList'
     })
   },
 
@@ -251,6 +263,7 @@ export default {
 
   mounted: function () {
     this.$store.dispatch('getSpecies')
+    this.$store.dispatch('getProjectList')
   }
 }
 </script>

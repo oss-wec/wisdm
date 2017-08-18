@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getSpecies, getAnimals } from '../api'
+import { getSpecies, getAnimals, getProjectList } from '../api'
 import encounterEntry from './modules/encounter-entry.js'
 
 Vue.use(Vuex)
@@ -10,7 +10,9 @@ const state = {
 
   speciesByGroup: [],
 
-  animals: []
+  animals: [],
+
+  projectList: []
 }
 
 const getters = {
@@ -46,6 +48,11 @@ const actions = {
   getAnimals ({ commit }) {
     getAnimals()
     .then(response => commit('setAnimals', { animals: response.data.data }))
+  },
+
+  getProjectList ({ commit }) {
+    getProjectList()
+    .then(response => commit('setProjectList', { projects: response.data.data.projects }))
   }
 }
 
@@ -60,6 +67,10 @@ const mutations = {
 
   setAnimals (state, payload) {
     state.animals = payload.animals
+  },
+
+  setProjectList (state, payload) {
+    state.projectList = payload.projects
   }
 }
 

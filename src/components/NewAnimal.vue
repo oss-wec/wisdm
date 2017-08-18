@@ -11,7 +11,7 @@
           </div>
         </div>
 
-        <button class="button btn-main" @click="toggle('modal')">Module Selection</button>
+        <button class="button is-info is-outlined" @click="toggle('modal')" style="margin-bottom: 15px;">Module Selection</button>
 
         <!-- encounter module -->
         <Collapse :visible="modules.encounter.visible" @collapse="toggle('encounter')">
@@ -67,6 +67,8 @@
         </Collapse>
 
       </form>
+
+      <button class="button is-info is-outlined" style="margin: 15px 0;">Submit Encounter</button>
 
       <pre><code>{{ encounterData }}</code></pre> 
 

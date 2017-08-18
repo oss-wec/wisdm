@@ -1,3 +1,5 @@
+import { cloneDeep } from 'lodash'
+
 const state = {
   animal: {
     ndow_id: '',
@@ -128,9 +130,12 @@ const getters = {
   encounterData (state) {
     const modules = state.moduleSelection
     const data = {
-      animal: state.animal,
-      encounter: state.encounter
+      animal: cloneDeep(state.animal),
+      encounter: cloneDeep(state.encounter)
     }
+
+    data.animal.species = data.animal.species.id
+    data.encounter.project = data.encounter.project.id
 
     if (modules.marks) data.marks = state.marks
     if (modules.devices) data.devices = state.devices
