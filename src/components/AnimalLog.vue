@@ -10,6 +10,7 @@
           <h2 class="subtitle">
             Every animal in the database will appear here. 
           </h2>
+          <router-link class="button is-info is-outlined" :to="{ name: 'NewAnimal' }">Enter New Animal</router-link>
         </div>
       </div>
     </section>

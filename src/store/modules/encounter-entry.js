@@ -1,4 +1,5 @@
 import { cloneDeep } from 'lodash'
+import { emptyModel } from '../../util'
 
 const state = {
   animal: {
@@ -129,25 +130,76 @@ const getters = {
 
   encounterData (state) {
     const modules = state.moduleSelection
-    const data = {
-      animal: cloneDeep(state.animal),
-      encounter: cloneDeep(state.encounter)
+    const animal = state.animal
+    const encounter = state.encounter
+    const structure = {
+      animal_id: animal.animal_id,
+      species_id: animal.species_id.id,
+      sex: animal.sex,
+      Encounters: {
+        project_id: encounter.project_id.id,
+        status: encounter.status,
+        age: encounter.age,
+        event_date: encounter.event_date,
+        enc_method: encounter.enc_method,
+        enc_reason: encounter.enc_reason,
+        comments: encounter.comments
+      }
     }
 
-    data.animal.species_id = data.animal.species_id.id
-    data.encounter.project_id = data.encounter.project_id.id
+    if (modules.marks) structure.Marks = state.marks
+    if (modules.devices) structure.Devices = state.devices
+    if (modules.biometrics) structure.Encounters.Biometrics = state.biometrics
+    if (modules.vitals) structure.Encounters.Vitals = state.vitals
+    if (modules.samples) structure.Encounters.Samples = state.samples
+    if (modules.injuries) structure.Encounters.Injuries = state.injuries
+    if (modules.medications) structure.Encounters.Medications = state.medications
+    if (modules.mortality) structure.Encounters.Mortality = state.mortality
+    if (modules.necropsy) structure.Encounters.Necropsy = state.necropsy
 
-    if (modules.marks) data.marks = state.marks
-    if (modules.devices) data.devices = state.devices
-    if (modules.biometrics) data.biometrics = state.biometrics
-    if (modules.vitals) data.vitals = state.vitals
-    if (modules.samples) data.samples = state.samples
-    if (modules.injuries) data.injuries = state.injuries
-    if (modules.medications) data.medications = state.medications
-    if (modules.mortality) data.mortality = state.mortality
-    if (modules.necropsy) data.necropsy = state.necropsy
+    return structure
 
-    return data
+    // const modules = state.moduleSelection
+    // const data = {
+    //   animal: cloneDeep(state.animal),
+    //   encounter: cloneDeep(state.encounter)
+    // }
+
+    // data.animal.species_id = data.animal.species_id.id
+    // data.encounter.project_id = data.encounter.project_id.id
+
+    // if (modules.marks) data.marks = state.marks
+    // if (modules.devices) data.devices = state.devices
+    // if (modules.biometrics) data.biometrics = state.biometrics
+    // if (modules.vitals) data.vitals = state.vitals
+    // if (modules.samples) data.samples = state.samples
+    // if (modules.injuries) data.injuries = state.injuries
+    // if (modules.medications) data.medications = state.medications
+    // if (modules.mortality) data.mortality = state.mortality
+    // if (modules.necropsy) data.necropsy = state.necropsy
+
+    // return data
+  }
+}
+
+const actions = {
+  resetData ({ commit }) {
+    const data = cloneDeep(state)
+    const newState = {}
+
+    for (let k in state) {
+      if (k === 'moduleSelection') {
+        newState[k] = emptyModel(data[k], false)
+      } else {
+        if (Array.isArray(state[k])) {
+          newState[k] = new Array(emptyModel(data[k][0], ''))
+        } else {
+          newState[k] = emptyModel(data[k], '')
+        }
+      }
+    }
+
+    commit('resetData', { newState: newState })
   }
 }
 
@@ -167,6 +219,21 @@ const mutations = {
 
   preConfigForm (state, payload) {
     state.moduleSelection = payload
+  },
+
+  resetData (state, payload) {
+    state.animal = payload.newState.animal
+    state.encounter = payload.newState.encounter
+    state.marks = payload.newState.marks
+    state.devices = payload.newState.devices
+    state.biometrics = payload.newState.biometrics
+    state.vitals = payload.newState.vitals
+    state.samples = payload.newState.samples
+    state.injuries = payload.newState.injuries
+    state.medications = payload.newState.medications
+    state.necropsy = payload.newState.necropsy
+    state.mortality = payload.newState.mortality
+    state.moduleSelection = payload.newState.moduleSelection
   }
 }
 
@@ -174,5 +241,6 @@ export default {
   namespaced: true,
   state,
   getters,
+  actions,
   mutations
 }

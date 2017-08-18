@@ -24,3 +24,7 @@ export function getProjectList () {
 export function createProject (data) {
   return api.post('/projects', data)
 }
+
+export function createEncounter (data) {
+  return api.post('events/test', data)
+}

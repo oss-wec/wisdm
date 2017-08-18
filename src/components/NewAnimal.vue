@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="columns">
     <div class="column is-8 is-offset-2">
-      <form>
+      <form id="newEncounter">
 
         <legend class="title">Enter New Animal Encounter</legend>
         <div class="message is-info is-small">
@@ -11,7 +11,9 @@
           </div>
         </div>
 
-        <button class="button is-info is-outlined" @click="toggle('modal')" style="margin-bottom: 15px;">Module Selection</button>
+        <button class="button is-info is-outlined" @click.prevent="toggle('modal')" style="margin-bottom: 15px;">Module Selection</button>
+
+        <button class="button is-info is-outlined" @click.prevent="reset" style="margin-bottom: 15px;">Clear Form</button>
 
         <!-- encounter module -->
         <Collapse :visible="modules.encounter.visible" @collapse="toggle('encounter')">
@@ -66,9 +68,29 @@
           <Necropsy slot="content"></Necropsy>
         </Collapse>
 
+        <button class="button is-info is-outlined" style="margin: 15px 0;" @click.prevent="submit">Submit Encounter</button>
       </form>
 
-      <button class="button is-info is-outlined" style="margin: 15px 0;">Submit Encounter</button>
+      <!-- <div class="notification is-warning" v-if="error">
+        <ul>
+          <li v-for="err in error.response.data">
+            {{ err.message }}
+          </li>
+        </ul>
+      </div> -->
+
+      <article class="message is-warning" v-if="error">
+        <div class="message-header">
+          <p>Please fix the following errors:</p>
+        </div>
+        <div class="message-body">
+          <ol>
+            <li v-for="err in error.response.data">
+              {{ err.message }}
+            </li>
+          </ol>
+        </div>
+      </article>
 
       <pre><code>{{ encounterData }}</code></pre> 
 
@@ -93,6 +115,8 @@ import Mortality from './encounter-entry/Mortality'
 import Necropsy from './encounter-entry/Necropsy'
 import ModalContents from './ModalContents'
 import { mapState, mapGetters } from 'vuex'
+import { createEncounter } from '../api'
+import router from '../router'
 
 export default {
   name: 'NewAnimal',
@@ -147,7 +171,8 @@ export default {
         modal: {
           visible: true
         }
-      }
+      },
+      error: null
     }
   },
 
@@ -168,6 +193,19 @@ export default {
   methods: {
     toggle (module) {
       this.modules[module].visible = !this.modules[module].visible
+    },
+
+    submit () {
+      createEncounter(this.encounterData)
+      .then(() => {
+        router.push({ path: '/animal-log' })
+      })
+      .then(() => this.$store.dispatch('encounterEntry/resetData'))
+      .catch(error => { this.error = error })
+    },
+
+    reset () {
+      this.$store.dispatch('encounterEntry/resetData')
     }
   }
 }
@@ -186,5 +224,9 @@ export default {
 
   legend {
     margin-top: 20px;
+  }
+
+  li {
+    margin-left: 15px;
   }
 </style>

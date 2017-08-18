@@ -94,7 +94,7 @@
           </label>
           <div class="control">
             <input type="text" class="input" placeholder="B13" :name="'mark-loc' + index"
-                   v-model="mark.mark_loc"
+                   v-model="mark.mark_location"
                    v-validate="'required'"
                    :class="{ 'is-danger': errors.has('mark-loc' + index) }"
                    @change="updateField"
