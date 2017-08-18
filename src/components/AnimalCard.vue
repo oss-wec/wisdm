@@ -2,32 +2,32 @@
 
   <div class="card" :style="cardBorder">
     <header class="card-header" :style="headerStyle">
-      <div class="column">{{ animal.species }}</div>
-      <div class="column is-3 has-text-right is-size-5 id-number">{{ animal.ndow_id }}</div>
+      <div class="column is-3 has-text-left is-size-5 id-number">{{ animal.ndow_id }}</div>
+      <div class="column has-text-right">{{ animal.species }}</div>
     </header>
     <div class="card-content">
       <div class="content">
 
         <table>
           <tr>
-            <td>{{ localDate(animal.date) }}</td>
-            <td>Date</td>
+            <td class="has-text-bolder">{{ localDate(animal.date) }}</td>
+            <td class="has-text-grey">Date</td>
           </tr>
           <tr>
-            <td>{{ animal.project }}</td>
-            <td>Project</td>
+            <td class="has-text-bolder">{{ animal.project }}</td>
+            <td class="has-text-grey">Project</td>
           </tr>
           <tr>
-            <td>{{ animal.status }}</td>
-            <td>Status</td>
+            <td class="has-text-bolder">{{ animal.status }}</td>
+            <td class="has-text-grey">Status</td>
           </tr>
           <tr>
-            <td>{{ animal.sex }}</td>
-            <td>Sex</td>
+            <td class="has-text-bolder">{{ animal.sex }}</td>
+            <td class="has-text-grey">Sex</td>
           </tr>
           <tr>
-            <td>{{ animal.age }}</td>
-            <td>Age</td>
+            <td class="has-text-bolder">{{ animal.age }}</td>
+            <td class="has-text-grey">Age</td>
           </tr>
         </table>
 
@@ -168,5 +168,9 @@ footer.card-footer {
 div.test {
   background-color: grey;
   border: 1px solid black;
+}
+
+.has-text-bolder {
+  font-weight: 600;
 }
 </style>

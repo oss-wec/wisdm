@@ -37,6 +37,7 @@
 
 
         <div class="navbar-end">
+          <a class="navbar-item has-text-danger" disabled>!!FOR TESTING ONLY!!</a>
           <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a href="#" class="navbar-link">
               <span class="icon"><i class="fa fa-plus color"></i></span>

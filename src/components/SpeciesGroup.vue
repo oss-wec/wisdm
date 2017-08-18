@@ -1,8 +1,17 @@
 <template lang="html">
   <div class="container">
-    <div class="pad-md">
-      <p class="has-text-centered">A complete list of {{ group.name }} species that occur in Nevada.</p>
-    </div>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            {{ group.name }}
+          </h1>
+          <h2 class="subtitle">
+            A complete list of {{ group.name }} species that occur in Nevada.
+          </h2>
+        </div>
+      </div>
+    </section>
 
     <div>
       <ul v-for="(family, index) in families">

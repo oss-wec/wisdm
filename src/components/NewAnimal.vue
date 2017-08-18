@@ -13,8 +13,6 @@
 
         <button class="button is-info is-outlined" @click.prevent="toggle('modal')" style="margin-bottom: 15px;">Module Selection</button>
 
-        <button class="button is-info is-outlined" @click.prevent="reset" style="margin-bottom: 15px;">Clear Form</button>
-
         <!-- encounter module -->
         <Collapse :visible="modules.encounter.visible" @collapse="toggle('encounter')">
           <p slot="header">Encounter<p>
@@ -92,7 +90,14 @@
         </div>
       </article>
 
-      <pre><code>{{ encounterData }}</code></pre> 
+      <article class="message is-primary">
+        <div class="message-header">
+          <p>DEBUG DATA: below is the data structure sent to database</p>
+        </div>
+        <div class="message-body">
+          <pre><code>{{ encounterData }}</code></pre>
+        </div>
+      </article> 
 
       <ModalContents :visible="modules.modal.visible" @visible="toggle('modal')" />
 
@@ -200,13 +205,13 @@ export default {
       .then(() => {
         router.push({ path: '/animal-log' })
       })
-      .then(() => this.$store.dispatch('encounterEntry/resetData'))
+      // .then(() => this.$store.dispatch('encounterEntry/resetData'))
       .catch(error => { this.error = error })
-    },
-
-    reset () {
-      this.$store.dispatch('encounterEntry/resetData')
     }
+  },
+
+  destroyed () {
+    this.$store.dispatch('encounterEntry/resetData')
   }
 }
 </script>
