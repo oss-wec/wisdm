@@ -86,7 +86,6 @@
     </div>
 
     <a class="button is-info is-medium" @click="addDynElement">Add Vitals</a>
-    <pre><code>{{ $data }}</code></pre>
 
   </fieldset>
 </template>

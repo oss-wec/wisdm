@@ -110,8 +110,6 @@
       </div>
     </div>
 
-    <pre><code>{{ $data }}</code></pre>
-
   </fieldset>
 </template>
 

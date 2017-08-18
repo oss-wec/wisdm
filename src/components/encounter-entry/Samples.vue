@@ -70,7 +70,6 @@
 
 
     <a class="button is-info is-medium" @click="addDynElement">Add Sample</a>
-    <pre><code>{{ $data }}</code></pre>
 
   </fieldset>
 </template>

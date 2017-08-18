@@ -68,7 +68,7 @@
 
       </form>
 
-      <pre><code>{{ encounterEvent }}</code></pre> 
+      <pre><code>{{ encounterData }}</code></pre> 
 
       <ModalContents :visible="modules.modal.visible" @visible="toggle('modal')" />
 
@@ -90,7 +90,7 @@ import Medications from './encounter-entry/Medications'
 import Mortality from './encounter-entry/Mortality'
 import Necropsy from './encounter-entry/Necropsy'
 import ModalContents from './ModalContents'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'NewAnimal',
@@ -156,6 +156,10 @@ export default {
 
     ...mapState('encounterEntry', [
       'moduleSelection'
+    ]),
+
+    ...mapGetters('encounterEntry', [
+      'encounterData'
     ])
   },
 

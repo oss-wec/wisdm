@@ -108,9 +108,6 @@
 
     <a class="button is-info is-medium" @click="addDynElement">Add Device</a>
 
-    <div>
-      <pre><code>{{ $data }}</code></pre>
-    </div>
   </fieldset>
 </template>
 
@@ -141,7 +138,7 @@ export default {
     updateField () {
       this.$store.commit('encounterEntry/updateModel', {
         model: 'devices',
-        data: this.devices
+        data: cloneDeep(this.devices)
       })
     }
   }

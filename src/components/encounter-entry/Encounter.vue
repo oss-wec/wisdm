@@ -214,10 +214,6 @@
       </p>
     </div>
 
-    <div>
-      <pre><code>{{ $data }}</code></pre>
-    </div>
-
   </fieldset>
 </template>
 

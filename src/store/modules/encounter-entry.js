@@ -123,6 +123,26 @@ const getters = {
         common_name: s.common_name
       }
     })
+  },
+
+  encounterData (state) {
+    const modules = state.moduleSelection
+    const data = {
+      animal: state.animal,
+      encounter: state.encounter
+    }
+
+    if (modules.marks) data.marks = state.marks
+    if (modules.devices) data.devices = state.devices
+    if (modules.biometrics) data.biometrics = state.biometrics
+    if (modules.vitals) data.vitals = state.vitals
+    if (modules.samples) data.samples = state.samples
+    if (modules.injuries) data.injuries = state.injuries
+    if (modules.medications) data.medications = state.medications
+    if (modules.mortality) data.mortality = state.mortality
+    if (modules.necropsy) data.necropsy = state.necropsy
+
+    return data
   }
 }
 

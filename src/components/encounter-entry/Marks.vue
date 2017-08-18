@@ -145,9 +145,6 @@
 
     <a class="button is-info is-medium" @click="addDynElement">Add Mark</a>
 
-    <div>
-      <pre><code>{{ $data }}</code></pre>
-    </div>
   </fieldset>
 </template>
 

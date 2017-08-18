@@ -135,7 +135,6 @@
     </div>
 
     <a class="button is-info is-medium" @click="addDynElement">Add Medication</a>
-    <pre><code>{{ $data }}</code></pre>
 
   </fieldset>
 </template>
