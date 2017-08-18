@@ -113,7 +113,7 @@ export default {
     return {
       modules: {
         encounter: {
-          visible: false
+          visible: true
         },
         marks: {
           visible: false
@@ -180,5 +180,9 @@ export default {
 
   button.btn-main:hover {
     background-color: #269e7a;
+  }
+
+  legend {
+    margin-top: 20px;
   }
 </style>

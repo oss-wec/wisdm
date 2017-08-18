@@ -35,7 +35,7 @@
     </div>
     <footer class="card-footer">
       <a class="card-footer-item" :style="footerStyle" @click="toggleModal">Quick View</a>
-      <a class="card-footer-item" :style="footerStyle">Full View</a>
+      <!-- <a class="card-footer-item" :style="footerStyle">Full View</a> -->
     </footer>
 
     <div class="modal" :class="{ 'is-active': modalActive }">

@@ -1,5 +1,19 @@
 <template lang="html">
   <div class="container">
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Animal Log
+          </h1>
+          <h2 class="subtitle">
+            Every animal in the database will appear here. 
+          </h2>
+        </div>
+      </div>
+    </section>
+
     <div class="columns is-multiline">
       <div class="column is-4" v-for="(animal, index) in animals">
         <AnimalCard :animal="animal" :key="index"></AnimalCard>

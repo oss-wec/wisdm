@@ -22,34 +22,40 @@
             <div class="navbar-dropdown">
               <router-link :to="{ name: 'Groups' }" class="navbar-item">Species Groups</router-link>
               <router-link :to="{ name: 'Projects' }" class="navbar-item">Projects</router-link>
-              <a href="#" class="navbar-item">Feature 2</a>
-              <a href="#" class="navbar-item">Feature 3</a>
             </div>
           </div>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="#" class="navbar-link">Enter</a>
+            <div class="navbar-dropdown">
+              <router-link :to="{ name: 'NewAnimal' }" class="navbar-item">New Encounter</router-link>
+              <router-link :to="{ name: 'NewProject' }" class="navbar-item">New Project</router-link>
+            </div>
+          </div>
+        
         </div>
 
+
         <div class="navbar-end">
-          <div class="navbar-item has-dropdown is-hoverable">
+          <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a href="#" class="navbar-link">
               <span class="icon"><i class="fa fa-plus color"></i></span>
             </a>
             <div class="navbar-dropdown">
+              <router-link :to="{ name: 'NewAnimal' }" class="navbar-item">New Encounter</router-link>
               <router-link :to="{ name: 'NewProject' }" class="navbar-item">New Project</router-link>
-              <a href="#" class="navbar-item">New Encounter</a>
-              <a href="#" class="navbar-item">New Species</a>
             </div>
-          </div>
+          </div> -->
 
-          <div class="navbar-item has-dropdown is-hoverable">
+          <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a href="#" class="navbar-link">
               <span class="icon"><i class="fa fa-user-o color"></i></span>
             </a>
             <div class="navbar-dropdown">
-              <a href="#" class="navbar-item">New Encounter</a>
-              <a href="#" class="navbar-item">New Project</a>
-              <a href="#" class="navbar-item">New Species</a>
+              <router-link :to="{ name: 'NewAnimal' }" class="navbar-item">New Encounter</router-link>
+              <router-link :to="{ name: 'NewProject' }" class="navbar-item">New Project</router-link>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     <!-- </div> -->
