@@ -1,6 +1,19 @@
 import { cloneDeep } from 'lodash'
 import { emptyModel } from '../../util'
 
+const correctDates = (ar) => {
+  const data = cloneDeep(ar)
+  data.forEach(d => {
+    Object.keys(d).forEach(k => {
+      if (k === 'date_given' || k === 'date_removed') {
+        let valid = new Date(d[k])
+        d[k] = !(valid.valueOf()) ? undefined : valid
+      }
+    })
+  })
+  return data
+}
+
 const state = {
   animal: {
     animal_id: '',
@@ -147,8 +160,8 @@ const getters = {
       }
     }
 
-    if (modules.marks) structure.Marks = state.marks
-    if (modules.devices) structure.Devices = state.devices
+    if (modules.marks) structure.Marks = correctDates(state.marks)
+    if (modules.devices) structure.Devices = correctDates(state.devices)
     if (modules.biometrics) structure.Encounters.Biometrics = state.biometrics
     if (modules.vitals) structure.Encounters.Vitals = state.vitals
     if (modules.samples) structure.Encounters.Samples = state.samples
@@ -158,27 +171,6 @@ const getters = {
     if (modules.necropsy) structure.Encounters.Necropsy = state.necropsy
 
     return structure
-
-    // const modules = state.moduleSelection
-    // const data = {
-    //   animal: cloneDeep(state.animal),
-    //   encounter: cloneDeep(state.encounter)
-    // }
-
-    // data.animal.species_id = data.animal.species_id.id
-    // data.encounter.project_id = data.encounter.project_id.id
-
-    // if (modules.marks) data.marks = state.marks
-    // if (modules.devices) data.devices = state.devices
-    // if (modules.biometrics) data.biometrics = state.biometrics
-    // if (modules.vitals) data.vitals = state.vitals
-    // if (modules.samples) data.samples = state.samples
-    // if (modules.injuries) data.injuries = state.injuries
-    // if (modules.medications) data.medications = state.medications
-    // if (modules.mortality) data.mortality = state.mortality
-    // if (modules.necropsy) data.necropsy = state.necropsy
-
-    // return data
   }
 }
 
