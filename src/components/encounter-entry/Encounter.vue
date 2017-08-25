@@ -125,7 +125,7 @@
             <option value=""></option>
             <option value="male">Male</option>
             <option value="female">Female</option>
-            <option value="unknown">Unknown</option>
+            <option value="unk">Unknown</option>
           </select>
         </div>
       </div>
@@ -174,7 +174,7 @@
             <option value="marked observation">Marked Observation</option>
             <option value="unmarked observation">Unmarked Observation</option>
             <option value="marked mortality">Marked Mortality</option>
-            <option value="unmarkec mortality">Unmarked Mortality</option>
+            <option value="unmarked mortality">Unmarked Mortality</option>
           </select>
         </div>
       </div>
