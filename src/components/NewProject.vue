@@ -33,6 +33,24 @@
           </div>
 
           <div class="field">
+            <label>Project Type</label>
+            <div class="control">
+              <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('type') }">
+                <select name="type"
+                        v-model="model.proj_type"
+                        v-validate="'required'"
+                >
+                  <option value=""></option>
+                  <option value="project">Project</option>
+                  <option value="stage">Stage</option>
+                </select>
+              </div>
+            </div>
+            <p class="help">Is this a project or a project stage</p>
+            <p class="help is-danger" v-show="errors.has('type')">PROJECT TYPE IS REQUIRED</p>
+          </div>
+
+          <div class="field">
             <label class="label">Start Date</label>
             <div class="control">
               <input type="date" class="input" name="start"
@@ -57,6 +75,26 @@
           </div>
 
           <div class="field">
+            <label class="label">Project Duration</label>
+            <div class="field has-addons">
+              <p class="control is-expanded">
+                <input class="input" type="text" v-model="model.duration">
+              </p>
+              <p class="control">
+                <span class="select">
+                  <select v-model="model.time_frame">
+                    <option value="days">Days</option>
+                    <option value="weeks">Weeks</option>
+                    <option value="months">Months</option>
+                    <option value="years" selected>Years</option>
+                  </select>
+                </span>
+              </p>
+            </div>
+            <p class="help">How long will the project last and what is the interval</p>
+          </div>
+
+          <div class="field">
             <label for="desc" class="label">Description</label>
             <div class="control">
               <textarea rows="5" class="textarea" name="desc"
@@ -64,8 +102,6 @@
                         v-model="model.desc"
                         v-validate="'required'"
                         :class="{ 'is-danger': errors.has('desc')}"
-
-
               ></textarea>
             </div>
           </div>
@@ -94,6 +130,7 @@
             <button class="button is-info is-medium is-outlined is-fullwidth"
                     :class="{ 'is-loading': submitting }"
                     @click.prevent="submit">Submit Project</button>
+            <pre><code>{{ $data }}</code></pre>
           </div>
         </form>
 
@@ -111,8 +148,11 @@ export default {
     return {
       model: {
         proj_name: null,
+        proj_type: '',
         start_date: null,
         end_date: null,
+        duration: null,
+        time_frame: '',
         desc: null,
         location: null
       },
