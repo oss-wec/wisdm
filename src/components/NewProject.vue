@@ -18,10 +18,6 @@
               </div>
             </div>
           <!-- </section> -->
-          <Multiselect
-              v-model="selected"
-              :options="options"
-          />
 
           <div class="field">
             <label class="label">Project Type</label>
@@ -31,7 +27,6 @@
                         v-model="model.proj_type"
                         v-validate="'required'"
                 >
-                  <option value=""></option>
                   <option value="project">Project</option>
                   <option value="stage">Stage</option>
                 </select>
@@ -49,6 +44,7 @@
                       v-model="model.parent"
                       :options="options"
                       placeholder="Search for Parent Project..."
+                      :disabled="isDisabled"
                 />
               </div>
             </div>
@@ -78,18 +74,6 @@
             </div>
             <p class="help">What is the project start date</p>
             <p class="help is-danger" v-show="errors.has('start')">Start Date is required</p>
-          </div>
-
-          <div class="field">
-            <label class="label">End Date</label>
-            <div class="control">
-              <input type="date" class="input" name="end"
-                     v-model="model.end_date"
-                     v-validate="'required'"
-                     :class="{ 'is-danger': errors.has('end')}">
-            </div>
-            <p class="help">What is the project end date</p>
-            <p class="help is-danger" v-show="errors.has('end')">End Date is required</p>
           </div>
 
           <div class="field">
@@ -136,6 +120,8 @@
             <p class="help is-danger" v-show="errors.has('location')">Start date is required</p>
           </div>
 
+          <HuntUnits />
+
           <div class="notification is-danger" v-if="!!error">
             <ol>
               <li v-for="err in error.response.data.error">
@@ -160,11 +146,12 @@
 <script>
 // import { vSelect } from 'vue-select'
 import Multiselect from 'vue-multiselect'
+import HuntUnits from './micro/HuntUnits'
 import { createProject } from '../api'
 import router from '../router'
 
 export default {
-  components: { Multiselect },
+  components: { Multiselect, HuntUnits },
 
   data () {
     return {
@@ -172,7 +159,7 @@ export default {
       options: ['opt 1', 'opt 2', 'opt3'],
       model: {
         proj_name: null,
-        proj_type: '',
+        proj_type: 'project',
         parent: '',
         start_date: null,
         end_date: null,
@@ -208,6 +195,10 @@ export default {
   },
 
   computed: {
+    isDisabled () {
+      return this.model.proj_type !== 'stage'
+    },
+
     structure () {
       return {
         proj_name: this.model.proj_name,
