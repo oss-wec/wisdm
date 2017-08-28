@@ -18,22 +18,13 @@
               </div>
             </div>
           <!-- </section> -->
+          <Multiselect
+              v-model="selected"
+              :options="options"
+          />
 
           <div class="field">
-            <label class="label">Project Name</label>
-            <div class="control">
-              <input type="text" class="input" placeholder="Muddy Mtns 2017 DBHS" name="name"
-                     v-validate="'required'"
-                     :class="{ 'is-danger': errors.has('name') }"
-                     v-model="model.proj_name"
-                     >
-            </div>
-            <p class="help">Name the project</p>
-            <p v-show="errors.has('name')" class="help is-danger">Project Name is required</p>
-          </div>
-
-          <div class="field">
-            <label>Project Type</label>
+            <label class="label">Project Type</label>
             <div class="control">
               <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('type') }">
                 <select name="type"
@@ -48,6 +39,33 @@
             </div>
             <p class="help">Is this a project or a project stage</p>
             <p class="help is-danger" v-show="errors.has('type')">PROJECT TYPE IS REQUIRED</p>
+          </div>
+
+          <div class="field">
+            <label class="label">Parent Project</label>
+            <div class="control">
+              <div class="is-fullwidth" :class="{ 'is-danger': errors.has('parent') }">
+                <Multiselect 
+                      v-model="model.parent"
+                      :options="options"
+                      placeholder="Search for Parent Project..."
+                />
+              </div>
+            </div>
+            <p class="help">If this is a stage, to which project does this stage belong</p>
+          </div>
+
+          <div class="field">
+            <label class="label">Project Name</label>
+            <div class="control">
+              <input type="text" class="input" placeholder="Muddy Mtns 2017 DBHS" name="name"
+                     v-validate="'required'"
+                     :class="{ 'is-danger': errors.has('name') }"
+                     v-model="model.proj_name"
+                     >
+            </div>
+            <p class="help">Name the project</p>
+            <p v-show="errors.has('name')" class="help is-danger">Project Name is required</p>
           </div>
 
           <div class="field">
@@ -130,8 +148,8 @@
             <button class="button is-info is-medium is-outlined is-fullwidth"
                     :class="{ 'is-loading': submitting }"
                     @click.prevent="submit">Submit Project</button>
-            <pre><code>{{ $data }}</code></pre>
           </div>
+          <pre><code>{{ $data }}</code></pre>
         </form>
 
       </div>
@@ -140,19 +158,26 @@
 </template>
 
 <script>
+// import { vSelect } from 'vue-select'
+import Multiselect from 'vue-multiselect'
 import { createProject } from '../api'
 import router from '../router'
 
 export default {
+  components: { Multiselect },
+
   data () {
     return {
+      selected: '',
+      options: ['opt 1', 'opt 2', 'opt3'],
       model: {
         proj_name: null,
         proj_type: '',
+        parent: '',
         start_date: null,
         end_date: null,
         duration: null,
-        time_frame: '',
+        time_frame: 'years',
         desc: null,
         location: null
       },
@@ -196,6 +221,7 @@ export default {
 }
 </script>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="css" scoped>
   .columns {
     margin: 10px 0;
