@@ -120,7 +120,7 @@
             <p class="help is-danger" v-show="errors.has('location')">Start date is required</p>
           </div>
 
-          <HuntUnits />
+          <HuntUnits :units="model.location" @input="value => { model.location = value }"/>
 
           <div class="notification is-danger" v-if="!!error">
             <ol>
