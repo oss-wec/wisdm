@@ -64,6 +64,12 @@
             <p v-show="errors.has('name')" class="help is-danger">Project Name is required</p>
           </div>
 
+          <SelectPeople :person="model.leads" fieldLabel="Leads" helpText="Select the project leaders for this project"
+                @input="value => { model.leads = value }" />
+
+          <SelectPeople :person="model.collabs" fieldLabel="Collaborators" helpText="Select collaborators for this project"
+                @input="value => { model.collabs = value }" />
+
           <div class="field">
             <label class="label">Start Date</label>
             <div class="control">
@@ -108,18 +114,6 @@
             </div>
           </div>
 
-          <div class="field">
-            <label class="label">Location</label>
-            <div class="control">
-              <input type="text" class="input" name="location" placeholder="Muddy Mountains, Beehive Campground"
-                     v-model="model.location"
-                     v-validate="'required'"
-                     :class="{ 'is-danger': errors.has('location')}">
-            </div>
-            <p class="help">Where, specifically, is the project located</p>
-            <p class="help is-danger" v-show="errors.has('location')">Start date is required</p>
-          </div>
-
           <HuntUnits :units="model.location" @input="value => { model.location = value }"/>
 
           <div class="notification is-danger" v-if="!!error">
@@ -146,12 +140,13 @@
 <script>
 // import { vSelect } from 'vue-select'
 import Multiselect from 'vue-multiselect'
+import SelectPeople from './micro/SelectPeople'
 import HuntUnits from './micro/HuntUnits'
 import { createProject } from '../api'
 import router from '../router'
 
 export default {
-  components: { Multiselect, HuntUnits },
+  components: { Multiselect, HuntUnits, SelectPeople },
 
   data () {
     return {
@@ -166,7 +161,9 @@ export default {
         duration: null,
         time_frame: 'years',
         desc: null,
-        location: null
+        location: null,
+        leads: null,
+        collabs: null
       },
       submitting: false,
       error: null
