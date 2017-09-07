@@ -1,10 +1,10 @@
 <template lang="html">
   <footer class="footer">
     <div class="container">
-
+<!-- 
       <div class="has-text-centered">
         <img src="../assets/ndow.png" alt="Nevada Department of Wildlife logo">
-      </div>
+      </div> -->
 
       <div class="content has-text-centered">
         <p>
