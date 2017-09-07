@@ -9,7 +9,6 @@
               :multiple="true"
               :disabled="disabled"
               :closeOnSelect="false"
-              maxHeight="500"
               group-values="units"
               group-label="area"
               placeholder="Select Hunt Units"

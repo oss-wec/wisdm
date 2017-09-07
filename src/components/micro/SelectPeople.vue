@@ -13,7 +13,6 @@
               group-label="org"
               label="name"
               placeholder="Select Collaborators"
-              maxHeight="500"
               @input="updateValue"
                />
       </div>

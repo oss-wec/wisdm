@@ -64,6 +64,8 @@
             <p v-show="errors.has('name')" class="help is-danger">Project Name is required</p>
           </div>
 
+          <SelectSpecies :species="model.species" :multiple="true" fieldLabel="Species" @input="value => { model.species = value }" :close="false" />
+
           <SelectPeople :person="model.leads" :disabled="!isDisabled" fieldLabel="Leads" helpText="Select the project leaders for this project"
                 @input="value => { model.leads = value }" />
 
@@ -143,11 +145,12 @@
 import Multiselect from 'vue-multiselect'
 import SelectPeople from './micro/SelectPeople'
 import HuntUnits from './micro/HuntUnits'
+import SelectSpecies from './micro/SelectSpecies'
 import { createProject } from '../api'
 import router from '../router'
 
 export default {
-  components: { Multiselect, HuntUnits, SelectPeople },
+  components: { Multiselect, HuntUnits, SelectPeople, SelectSpecies },
 
   data () {
     return {
@@ -164,7 +167,8 @@ export default {
         desc: null,
         locations: null,
         leads: null,
-        collabs: null
+        collabs: null,
+        species: null
       },
       submitting: false,
       error: null
