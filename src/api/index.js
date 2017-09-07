@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'http://localhost:1313'
+  // baseURL: 'http://localhost:1313'
+  baseURL: 'http://localhost:3000'
   // baseURL: 'http://34.208.55.29:1313'
 })
 
@@ -27,4 +28,8 @@ export function createProject (data) {
 
 export function createEncounter (data) {
   return api.post('events/test', data)
+}
+
+export function getAllUsers () {
+  return api.get('/users')
 }

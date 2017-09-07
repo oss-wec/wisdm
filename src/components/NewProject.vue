@@ -64,10 +64,10 @@
             <p v-show="errors.has('name')" class="help is-danger">Project Name is required</p>
           </div>
 
-          <SelectPeople :person="model.leads" fieldLabel="Leads" helpText="Select the project leaders for this project"
+          <SelectPeople :person="model.leads" :disabled="!isDisabled" fieldLabel="Leads" helpText="Select the project leaders for this project"
                 @input="value => { model.leads = value }" />
 
-          <SelectPeople :person="model.collabs" fieldLabel="Collaborators" helpText="Select collaborators for this project"
+          <SelectPeople :person="model.collabs" :disabled="isDisabled" fieldLabel="Collaborators" helpText="Select collaborators for this project"
                 @input="value => { model.collabs = value }" />
 
           <div class="field">
@@ -114,7 +114,7 @@
             </div>
           </div>
 
-          <HuntUnits :units="model.location" @input="value => { model.location = value }"/>
+          <HuntUnits :units="model.locations" :disabled="isDisabled" @input="value => { model.locations = value }"/>
 
           <div class="notification is-danger" v-if="!!error">
             <ol>
@@ -130,6 +130,7 @@
                     @click.prevent="submit">Submit Project</button>
           </div>
           <pre><code>{{ $data }}</code></pre>
+          <pre><code>{{ structure }}</code></pre>
         </form>
 
       </div>
@@ -161,7 +162,7 @@ export default {
         duration: null,
         time_frame: 'years',
         desc: null,
-        location: null,
+        locations: null,
         leads: null,
         collabs: null
       },
@@ -197,14 +198,47 @@ export default {
     },
 
     structure () {
-      return {
+      const structure = {
+        proj_type: this.model.proj_type,
+        parent_id: this.model.parent,
         proj_name: this.model.proj_name,
         proj_desc: this.model.desc,
-        proj_loc: this.model.location,
         proj_start: this.model.start_date,
-        proj_end: this.model.end_date
+        proj_duration: this.model.duration,
+        time_frame: this.model.time_frame
       }
+      const leads = this.model.leads
+      ? this.model.leads.map(i => {
+        return {
+          id: i.id,
+          type: 'lead'
+        }
+      })
+      : null
+      const collabs = this.model.collabs
+      ? this.model.collabs.map(i => {
+        return {
+          id: i.id,
+          type: 'collaborator'
+        }
+      })
+      : null
+
+      structure.projectUsers = this.model.proj_type === 'project' ? leads : collabs
+      structure.projectLocations = this.model.locations
+        ? this.model.locations.map(i => {
+          return {
+            hunt_unit: i
+          }
+        })
+        : null
+
+      return structure
     }
+  },
+
+  mounted: function () {
+    this.$store.dispatch('getAllUsers')
   }
 }
 </script>

@@ -7,6 +7,9 @@
               v-model="unit"
               :options="huntUnits"
               :multiple="true"
+              :disabled="disabled"
+              :closeOnSelect="false"
+              maxHeight="500"
               group-values="units"
               group-label="area"
               placeholder="Select Hunt Units"
@@ -26,7 +29,7 @@ export default {
 
   components: { Multiselect },
 
-  props: [ 'units' ],
+  props: [ 'units', 'disabled' ],
 
   data () {
     return {

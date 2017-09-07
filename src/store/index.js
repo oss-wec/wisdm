@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getSpecies, getAnimals, getProjectList } from '../api'
+import { getSpecies, getAnimals, getProjectList, getAllUsers } from '../api'
+import { sentenceCase } from '../util'
 import encounterEntry from './modules/encounter-entry.js'
 
 Vue.use(Vuex)
@@ -12,7 +13,9 @@ const state = {
 
   animals: [],
 
-  projectList: []
+  projectList: [],
+
+  users: []
 }
 
 const getters = {
@@ -28,6 +31,28 @@ const getters = {
         name: g,
         species: species,
         numSpecies: species.length
+      })
+    })
+
+    return arr
+  },
+
+  usersByAgency: state => {
+    let groups = [...new Set(state.users.map(s => {
+      return s.agency
+    }))].sort()
+    let arr = []
+
+    groups.forEach(g => {
+      let user = state.users.filter(v => v.agency === g)
+      arr.push({
+        org: g,
+        people: user.map(u => {
+          return {
+            id: u.id,
+            name: `${sentenceCase(u.first_name)} ${sentenceCase(u.last_name)}`
+          }
+        })
       })
     })
 
@@ -53,6 +78,11 @@ const actions = {
   getProjectList ({ commit }) {
     getProjectList()
     .then(response => commit('setProjectList', { projects: response.data.data.projects }))
+  },
+
+  getAllUsers ({ commit }) {
+    getAllUsers()
+    .then(response => commit('setUsers', { users: response.data.data }))
   }
 }
 
@@ -71,6 +101,10 @@ const mutations = {
 
   setProjectList (state, payload) {
     state.projectList = payload.projects
+  },
+
+  setUsers (state, payload) {
+    state.users = payload.users
   }
 }
 

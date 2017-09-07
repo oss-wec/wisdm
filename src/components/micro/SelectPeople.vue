@@ -5,11 +5,15 @@
       <div class="is-fullwidth">
         <Multiselect
               v-model="person"
-              :options="options"
+              :options="users"
               :multiple="true"
+              :disabled="disabled"
+              :closeOnSelect="false"
               group-values="people"
               group-label="org"
+              label="name"
               placeholder="Select Collaborators"
+              maxHeight="500"
               @input="updateValue"
                />
       </div>
@@ -20,13 +24,14 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'SelectPeople',
 
   components: { Multiselect },
 
-  props: [ 'fieldLabel', 'helpText', 'selected' ],
+  props: [ 'fieldLabel', 'helpText', 'selected', 'disabled' ],
 
   data () {
     return {
@@ -50,6 +55,12 @@ export default {
     updateValue () {
       this.$emit('input', this.person)
     }
+  },
+
+  computed: {
+    ...mapGetters({
+      users: 'usersByAgency'
+    })
   }
 
 }
