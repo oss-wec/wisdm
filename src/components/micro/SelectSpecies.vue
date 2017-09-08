@@ -16,6 +16,7 @@
         />
       </div>
     </div>
+    <p class="help">Select species for this project</p>
   </div>
 </template>
 

@@ -36,7 +36,7 @@
             <p class="help is-danger" v-show="errors.has('type')">PROJECT TYPE IS REQUIRED</p>
           </div>
 
-          <div class="field">
+          <div class="field" v-if="!isDisabled">
             <label class="label">Parent Project</label>
             <div class="control">
               <div class="is-fullwidth" :class="{ 'is-danger': errors.has('parent') }">
@@ -64,13 +64,15 @@
             <p v-show="errors.has('name')" class="help is-danger">Project Name is required</p>
           </div>
 
-          <SelectSpecies :species="model.species" :multiple="true" fieldLabel="Species" @input="value => { model.species = value }" :close="false" />
+          <SelectSpecies :species="model.species" :multiple="true" fieldLabel="Species" @input="value => { model.species = value }" :close="false" v-if="isDisabled" />
 
           <SelectPeople :person="model.leads" :disabled="!isDisabled" fieldLabel="Leads" helpText="Select the project leaders for this project"
-                @input="value => { model.leads = value }" />
+                @input="value => { model.leads = value }" v-if="isDisabled" />
 
           <SelectPeople :person="model.collabs" :disabled="isDisabled" fieldLabel="Collaborators" helpText="Select collaborators for this project"
-                @input="value => { model.collabs = value }" />
+                @input="value => { model.collabs = value }" v-if="!isDisabled" />
+
+          <HuntUnits :units="model.locations" :disabled="isDisabled" @input="value => { model.locations = value }" v-if="!isDisabled" />
 
           <div class="field">
             <label class="label">Start Date</label>
@@ -115,8 +117,6 @@
               ></textarea>
             </div>
           </div>
-
-          <HuntUnits :units="model.locations" :disabled="isDisabled" @input="value => { model.locations = value }"/>
 
           <div class="notification is-danger" v-if="!!error">
             <ol>
@@ -204,17 +204,18 @@ export default {
     structure () {
       const structure = {
         proj_type: this.model.proj_type,
-        parent_id: this.model.parent,
         proj_name: this.model.proj_name,
         proj_desc: this.model.desc,
         proj_start: this.model.start_date,
         proj_duration: this.model.duration,
         time_frame: this.model.time_frame
       }
+      if (this.model.parent_id) structure.parent_id = this.model.parent_id
+
       const leads = this.model.leads
       ? this.model.leads.map(i => {
         return {
-          id: i.id,
+          user_id: i.id,
           type: 'lead'
         }
       })
@@ -222,20 +223,23 @@ export default {
       const collabs = this.model.collabs
       ? this.model.collabs.map(i => {
         return {
-          id: i.id,
+          user_id: i.id,
           type: 'collaborator'
         }
       })
       : null
-
-      structure.projectUsers = this.model.proj_type === 'project' ? leads : collabs
-      structure.projectLocations = this.model.locations
+      const locations = this.model.locations
         ? this.model.locations.map(i => {
           return {
             hunt_unit: i
           }
         })
         : null
+
+      if (collabs) structure.projectUsers = collabs
+      if (leads) structure.projectUsers = leads
+      if (locations) structure.projectLocations = locations
+      if (this.model.species) structure.projectSpecies = this.model.species
 
       return structure
     }

@@ -12,7 +12,7 @@
               group-values="people"
               group-label="org"
               label="name"
-              placeholder="Select Collaborators"
+              placeholder="Select People"
               @input="updateValue"
                />
       </div>
