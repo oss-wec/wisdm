@@ -36,6 +36,14 @@
             <p class="help is-danger" v-show="errors.has('type')">PROJECT TYPE IS REQUIRED</p>
           </div>
 
+          <SelectProject 
+            :selected="model.parent" 
+            :multiple="false" 
+            :close="true" 
+            fieldLabel="Parent Project"
+            @input="value => { model.parent = value }"
+          />
+
           <div class="field" v-if="!isDisabled">
             <label class="label">Parent Project</label>
             <div class="control">
@@ -145,12 +153,13 @@
 import Multiselect from 'vue-multiselect'
 import SelectPeople from './micro/SelectPeople'
 import HuntUnits from './micro/HuntUnits'
+import SelectProject from './micro/SelectProject'
 import SelectSpecies from './micro/SelectSpecies'
 import { createProject } from '../api'
 import router from '../router'
 
 export default {
-  components: { Multiselect, HuntUnits, SelectPeople, SelectSpecies },
+  components: { Multiselect, HuntUnits, SelectPeople, SelectSpecies, SelectProject },
 
   data () {
     return {
@@ -210,7 +219,7 @@ export default {
         proj_duration: this.model.duration,
         time_frame: this.model.time_frame
       }
-      if (this.model.parent_id) structure.parent_id = this.model.parent_id
+      if (this.model.parent) structure.parent_id = this.model.parent.id
 
       const leads = this.model.leads
       ? this.model.leads.map(i => {
