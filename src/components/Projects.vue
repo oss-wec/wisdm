@@ -5,25 +5,42 @@
         <div class="container">
           <h1 class="title">Projects</h1>
           <h2 class="subtitle">A list of all projects</h2>
-          <button class="button is-info is-outlined">Add New Project</button>
+          <router-link class="button is-info is-outlined" :to="{ name: 'NewProject' }">Add New Project</router-link>
         </div>
       </div>
     </section>
 
     <div class="container">
-      <div class="box" v-for="(project, index) in projects">
-        <article class="media">
-          <div class="media-content">
-            <div class="content">
-              <p class="title is-size-4">{{ project.proj_name }}</p>
-              <p class="subtitle is-size-6">{{ project.proj_loc }}</p>
+      <div class="columns is-multiline">
 
-              <p>{{ project.proj_desc }}</p>
+        <div class="column is-one-third" v-for="(project, index) in projects">
+          <div class="card">
+            <div class="card-content">
+              
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">{{ project.proj_name }}</p>
+                  <p class="subtitle is-6">
+                    {{ localDate(project.proj_start) }} - {{ project.proj_duration }} {{ project.time_frame }}
+                  </p>
+                </div>
+              </div>
 
-              <p class="subtitle is-size-6">{{ localDate(project.proj_start) }} - {{ localDate(project.proj_start) }}</p>
+              <div class="content">
+                {{ project.proj_desc }}
+              </div>
+
+              <div class="content">
+
+              </div>
             </div>
+
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">{{ project.stages.length }} Stages</a>
+              <a href="#" class="card-footer-item">View</a>
+            </footer>
           </div>
-        </article>
+        </div>
       </div>
     </div>
 

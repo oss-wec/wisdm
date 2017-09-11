@@ -37,27 +37,13 @@
           </div>
 
           <SelectProject 
+            v-if="!isDisabled"
             :selected="model.parent" 
             :multiple="false" 
             :close="true" 
             fieldLabel="Parent Project"
             @input="value => { model.parent = value }"
           />
-
-          <div class="field" v-if="!isDisabled">
-            <label class="label">Parent Project</label>
-            <div class="control">
-              <div class="is-fullwidth" :class="{ 'is-danger': errors.has('parent') }">
-                <Multiselect 
-                      v-model="model.parent"
-                      :options="options"
-                      placeholder="Search for Parent Project..."
-                      :disabled="isDisabled"
-                />
-              </div>
-            </div>
-            <p class="help">If this is a stage, to which project does this stage belong</p>
-          </div>
 
           <div class="field">
             <label class="label">Project Name</label>
@@ -163,8 +149,6 @@ export default {
 
   data () {
     return {
-      selected: '',
-      options: ['opt 1', 'opt 2', 'opt3'],
       model: {
         proj_name: null,
         proj_type: 'project',
