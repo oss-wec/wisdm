@@ -2,9 +2,9 @@
   <nav class="navbar">
     <!-- <div class="container"> -->
       <div class="navbar-brand">
-        <a href="#" class="navbar-item">
+        <router-link :to="{ name: 'Home' }" class="navbar-item">
           <span class="icon"><i class="fa fa-home"></i></span>
-        </a>
+        </router-link>
 
         <div class="navbar-burger burger" :class="{'is-active': burger }" @click="toggleBurger">
           <span></span>
