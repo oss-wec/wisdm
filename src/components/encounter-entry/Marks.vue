@@ -65,7 +65,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="black">Black</option>
                 <option value="blue">Blue</option>
                 <option value="gray">Gray</option>
