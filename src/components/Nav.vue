@@ -25,28 +25,20 @@
             </div>
           </div>
 
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a href="#" class="navbar-link">Enter</a>
-            <div class="navbar-dropdown">
-              <router-link :to="{ name: 'NewAnimal' }" class="navbar-item">New Encounter</router-link>
-              <router-link :to="{ name: 'NewProject' }" class="navbar-item">New Project</router-link>
-            </div>
-          </div>
-        
+          <a class="navbar-item has-text-danger" disabled>!!FOR TESTING ONLY!!</a>
         </div>
 
 
         <div class="navbar-end">
-          <a class="navbar-item has-text-danger" disabled>!!FOR TESTING ONLY!!</a>
-          <!-- <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-item has-dropdown is-hoverable">
             <a href="#" class="navbar-link">
               <span class="icon"><i class="fa fa-plus color"></i></span>
             </a>
-            <div class="navbar-dropdown">
+            <div class="navbar-dropdown is-right">
               <router-link :to="{ name: 'NewAnimal' }" class="navbar-item">New Encounter</router-link>
               <router-link :to="{ name: 'NewProject' }" class="navbar-item">New Project</router-link>
             </div>
-          </div> -->
+          </div>
 
           <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a href="#" class="navbar-link">
