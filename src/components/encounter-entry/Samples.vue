@@ -42,11 +42,14 @@
                       v-model="sample.destination"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="">Select Destination ...</option>
+                <option value="cahfs">CAHFS</option>
+                <option value="nwhc">NWHC</option>
+                <option value="nvdag">NV dept. Ag ADL</option>
+                <option value="osu">OSU</option>
+                <option value="uivdl">UofI VDL</option>
                 <option value="waddl">WADDL</option>
-                <option value="isu">ISU</option>
-                <option value="archive">Archive</option>
-                <option value="other">Other</option>
+                <option value="wcu">Western Carolina University</option>
               </select>
             </div>
           </div>
