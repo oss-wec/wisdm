@@ -7,7 +7,10 @@
 
       <header class="modal-card-head">
         <p class="modal-card-title md-title">Select Data Entry Modules</p>
-        <button class="delete" @click="toggle()"></button>
+        <span class="tag is-light">
+          Back To Form
+          <button class="delete is-small" @click="toggle()"></button>
+        </span>
       </header>
 
       <section class="modal-card-body">
