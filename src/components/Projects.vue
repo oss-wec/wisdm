@@ -36,7 +36,8 @@
             </div>
 
             <footer class="card-footer">
-              <a href="#" class="card-footer-item">{{ project.stages.length }} Stages</a>
+              <!-- TODO: project length needs to be a method that returns zero is stages is null -->
+              <!-- <a href="#" class="card-footer-item">{{ project.stages.length }} Stages</a> --> 
               <a href="#" class="card-footer-item">View</a>
             </footer>
           </div>

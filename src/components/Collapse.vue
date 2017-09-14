@@ -12,9 +12,7 @@
     </header>
 
     <div class="card-content" v-if="visible">
-      <div class="content">
-        <slot name="content"> content </slot>
-      </div>
+      <slot name="content"> content </slot>
     </div>
   </div>
 </template>

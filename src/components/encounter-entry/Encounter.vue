@@ -48,6 +48,15 @@
         What species is this animal?
       </p>
 
+    <!-- project component -->
+    <SelectProject
+      :selected="encounter.project_id"
+      :multiple="false"
+      :close="true"
+      fieldLabel="Select Project"
+      @input="value => { encounter.project_id = value; updateField('encounter') }"
+    />
+
     <!-- project input -->
     <div class="field">
       <label for="project" class="label">Project</label>
@@ -227,13 +236,14 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import SelectProject from '../micro/SelectProject'
 import { mapGetters, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 
 export default {
   name: 'Encounter',
 
-  components: { Multiselect },
+  components: { Multiselect, SelectProject },
 
   data () {
     return {

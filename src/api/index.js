@@ -28,7 +28,7 @@ export function createProject (data) {
 }
 
 export function createEncounter (data) {
-  return api.post('events/test', data)
+  return api.post('elements', data)
 }
 
 export function getAllUsers () {

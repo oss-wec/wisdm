@@ -12,7 +12,7 @@
         </div>
 
         <button class="button is-info is-outlined" @click.prevent="toggle('modal')" style="margin-bottom: 15px;">Module Selection</button>
-
+        <Encounter />
         <!-- encounter module -->
         <Collapse :visible="modules.encounter.visible" @collapse="toggle('encounter')">
           <p slot="header">Encounter<p>
