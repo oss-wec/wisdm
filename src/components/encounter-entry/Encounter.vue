@@ -31,8 +31,15 @@
     </div>
 
     <!-- species input -->
-      <label for="species" class="label">Species</label>
-
+    <div class="field">
+      <SelectSpecies 
+        :species="animal.species_id" 
+        :multiple="false" 
+        fieldLabel="Species" 
+        @input="value => { animal.species_id = value; updateField('animal') }" 
+        :close="true"
+      />
+      <!-- <label for="species" class="label">Species</label>
       <Multiselect
                 v-model="animal.species_id"
                 :options="species"
@@ -43,40 +50,21 @@
                 placeholder="Type species common name"
                 @input="updateField('animal')"> 
       </Multiselect>
-
       <p class="help">
         What species is this animal?
-      </p>
-
-    <!-- project component -->
-    <SelectProject
-      :selected="encounter.project_id"
-      :multiple="false"
-      :close="true"
-      fieldLabel="Select Project"
-      @input="value => { encounter.project_id = value; updateField('encounter') }"
-    />
+      </p> -->
+    </div>
 
     <!-- project input -->
     <div class="field">
-      <label for="project" class="label">Project</label>
-      <div class="control">
-        <!-- <input  type="text" 
-                class="input" 
-                v-model="encounter.project" 
-                @change="updateField('encounter')"> -->
-        <Multiselect
-          v-model="encounter.project_id"
-          track-by="proj_name"
-          label="proj_name"
-          :options="projOptions"
-          :show-labels="false"
-          :close-on-select="true"
-          @input="updateField('encounter')" />
-      </div>
-      <p class="help">
-        With which project is this animal associated with?
-      </p>
+      <SelectProject
+        :selected="encounter.project_id"
+        :multiple="false"
+        :close="true"
+        fieldLabel="Select Project"
+        helpText="What project does this animal belong to?"
+        @input="value => { encounter.project_id = value; updateField('encounter') }"
+      />
     </div>
 
     <!-- date input -->
@@ -95,6 +83,44 @@
       <p class="help">
         What date was the animal encounterd?
         <span class="help is-danger" v-show="errors.has('date')">DATE IS REQUIRED</span>
+      </p>
+    </div>
+
+    <!-- x input -->
+    <div class="field">
+      <label for="x" class="label">Longitude</label>
+      <div class="control">
+        <input  type="number" 
+                class="input" 
+                name="x"
+                v-model="encounter.x"
+                v-validate="'required'"
+                :class="{ 'is-danger': errors.has('x') }"
+                @change="updateField('encounter')"
+        >
+      </div>
+      <p class="help">
+        What date was the animal encounterd?
+        <span class="help is-danger" v-show="errors.has('x')">LONGITUDE IS REQUIRED</span>
+      </p>
+    </div>
+
+    <!-- y input -->
+    <div class="field">
+      <label for="y" class="label">Latitude</label>
+      <div class="control">
+        <input  type="number" 
+                class="input" 
+                name="y"
+                v-model="encounter.y"
+                v-validate="'required'"
+                :class="{ 'is-danger': errors.has('y') }"
+                @change="updateField('encounter')"
+        >
+      </div>
+      <p class="help">
+        What is the latitude of the capture location?
+        <span class="help is-danger" v-show="errors.has('y')">LATITUDE IS REQUIRED</span>
       </p>
     </div>
 
@@ -237,13 +263,14 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import SelectProject from '../micro/SelectProject'
+import SelectSpecies from '../micro/SelectSpecies'
 import { mapGetters, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 
 export default {
   name: 'Encounter',
 
-  components: { Multiselect, SelectProject },
+  components: { Multiselect, SelectProject, SelectSpecies },
 
   data () {
     return {
@@ -269,11 +296,6 @@ export default {
         data: cloneDeep(this[model])
       })
     }
-  },
-
-  mounted: function () {
-    this.$store.dispatch('getSpecies')
-    this.$store.dispatch('getProjectList')
   }
 }
 </script>

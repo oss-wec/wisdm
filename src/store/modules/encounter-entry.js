@@ -27,7 +27,9 @@ const state = {
     event_date: '',
     enc_method: '',
     enc_reason: '',
-    comments: ''
+    comments: '',
+    x: '',
+    y: ''
   },
   marks: [
     {
@@ -149,26 +151,28 @@ const getters = {
       animal_id: animal.animal_id,
       species_id: animal.species_id.id,
       sex: animal.sex,
-      Encounters: {
+      Event: {
         project_id: encounter.project_id.id,
         status: encounter.status,
         age: encounter.age,
         event_date: encounter.event_date,
         enc_method: encounter.enc_method,
         enc_reason: encounter.enc_reason,
+        x: encounter.x,
+        y: encounter.y,
         comments: encounter.comments
       }
     }
 
     if (modules.marks) structure.Marks = correctDates(state.marks)
     if (modules.devices) structure.Devices = correctDates(state.devices)
-    if (modules.biometrics) structure.Encounters.Biometrics = state.biometrics
-    if (modules.vitals) structure.Encounters.Vitals = state.vitals
-    if (modules.samples) structure.Encounters.Samples = state.samples
-    if (modules.injuries) structure.Encounters.Injuries = state.injuries
-    if (modules.medications) structure.Encounters.Medications = state.medications
-    if (modules.mortality) structure.Encounters.Mortality = state.mortality
-    if (modules.necropsy) structure.Encounters.Necropsy = state.necropsy
+    if (modules.biometrics) structure.Event.Biometrics = state.biometrics
+    if (modules.vitals) structure.Event.Vitals = state.vitals
+    if (modules.samples) structure.Event.Samples = state.samples
+    if (modules.injuries) structure.Event.Injuries = state.injuries
+    if (modules.medications) structure.Event.Medications = state.medications
+    if (modules.mortality) structure.Event.Mortality = state.mortality
+    if (modules.necropsy) structure.Event.Necropsy = state.necropsy
 
     return structure
   }

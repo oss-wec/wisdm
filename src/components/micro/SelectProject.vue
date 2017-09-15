@@ -16,7 +16,7 @@
         />
       </div>
     </div>
-    <!-- <p class="help">{{ helpText }}</p> -->
+    <p class="help">{{ helpText }}</p>
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
 
   components: { Multiselect },
 
-  props: [ 'fieldLabel', 'multiple', 'close' ],
+  props: [ 'fieldLabel', 'multiple', 'close', 'helpText' ],
 
   data () {
     return {

@@ -16,7 +16,7 @@
         />
       </div>
     </div>
-    <p class="help">Select species for this project</p>
+    <p class="help">Select species from the dropdown.</p>
   </div>
 </template>
 
@@ -40,9 +40,13 @@ export default {
 
   methods: {
     updateValue () {
-      this.$emit('input', this.species.map(m => {
-        return { species_id: m.id }
-      }))
+      if (this.multiple) {
+        this.$emit('input', this.species.map(m => {
+          return { species_id: m.id }
+        }))
+      } else {
+        this.$emit('input', this.species)
+      }
     }
   },
 

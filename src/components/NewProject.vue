@@ -32,28 +32,16 @@
           <p class="help">Is this a project or a project stage</p>
           <p class="help is-danger" v-show="errors.has('type')">PROJECT TYPE IS REQUIRED</p>
         </div>
-
+      
         <SelectProject 
           v-if="!isDisabled"
           :selected="model.parent" 
           :multiple="false" 
           :close="true" 
           fieldLabel="Parent Project"
+          helpText="What is the parent project for this stage?"
           @input="value => { model.parent = value }"
         />
-
-        <div class="field">
-          <label class="label">Project Name</label>
-          <div class="control">
-            <input type="text" class="input" placeholder="Muddy Mtns 2017 DBHS" name="name"
-                    v-validate="'required'"
-                    :class="{ 'is-danger': errors.has('name') }"
-                    v-model="model.proj_name"
-                    >
-          </div>
-          <p class="help">Name the project</p>
-          <p v-show="errors.has('name')" class="help is-danger">Project Name is required</p>
-        </div>
 
         <SelectSpecies :species="model.species" :multiple="true" fieldLabel="Species" @input="value => { model.species = value }" :close="false" v-if="isDisabled" />
 
