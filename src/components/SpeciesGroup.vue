@@ -3,7 +3,7 @@
     <section class="hero">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">
+          <h1 class="title is-uppercase">
             {{ group.name }}
           </h1>
           <h2 class="subtitle">

@@ -3,7 +3,9 @@
 
     <!-- ndow id input -->
     <div class="field">
-      <label for="ndowid" class="label">NDOW ID</label>
+      <label for="ndowid" class="label">NDOW ID
+        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
+      </label>
 
       <div class="field has-addons">
         <div class="control is-expanded" :class="{ 'has-icons-left': errors.has('ndowid')}">
@@ -69,7 +71,9 @@
 
     <!-- date input -->
     <div class="field">
-      <label for="date" class="label">Date</label>
+      <label for="date" class="label">Date
+        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
+      </label>
       <div class="control">
         <input  type="date" 
                 class="input" 
@@ -88,7 +92,9 @@
 
     <!-- x input -->
     <div class="field">
-      <label for="x" class="label">Longitude</label>
+      <label for="x" class="label">Longitude
+        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
+      </label>
       <div class="control">
         <input  type="number" 
                 class="input" 
@@ -107,7 +113,9 @@
 
     <!-- y input -->
     <div class="field">
-      <label for="y" class="label">Latitude</label>
+      <label for="y" class="label">Latitude
+        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
+      </label>
       <div class="control">
         <input  type="number" 
                 class="input" 
@@ -126,7 +134,9 @@
 
     <!-- status input -->
     <div class="field">
-      <label for="status" class="label">Status</label>
+      <label for="status" class="label">Status
+        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
+      </label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('status') }">
           <select name="status" 
@@ -149,7 +159,9 @@
 
     <!-- sex input -->
     <div class="field">
-      <label for="sex" class="label">Sex</label>
+      <label for="sex" class="label">Sex
+        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
+      </label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('sex') }">
           <select name="sex"
@@ -172,7 +184,9 @@
 
     <!-- age input -->
     <div class="field">
-      <label for="age" class="label">Age</label>
+      <label for="age" class="label">Age
+        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
+      </label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('age') }">
           <select name="age" 
@@ -195,7 +209,9 @@
 
     <!-- encounter method input -->
     <div class="field">
-      <label for="enc-method" class="label">Encounter Method</label>
+      <label for="enc-method" class="label">Encounter Method
+        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
+      </label>
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('enc-method') }">
           <select name="enc-method" 
@@ -221,7 +237,9 @@
 
     <!-- encounter reason input -->
     <div class="field">
-      <label for="enc-reason" class="label">Encounter Reason</label>
+      <label for="enc-reason" class="label">Encounter Reason
+        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
+      </label>
       <div class="control">
         <div class="select is-fullwidth">
           <select name="enc-reason" 

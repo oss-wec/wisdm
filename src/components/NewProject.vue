@@ -32,6 +32,19 @@
           <p class="help">Is this a project or a project stage</p>
           <p class="help is-danger" v-show="errors.has('type')">PROJECT TYPE IS REQUIRED</p>
         </div>
+
+        <div class="field">
+          <label class="label">Project Name</label>
+          <div class="control">
+            <input type="text" class="input" placeholder="Muddy Mtns 2017 DBHS" name="name"
+                    v-validate="'required'"
+                    :class="{ 'is-danger': errors.has('name') }"
+                    v-model="model.proj_name"
+                    >
+          </div>
+          <p class="help">Name the project</p>
+          <p v-show="errors.has('name')" class="help is-danger">Project Name is required</p>
+        </div>
       
         <SelectProject 
           v-if="!isDisabled"
