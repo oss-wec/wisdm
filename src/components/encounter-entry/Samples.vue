@@ -21,9 +21,38 @@
                       @change="updateField"
               >
                 <option value="" disabled>Select Option...</option>
+                <option value="bladder">Bladder</option>
+                <option value="blood - blue top">Blood - Blue Top</option>
+                <option value="blood - purple top">Blood - Purple Top</option>
+                <option value="blood - tiger top">Blood - Tiger Top</option>
+                <option value="bones">Bones</option>
+                <option value="brain">Brain</option>
+                <option value="bullae">Bullae</option>
+                <option value="bullae swab">Bullae Swab</option>
+                <option value="carcass">Carcass</option>
+                <option value="ear">Ear</option>
+                <option value="eye">Eye</option>
+                <option value="fecal">Fecal</option>
+                <option value="hair">Hair</option>
+                <option value="head">Head</option>
                 <option value="heart">Heart</option>
-                <option value="eyes">Eyes</option>
-                <option value="Kidney"></option>
+                <option value="intestine">Intestine</option>
+                <option value="kidney">Kidney</option>
+                <option value="limbs">Limbs</option>
+                <option value="liver">Liver</option>
+                <option value="lymph nodes">Lymph Nodes</option>
+                <option value="muscle">Muscle</option>
+                <option value="nasal swab">Nasal Swab</option>
+                <option value="obex">Obex</option>
+                <option value="parasite">Parasite</option>
+                <option value="pharyngeal swab">Pharyngeal Swab</option>
+                <option value="sinus">Sinus</option>
+                <option value="sinus swab">Sinus Swab</option>
+                <option value="spleen">Spleen</option>
+                <option value="teeth">Teeth</option>
+                <option value="tonsil">Tonsil</option>
+                <option value="tonsil swab">Tonsil Swab</option>
+                <option value="trachea">Trachea</option>
               </select>
             </div>
           </div>

@@ -21,8 +21,33 @@
                       @change="updateField"
               >
                 <option value="" disabled>Select Option...</option>
-                <option value="right">med1</option>
-                <option value="left">med2</option>
+                <option value="aluspray">Aluspray</option>
+                <option value="atipamezole">Atipamezole</option>
+                <option value="azaperone">Azaperone</option>
+                <option value="bam">BAM</option>
+                <option value="BoSe">BoSe</option>
+                <option value="butorphanol">Butorphanol</option>
+                <option value="catron">Catron</option>
+                <option value="draxxin">Draxxin</option>
+                <option value="e300">E300</option>
+                <option value="eprinectin">Eprinectin</option>
+                <option value="exede">Exede</option>
+                <option value="haloperidol">Haloperidol</option>
+                <option value="ivomec">Ivomec</option>
+                <option value="ketamine">Ketamine</option>
+                <option value="lidocaine 2%">Lidocaine 2%</option>
+                <option value="longrange">LongRange</option>
+                <option value="midazolam">Midazolam</option>
+                <option value="naltrexone">Naltrexone</option>
+                <option value="normasol ph 7.4">Normasol pH 7.4</option>
+                <option value="NuFlor">NuFlor</option>
+                <option value="oxygen">Oxygen</option>
+                <option value="pentobarbitol">Pentobarbitol</option>
+                <option value="plasmalyte">Plasmalyte</option>
+                <option value="saline">Saline</option>
+                <option value="telazol">Telazol</option>
+                <option value="xylazine">Xylazine</option>
+                <option value="zactran">Zactran</option>
               </select>
             </div>
           </div>
@@ -84,8 +109,10 @@
                       @change="updateField"
               >
                 <option value="" disabled>Select Option...</option>
-                <option value="right">unit1</option>
-                <option value="left">unit2</option>
+                <option value="mg">mg</option>
+                <option value="ml">ml</option>
+                <option value="cc">cc</option>
+                <option value="g">g</option>
               </select>
             </div>
           </div>
@@ -109,8 +136,9 @@
                       @change="updateField"
               >
                 <option value="" disabled>Select Option...</option>
-                <option value="right">method 1</option>
-                <option value="left">method 2</option>
+                <option value="im">IM</option>
+                <option value="iv">IV</option>
+                <option value="sq">SQ</option>
               </select>
             </div>
           </div>

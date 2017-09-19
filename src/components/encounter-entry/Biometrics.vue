@@ -75,8 +75,16 @@
                       @change="updateField"
               >
                 <option value="" disabled selected hidden>Select Option...</option>
-                <option value="in">inches</option>
+                <option value="in">in</option>
                 <option value="cm">cm</option>
+                <option value="lbs">lbs</option>
+                <option value="kg">kg</option>
+                <option value="g">g</option>
+                <option value="oz">oz</option>
+                <option value="days">days</option>
+                <option value="weeks">weekds</option>
+                <option value="months">months</option>
+                <option value="years">years</option>
               </select>
             </div>
           </div>
