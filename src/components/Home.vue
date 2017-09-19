@@ -18,7 +18,7 @@
         <div class="columns">
 
           <div class="column is-4 has-text-centered">
-            <span class="icon is-large"><i class="fa fa-table color"></i></span>
+            <span class="icon is-large"><i class="fa fa-table fa-3x color"></i></span>
             <p class="title has-text-centered">
               Easily enter data
             </p>
@@ -28,7 +28,7 @@
           </div>
 
           <div class="column is-4 has-text-centered">
-            <span class="icon is-large"><i class="fa fa-search color"></i></span>
+            <span class="icon is-large"><i class="fa fa-search fa-3x color"></i></span>
             <p class="title has-text-centered">
               Search for data
             </p>
@@ -38,7 +38,7 @@
           </div>
 
           <div class="column is-4 has-text-centered">
-            <span class="icon is-large"><i class="fa fa-line-chart color"></i></span>
+            <span class="icon is-large"><i class="fa fa-line-chart fa-3x color"></i></span>
             <p class="title has-text-centered">
               Analyze and export data
             </p>
