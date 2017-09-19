@@ -144,8 +144,9 @@
                   @change="updateField('encounter')"
                   v-model="encounter.status"
                   v-validate="'required'"
+                  required
           >
-            <option value=""></option>
+            <option value="" disabled>Select Option...</option>
             <option value="alive">Alive</option>
             <option value="mortality">Mortality</option>
           </select>
@@ -168,8 +169,9 @@
                   v-model="animal.sex"
                   v-validate="'required'"
                   @change="updateField('animal')"
+                  required
           >
-            <option value=""></option>
+            <option value="" disabled>Select Option...</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="unk">Unknown</option>
@@ -193,8 +195,9 @@
                   @change="updateField('encounter')"
                   v-model="encounter.age"
                   v-validate="'required'"
+                  required
           >
-            <option value=""></option>
+            <option value="" disabled>Select Option...</option>
             <option value="neonate">Neonate</option>
             <option value="juvenile">Juvenile</option>
             <option value="adult">Adult</option>
@@ -218,8 +221,9 @@
                   @change="updateField('encounter')"
                   v-model="encounter.enc_method"
                   v-validate="'required'"
+                  required
           >
-            <option value=""></option>
+            <option value="" disabled>Select Option...</option>
             <option value="basecamp">Basecamp</option>
             <option value="capture crew">Capture Crew</option>
             <option value="marked observation">Marked Observation</option>
@@ -245,8 +249,9 @@
           <select name="enc-reason" 
                   @change="updateField('encounter')"
                   v-model="encounter.enc_reason"
+                  required
           >
-            <option value=""></option>
+            <option value="" disabled>Select Option...</option>
             <option value="disease surveilance">Disease Surveilance</option>
             <option value="incidental">Incidental Encounter</option>
             <option value="population monitoring">Population Monitoring</option>
@@ -320,6 +325,16 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="css" scoped>
+select:required:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
+}
+
 fieldset {
   border-width: 0;
 }

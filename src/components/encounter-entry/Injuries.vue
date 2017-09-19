@@ -20,7 +20,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="right">Right</option>
                 <option value="left">Left</option>
               </select>
@@ -45,7 +45,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="head">Head</option>
                 <option value="neck">Neck</option>
                 <option value="front leg">Front Leg</option>
@@ -74,7 +74,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="abrasion">Abrasion</option>
                 <option value="contusion">Contusion</option>
                 <option value="fracture">Fracture</option>

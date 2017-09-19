@@ -33,7 +33,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="lt 1 week">lt 1 week</option>
                 <option value="lt 1 month">lt 1 month</option>
                 <option value="gt 1 month">gt 1 month</option>
@@ -59,7 +59,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="capture related">Capture Related</option>
                 <option value="disease">Disease</option>
                 <option value="euthanasia">Euthanasia</option>
@@ -94,7 +94,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="0">0% - Unknown</option>
                 <option value="20">20% - Unknown</option>
                 <option value="40">40% - Possible</option>
@@ -140,7 +140,7 @@
                       v-model="mortality.femur_index"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="1">1 - White, hard, and waxy</option>
                 <option value="2">2 - Pink to red, and firm</option>
                 <option value="3">3 - Pink to red, and soft</option>

@@ -20,7 +20,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="right">med1</option>
                 <option value="left">med2</option>
               </select>
@@ -83,7 +83,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="right">unit1</option>
                 <option value="left">unit2</option>
               </select>
@@ -108,7 +108,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="right">method 1</option>
                 <option value="left">method 2</option>
               </select>

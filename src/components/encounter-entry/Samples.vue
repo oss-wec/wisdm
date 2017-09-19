@@ -20,7 +20,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="">Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="heart">Heart</option>
                 <option value="eyes">Eyes</option>
                 <option value="Kidney"></option>
@@ -42,7 +42,7 @@
                       v-model="sample.destination"
                       @change="updateField"
               >
-                <option value="">Select Destination ...</option>
+                <option value="" disabled>Select Destination ...</option>
                 <option value="cahfs">CAHFS</option>
                 <option value="nwhc">NWHC</option>
                 <option value="nvdag">NV dept. Ag ADL</option>

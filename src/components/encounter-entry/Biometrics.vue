@@ -20,7 +20,7 @@
                       v-validate="'required'"
                       @change="updateField"
               >
-                <option value="" disabled selected hidden>Select Option...</option>
+                <option value="" disabled>Select Option...</option>
                 <option value="age numeric">Age - numeric</option>
                 <option value="b. femoris">B. femoris</option>
                 <option value="bcs qual">BCS - qual</option>
