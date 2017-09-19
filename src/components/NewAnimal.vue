@@ -30,22 +30,27 @@
           <p slot="header">Devices</p>
           <Devices slot="content"></Devices>
         </Collapse>
-
+        <!-- biometrics module -->
         <Collapse :visible="modules.biometrics.visible" @collapse="toggle('biometrics')" v-if="moduleSelection.biometrics">
           <p slot="header">Biometrics</p>
           <Biometrics slot="content"></Biometrics>
         </Collapse>
-
+        <!-- vitals module -->
         <Collapse :visible="modules.vitals.visible" @collapse="toggle('vitals')" v-if="moduleSelection.vitals">
           <p slot="header">Vitals</p>
           <Vitals slot="content"></Vitals>
         </Collapse>
-
+        <!-- samples -->
         <Collapse :visible="modules.samples.visible" @collapse="toggle('samples')" v-if="moduleSelection.samples">
           <p slot="header">Samples</p>
           <Samples slot="content"></Samples>
         </Collapse>
-
+        <!-- lab id module -->
+        <Collapse :visible="modules.labids.visible" @collapse="toggle('labids')" v-if="moduleSelection.samples">
+          <p slot="header">Lab IDs</p>
+          <LabIds slot="content"></LabIds>
+        </Collapse>
+        <!-- injuries module -->
         <Collapse :visible="modules.injuries.visible" @collapse="toggle('injuries')" v-if="moduleSelection.injuries">
           <p slot="header">Injuries</p>
           <Injuries slot="content"></Injuries>
@@ -114,6 +119,7 @@ import Devices from './encounter-entry/Devices'
 import Biometrics from './encounter-entry/Biometrics'
 import Vitals from './encounter-entry/Vitals'
 import Samples from './encounter-entry/Samples'
+import LabIds from './encounter-entry/LabIds'
 import Injuries from './encounter-entry/Injuries'
 import Medications from './encounter-entry/Medications'
 import Mortality from './encounter-entry/Mortality'
@@ -133,6 +139,7 @@ export default {
     Biometrics,
     Vitals,
     Samples,
+    LabIds,
     Injuries,
     Medications,
     Mortality,
@@ -159,6 +166,9 @@ export default {
           visible: false
         },
         samples: {
+          visible: false
+        },
+        labids: {
           visible: false
         },
         injuries: {

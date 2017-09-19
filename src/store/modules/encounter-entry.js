@@ -73,6 +73,7 @@ const state = {
       notes: ''
     }
   ],
+  labids: null,
   injuries: [
     {
       injury_side: '',
@@ -169,6 +170,7 @@ const getters = {
     if (modules.biometrics) structure.Event.Biometrics = state.biometrics
     if (modules.vitals) structure.Event.Vitals = state.vitals
     if (modules.samples) structure.Event.Samples = state.samples
+    if (state.labids) structure.Event.LabIds = state.labids
     if (modules.injuries) structure.Event.Injuries = state.injuries
     if (modules.medications) structure.Event.Medications = state.medications
     if (modules.mortality) structure.Event.Mortality = state.mortality
