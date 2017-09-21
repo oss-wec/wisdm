@@ -331,28 +331,67 @@ export default {
       findById(this.animal.animal_id)
         .then(recap => {
           const data = recap.data.data
-          // console.log(data.Marks)
-          // console.log(data.Devices)
 
-          if (data.length === 0) {
-            return null
+          if (!data) {
+            this.$toast.warn({
+              title: 'No Encounter',
+              message: `${this.animal.animal_id} is not a re-encounter`,
+              progressBar: true,
+              position: 'top right',
+              timeOut: 5000
+            })
           } else {
-            const marks = data.Marks.map(m => ({
-              mark_type: m.mark_type,
-              mark_id: m.mark_id,
-              mark_color: m.mark_color,
-              mark_location: m.mark_location,
-              date_given: m.date_given,
-              date_removed: m.date_removed
-            }))
-            const devices = data.Devices.map(m => ({
-              type: m.type,
-              serial_num: m.serial_num,
-              frequency: m.frequency,
-              inservice: m.inservice,
-              outservice: m.outservice
-            }))
-            this.getRecap({ data, devices, marks })
+            const marks = data.Marks
+              ? data.Marks.map(m => ({
+                mark_type: m.mark_type,
+                mark_id: m.mark_id,
+                mark_color: m.mark_color,
+                mark_location: m.mark_location,
+                date_given: m.date_given,
+                date_removed: m.date_removed
+              }))
+              : null
+            const devices = data.Devices
+              ? data.Devices.map(m => ({
+                type: m.type,
+                serial_num: m.serial_num,
+                frequency: m.frequency,
+                inservice: m.inservice,
+                outservice: m.outservice
+              }))
+              : null
+
+            if (marks) {
+              this.$store.commit('encounterEntry/updateModel', {
+                model: 'marks',
+                data: marks
+              })
+
+              if (!this.$store.state.encounterEntry.moduleSelection.marks) {
+                this.$store.commit('encounterEntry/toggleModuleSelection', 'marks')
+              }
+            }
+
+            if (devices) {
+              this.$store.commit('encounterEntry/updateModel', {
+                model: 'devices',
+                data: devices
+              })
+
+              if (!this.$store.state.encounterEntry.moduleSelection.devices) {
+                this.$store.commit('encounterEntry/toggleModuleSelection', 'devices')
+              }
+            }
+
+            this.$toast.info({
+              title: 'Found Encounter',
+              message: `${this.animal.animal_id} is a re-encounter`,
+              progressBar: true,
+              position: 'top right',
+              timeOut: 5000
+            })
+
+            // this.getRecap({ data, devices, marks })
           }
         })
         .catch(err => console.log(err))
