@@ -323,10 +323,6 @@ export default {
       })
     },
 
-    // findRecap () {
-      // this.getRecap({ id: this.animal.animal_id })
-    // }
-
     findRecap () {
       findById(this.animal.animal_id)
         .then(recap => {
