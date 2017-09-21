@@ -1,5 +1,6 @@
 import { cloneDeep } from 'lodash'
 import { emptyModel } from '../../util'
+// import { findById } from '../../api'
 
 const correctDates = (ar) => {
   const data = cloneDeep(ar)
@@ -131,7 +132,8 @@ const state = {
     medications: false,
     mortality: false,
     necropsy: false
-  }
+  },
+  recap: null
 }
 
 const getters = {
@@ -198,6 +200,23 @@ const actions = {
     }
 
     commit('resetData', { newState: newState })
+  },
+
+  getRecap ({ commit }, payload) {
+    console.log(payload)
+  //   findById(payload.id)
+  //     .then(recap => commit('setRecap', { data: recap.data }))
+  //     .catch(err => console.log(err))
+  // }
+    commit('setRecap', { data: payload.data })
+    commit('updateModel', {
+      model: 'marks',
+      data: payload.marks
+    })
+    commit('updateModel', {
+      model: 'devices',
+      data: payload.devices
+    })
   }
 }
 
@@ -232,6 +251,10 @@ const mutations = {
     state.necropsy = payload.newState.necropsy
     state.mortality = payload.newState.mortality
     state.moduleSelection = payload.newState.moduleSelection
+  },
+
+  setRecap (state, payload) {
+    state.recap = payload.data
   }
 }
 

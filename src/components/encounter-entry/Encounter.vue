@@ -22,7 +22,7 @@
           </span>
         </div>
         <div class="control">
-          <a class="button is-info" disabled>Recapture</a>
+          <a class="button is-info" @click="findRecap">Recapture</a>
         </div>
       </div>
 
@@ -287,8 +287,9 @@
 import Multiselect from 'vue-multiselect'
 import SelectProject from '../micro/SelectProject'
 import SelectSpecies from '../micro/SelectSpecies'
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapActions } from 'vuex'
 import { cloneDeep } from 'lodash'
+import { findById } from '../../api'
 
 export default {
   name: 'Encounter',
@@ -313,11 +314,48 @@ export default {
   },
 
   methods: {
+    ...mapActions('encounterEntry', [ 'getRecap' ]),
+
     updateField (model) {
       this.$store.commit('encounterEntry/updateModel', {
         model: model,
         data: cloneDeep(this[model])
       })
+    },
+
+    // findRecap () {
+      // this.getRecap({ id: this.animal.animal_id })
+    // }
+
+    findRecap () {
+      findById(this.animal.animal_id)
+        .then(recap => {
+          const data = recap.data.data
+          // console.log(data.Marks)
+          // console.log(data.Devices)
+
+          if (data.length === 0) {
+            return null
+          } else {
+            const marks = data.Marks.map(m => ({
+              mark_type: m.mark_type,
+              mark_id: m.mark_id,
+              mark_color: m.mark_color,
+              mark_location: m.mark_location,
+              date_given: m.date_given,
+              date_removed: m.date_removed
+            }))
+            const devices = data.Devices.map(m => ({
+              type: m.type,
+              serial_num: m.serial_num,
+              frequency: m.frequency,
+              inservice: m.inservice,
+              outservice: m.outservice
+            }))
+            this.getRecap({ data, devices, marks })
+          }
+        })
+        .catch(err => console.log(err))
     }
   }
 }

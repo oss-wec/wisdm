@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const api = axios.create({
-  // baseURL: 'http://localhost:3000'
-  baseURL: 'http://34.208.55.29:3000'
+  baseURL: 'http://localhost:3000'
+  // baseURL: 'http://34.208.55.29:3000'
 })
 
 export function getSpecies () {
@@ -32,4 +32,8 @@ export function createEncounter (data) {
 
 export function getAllUsers () {
   return api.get('/users')
+}
+
+export function findById (id) {
+  return api.get(`/elements/${id}`, { params: { id } })
 }
