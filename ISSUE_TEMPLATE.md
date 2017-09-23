@@ -1,6 +1,10 @@
+## Who is submitting the issue?
+
+fist name and last initial so I know who to ask for clarification.
+
 ## I'm submitting a ...
 
-**put an x between the brackets to check the box**
+*put an x between the brackets to check the box*
 
   - [ ] bug report - something didn't work as expected
   - [ ] feature request - the app doesn't do something it should
