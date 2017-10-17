@@ -25,7 +25,7 @@
             </div>
           </div>
 
-          <a class="navbar-item has-text-danger" disabled>!!FOR TESTING ONLY!!</a>
+          <!-- <a class="navbar-item has-text-danger" disabled>!!FOR TESTING ONLY!!</a> -->
         </div>
 
 
