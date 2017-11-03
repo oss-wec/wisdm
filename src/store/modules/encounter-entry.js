@@ -26,11 +26,26 @@ const state = {
     status: '',
     age: '',
     event_date: '',
+    // enc_method: '',
+    // enc_reason: '',
+    comments: ''
+    // x: '',
+    // y: ''
+  },
+  handling: {
+    capture_time: '',
+    start_time: '',
+    end_time: '',
     enc_method: '',
-    enc_reason: '',
-    comments: '',
+    enc_reason: ''
+  },
+  locations: {
     x: '',
-    y: ''
+    y: '',
+    locations: '',
+    rel_x: '',
+    rel_y: '',
+    rel_locations: ''
   },
   marks: [
     {
@@ -123,6 +138,7 @@ const state = {
     lab_studies: null
   },
   moduleSelection: {
+    handling: true,
     marks: false,
     devices: false,
     biometrics: false,
@@ -149,7 +165,7 @@ const getters = {
   encounterData (state) {
     const modules = state.moduleSelection
     const animal = state.animal
-    const encounter = state.encounter
+    const encounter = { ...state.encounter, ...state.handling, ...state.locations }
     const structure = {
       animal_id: animal.animal_id,
       species_id: animal.species_id.id,
@@ -159,11 +175,18 @@ const getters = {
         status: encounter.status,
         age: encounter.age,
         event_date: encounter.event_date,
+        comments: encounter.comments,
         enc_method: encounter.enc_method,
         enc_reason: encounter.enc_reason,
+        capture_time: encounter.capture_time,
+        start_time: encounter.start_time,
+        end_time: encounter.end_time,
         x: encounter.x,
         y: encounter.y,
-        comments: encounter.comments
+        location: encounter.locations,
+        rel_x: encounter.rel_x,
+        rel_y: encounter.rel_y,
+        rel_location: encounter.rel_location
       }
     }
 

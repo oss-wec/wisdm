@@ -20,6 +20,16 @@
             <Encounter></Encounter>
           </div>
         </Collapse>
+        <!-- handling module -->
+        <Collapse :visible="modules.handling.visible" @collapse="toggle('handling')">
+          <p slot="header">Handling</p>
+          <Handling slot="content" />
+        </Collapse>
+        <!-- locations module -->
+        <Collapse :visible="modules.locations.visible" @collapse="toggle('locations')">
+          <p slot="header">Locations</p>
+          <Locations slot="content" />
+        </Collapse>
         <!-- marks module -->
         <Collapse :visible="modules.marks.visible" @collapse="toggle('marks')" v-if="moduleSelection.marks">
           <p slot="header">Marks</p>
@@ -114,6 +124,8 @@
 <script>
 import Collapse from './Collapse'
 import Encounter from './encounter-entry/Encounter'
+import Handling from './encounter-entry/Handling'
+import Locations from './encounter-entry/Locations'
 import Marks from './encounter-entry/Marks'
 import Devices from './encounter-entry/Devices'
 import Biometrics from './encounter-entry/Biometrics'
@@ -134,6 +146,8 @@ export default {
   components: {
     Collapse,
     Encounter,
+    Handling,
+    Locations,
     Marks,
     Devices,
     Biometrics,
@@ -152,6 +166,12 @@ export default {
       modules: {
         encounter: {
           visible: true
+        },
+        handling: {
+          visible: false
+        },
+        locations: {
+          visible: false
         },
         marks: {
           visible: false

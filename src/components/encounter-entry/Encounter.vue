@@ -90,48 +90,6 @@
       </p>
     </div>
 
-    <!-- x input -->
-    <div class="field">
-      <label for="x" class="label">Longitude
-        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
-      </label>
-      <div class="control">
-        <input  type="number" 
-                class="input" 
-                name="x"
-                v-model="encounter.x"
-                v-validate="'required'"
-                :class="{ 'is-danger': errors.has('x') }"
-                @change="updateField('encounter')"
-        >
-      </div>
-      <p class="help">
-        What date was the animal encounterd?
-        <span class="help is-danger" v-show="errors.has('x')">LONGITUDE IS REQUIRED</span>
-      </p>
-    </div>
-
-    <!-- y input -->
-    <div class="field">
-      <label for="y" class="label">Latitude
-        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
-      </label>
-      <div class="control">
-        <input  type="number" 
-                class="input" 
-                name="y"
-                v-model="encounter.y"
-                v-validate="'required'"
-                :class="{ 'is-danger': errors.has('y') }"
-                @change="updateField('encounter')"
-        >
-      </div>
-      <p class="help">
-        What is the latitude of the capture location?
-        <span class="help is-danger" v-show="errors.has('y')">LATITUDE IS REQUIRED</span>
-      </p>
-    </div>
-
     <!-- status input -->
     <div class="field">
       <label for="status" class="label">Status
@@ -207,60 +165,6 @@
       <p class="help">
         What is the age of the animal?
         <span class="help is-danger" v-show="errors.has('age')">AGE IS REQUIRED</span>
-      </p>
-    </div>
-
-    <!-- encounter method input -->
-    <div class="field">
-      <label for="enc-method" class="label">Encounter Method
-        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
-      </label>
-      <div class="control">
-        <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('enc-method') }">
-          <select name="enc-method" 
-                  @change="updateField('encounter')"
-                  v-model="encounter.enc_method"
-                  v-validate="'required'"
-                  required
-          >
-            <option value="" disabled>Select Option...</option>
-            <option value="basecamp">Basecamp</option>
-            <option value="capture crew">Capture Crew</option>
-            <option value="marked observation">Marked Observation</option>
-            <option value="unmarked observation">Unmarked Observation</option>
-            <option value="marked mortality">Marked Mortality</option>
-            <option value="unmarked mortality">Unmarked Mortality</option>
-          </select>
-        </div>
-      </div>
-      <p class="help">
-        What method was used to encounter the animal?
-        <span class="help is-danger" v-show="errors.has('enc-method')">ENCOUNTER METHOD IS REQUIRED</span>
-      </p>
-    </div>
-
-    <!-- encounter reason input -->
-    <div class="field">
-      <label for="enc-reason" class="label">Encounter Reason
-        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
-      </label>
-      <div class="control">
-        <div class="select is-fullwidth">
-          <select name="enc-reason" 
-                  @change="updateField('encounter')"
-                  v-model="encounter.enc_reason"
-                  required
-          >
-            <option value="" disabled>Select Option...</option>
-            <option value="disease surveilance">Disease Surveilance</option>
-            <option value="incidental">Incidental Encounter</option>
-            <option value="population monitoring">Population Monitoring</option>
-            <option value="translocation">Translocation</option>
-          </select>
-        </div>
-      </div>
-      <p class="help">
-        What is the reason for encountering this animal?
       </p>
     </div>
 
