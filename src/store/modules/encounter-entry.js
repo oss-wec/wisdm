@@ -42,10 +42,10 @@ const state = {
   locations: {
     x: '',
     y: '',
-    locations: '',
+    location: '',
     rel_x: '',
     rel_y: '',
-    rel_locations: ''
+    rel_location: ''
   },
   marks: [
     {
@@ -183,7 +183,7 @@ const getters = {
         end_time: encounter.end_time,
         x: encounter.x,
         y: encounter.y,
-        location: encounter.locations,
+        location: encounter.location,
         rel_x: encounter.rel_x,
         rel_y: encounter.rel_y,
         rel_location: encounter.rel_location

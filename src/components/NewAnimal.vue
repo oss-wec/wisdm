@@ -143,6 +143,7 @@ import router from '../router'
 
 export default {
   name: 'NewAnimal',
+
   components: {
     Collapse,
     Encounter,

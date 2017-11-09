@@ -51,9 +51,12 @@
                 class="input"
                 name="location"
                 v-model="locations.location"
-                @change="updateField('location')"
+                @change="updateField('locations')"
         >
       </div>
+      <p class="help">
+        Short description of the capture location. e.g. North Muddy Mountains.
+      </p>
     </div>
   
   </fieldset>
