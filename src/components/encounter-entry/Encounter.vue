@@ -90,6 +90,32 @@
       </p>
     </div>
 
+    <!-- reencounter input -->
+    <div class="field">
+      <label for="reencounter" class="label">Reencounter
+        <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
+      </label>
+      <div class="control">
+        <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('reencounter') }">
+          <select name="reencounter" 
+                  class="is-fullwidth" 
+                  @change="updateField('encounter')"
+                  v-model="encounter.reencounter"
+                  v-validate="'required'"
+                  required
+          >
+            <option value="" disabled>Select Option...</option>
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+        </div>
+      </div>
+      <p class="help">
+        Is this animal a reencounter?
+        <span class="help is-danger" v-show="errors.has('reencounter')">STATUS IS REQUIRED</span>
+      </p>
+    </div>
+
     <!-- status input -->
     <div class="field">
       <label for="status" class="label">Status
@@ -231,6 +257,7 @@ export default {
       findById(this.animal.animal_id)
         .then(recap => {
           const data = recap.data.data
+          console.log(data)
 
           if (!data) {
             this.$toast.warn({
@@ -261,23 +288,28 @@ export default {
               }))
               : null
 
-            if (marks) {
+            // set reencounter to true
+            this.encounter.reencounter = true
+
+            if (marks) {  // if marks == true then update devices in state = to local marks
               this.$store.commit('encounterEntry/updateModel', {
                 model: 'marks',
                 data: marks
               })
 
+              // if marks module isnt visible, toggle it
               if (!this.$store.state.encounterEntry.moduleSelection.marks) {
                 this.$store.commit('encounterEntry/toggleModuleSelection', 'marks')
               }
             }
 
-            if (devices) {
+            if (devices) {  // if devices == true then update devices in state = to local devices
               this.$store.commit('encounterEntry/updateModel', {
                 model: 'devices',
                 data: devices
               })
 
+              // if devices module isnt visible, toggle it
               if (!this.$store.state.encounterEntry.moduleSelection.devices) {
                 this.$store.commit('encounterEntry/toggleModuleSelection', 'devices')
               }

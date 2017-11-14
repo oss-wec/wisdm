@@ -26,11 +26,8 @@ const state = {
     status: '',
     age: '',
     event_date: '',
-    // enc_method: '',
-    // enc_reason: '',
+    reencounter: '',
     comments: ''
-    // x: '',
-    // y: ''
   },
   handling: {
     capture_time: '',
@@ -43,6 +40,7 @@ const state = {
     x: '',
     y: '',
     location: '',
+    relocated: '',
     rel_x: '',
     rel_y: '',
     rel_location: ''
@@ -173,6 +171,7 @@ const getters = {
       Event: {
         project_id: encounter.project_id.id,
         status: encounter.status,
+        reencounter: encounter.reencounter,
         age: encounter.age,
         event_date: encounter.event_date,
         comments: encounter.comments,
@@ -184,6 +183,7 @@ const getters = {
         x: encounter.x,
         y: encounter.y,
         location: encounter.location,
+        relocated: encounter.relocated,
         rel_x: encounter.rel_x,
         rel_y: encounter.rel_y,
         rel_location: encounter.rel_location

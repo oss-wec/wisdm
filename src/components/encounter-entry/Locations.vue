@@ -17,7 +17,7 @@
         >
       </div>
       <p class="help">
-        What date was the animal encounterd?
+        What is the longitude of the capture location?
         <span class="help is-danger" v-show="errors.has('x')">LONGITUDE IS REQUIRED</span>
       </p>
     </div>
@@ -58,6 +58,76 @@
         Short description of the capture location. e.g. North Muddy Mountains.
       </p>
     </div>
+
+    <!-- relocation -->
+    <div class="field">
+      <label for="relocated" class="label">Relocated</label>
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select   name="relocated"
+                    v-model="locations.relocated"
+                    @change="updateField('locations')"
+          >
+            <option value="" disabled>Select Option...</option>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+      </div>
+      <p class="help">
+        Was this animal relocated to a new location?
+      </p>
+    </div>
+
+    <!-- rel x input -->
+    <div class="field" v-if="locations.relocated == 'yes'">
+      <label for="rel_x" class="label">Release Longitude
+      </label>
+      <div class="control">
+        <input  type="number" 
+                class="input" 
+                name="rel_x"
+                v-model="locations.rel_x"
+                @change="updateField('locations')"
+        >
+      </div>
+      <p class="help">
+        What is the longitude for the release location?
+      </p>
+    </div>
+
+    <!-- y input -->
+    <div class="field" v-if="locations.relocated == 'yes'">
+      <label for="y" class="label">Release Latitude
+      </label>
+      <div class="control">
+        <input  type="number" 
+                class="input" 
+                name="rel_y"
+                v-model="locations.rel_y"
+                @change="updateField('locations')"
+        >
+      </div>
+      <p class="help">
+        What is the latitude of the release location?
+      </p>
+    </div>
+
+    <!-- location input -->
+    <div class="field" v-if="locations.relocated == 'yes'">
+      <label for="rel_location" class="label">Release Location Description</label>
+      <div class="control">
+        <input  type="text"
+                class="input"
+                name="location"
+                v-model="locations.rel_location"
+                @change="updateField('locations')"
+        >
+      </div>
+      <p class="help">
+        Short description of the release location. e.g. North Muddy Mountains.
+      </p>
+    </div>
   
   </fieldset>
 </template>
@@ -85,8 +155,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 fieldset {
   border-width: 0;
+}
+
+select:required:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
 }
 </style>
