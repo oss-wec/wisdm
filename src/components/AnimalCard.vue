@@ -97,7 +97,7 @@ export default {
   methods: {
     localDate (isoStr) {
       let ds = new Date(isoStr)
-      return ds.toLocaleDateString()
+      return `${ds.getUTCMonth() + 1}/${ds.getUTCDate()}/${ds.getUTCFullYear()}`
     },
 
     toggleModal () {
