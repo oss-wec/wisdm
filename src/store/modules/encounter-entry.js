@@ -6,7 +6,7 @@ const correctDates = (ar) => {
   const data = cloneDeep(ar)
   data.forEach(d => {
     Object.keys(d).forEach(k => {
-      if (k === 'date_given' || k === 'date_removed') {
+      if (k === 'date_given' || k === 'date_removed' || k === 'capture_time' || k === 'start_time' || k === 'end_time') {
         let valid = new Date(d[k])
         d[k] = !(valid.valueOf()) ? undefined : valid
       }

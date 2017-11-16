@@ -59,6 +59,7 @@
       <label for="capture_time" class="label">Capture Time</label>
       <div class="control">
         <input  type="time"
+                value="00:00:00"
                 class="input"
                 name="capture_time"
                 v-model="handling.capture_time"
@@ -74,6 +75,7 @@
       <label for="start_time" class="label">Start Time</label>
       <div class="control">
         <input  type="time"
+                value="00:00:00"
                 class="input"
                 name="start_time"
                 v-model="handling.start_time"
@@ -89,6 +91,7 @@
       <label for="start_time" class="label">End Time</label>
       <div class="control">
         <input  type="time"
+                value="00:00:00"
                 class="input"
                 name="start_time"
                 v-model="handling.end_time"
@@ -100,11 +103,14 @@
       </p>
     </div>
 
+    <pre><code>{{ formatData }}</code></pre>
+
   </fieldset>  
 </template>
 
 <script>
 import { cloneDeep } from 'lodash'
+import { rmFalsy } from '../../util'
 
 export default {
   name: 'Handling',
@@ -115,11 +121,18 @@ export default {
     }
   },
 
+  computed: {
+    formatData () {
+      return rmFalsy(this.handling)
+    }
+  },
+
   methods: {
     updateField (model) {
       this.$store.commit('encounterEntry/updateModel', {
         model: model,
-        data: cloneDeep(this[model])
+        // data: cloneDeep(this[model])
+        data: this.formatData
       })
     }
   }

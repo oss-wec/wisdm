@@ -10,24 +10,24 @@
 
         <table>
           <tr>
-            <td class="has-text-bolder">{{ localDate(animal.date) }}</td>
             <td class="has-text-grey">Date</td>
+            <td class="has-text-bolder">{{ animal.date }}</td>
           </tr>
           <tr>
-            <td class="has-text-bolder">{{ animal.project }}</td>
             <td class="has-text-grey">Project</td>
+            <td class="has-text-bolder">{{ animal.project }}</td>
           </tr>
           <tr>
-            <td class="has-text-bolder">{{ animal.status }}</td>
             <td class="has-text-grey">Status</td>
+            <td class="has-text-bolder">{{ animal.status }}</td>
           </tr>
           <tr>
-            <td class="has-text-bolder">{{ animal.sex }}</td>
             <td class="has-text-grey">Sex</td>
+            <td class="has-text-bolder">{{ animal.sex }}</td>
           </tr>
-          <tr>
-            <td class="has-text-bolder">{{ animal.age }}</td>
+          <tr class="last">
             <td class="has-text-grey">Age</td>
+            <td class="has-text-bolder">{{ animal.age }}</td>
           </tr>
         </table>
 
@@ -172,5 +172,9 @@ div.test {
 
 .has-text-bolder {
   font-weight: 600;
+}
+
+.content table td {
+  border: 0px;
 }
 </style>

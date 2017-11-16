@@ -3,10 +3,10 @@
     <div class="column is-half is-offset-one-quarter">
       <form>
 
-        <legend class="title">Enter New Project Information</legend>
+        <legend class="title">Enter New Grouping Information</legend>
         <div class="message is-info is-small">
           <div class="message-body">
-            A project is a way to logically group animals into collections. Each project should have several animals and correspond to an actual on the ground capture event. Occasionally a project can be a longer term effort. For instance, collecting hunter harvest samples.
+            A grouping is a way to logically group animals into collections. Each grouping should have several animals and correspond to an actual on the ground capture event. Occasionally a grouping can be a longer term effort. For instance, collecting hunter harvest samples.
           </div>
         </div>
 
@@ -14,23 +14,6 @@
           <div class="message-body">
             All fields in this form are required.
           </div>
-        </div>
-
-        <div class="field">
-          <label class="label">Project Type</label>
-          <div class="control">
-            <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('type') }">
-              <select name="type"
-                      v-model="model.proj_type"
-                      v-validate="'required'"
-              >
-                <option value="project">Project</option>
-                <option value="stage">Stage</option>
-              </select>
-            </div>
-          </div>
-          <p class="help">Is this a project or a project stage</p>
-          <p class="help is-danger" v-show="errors.has('type')">PROJECT TYPE IS REQUIRED</p>
         </div>
 
         <div class="field">
@@ -45,26 +28,10 @@
           <p class="help">Name the project</p>
           <p v-show="errors.has('name')" class="help is-danger">Project Name is required</p>
         </div>
-      
-        <SelectProject 
-          v-if="!isDisabled"
-          :selected="model.parent" 
-          :multiple="false" 
-          :close="true" 
-          fieldLabel="Parent Project"
-          helpText="What is the parent project for this stage?"
-          @input="value => { model.parent = value }"
-        />
 
-        <SelectSpecies :species="model.species" :multiple="true" fieldLabel="Species" @input="value => { model.species = value }" :close="false" v-if="isDisabled" />
+        <SelectSpecies :species="model.species" :multiple="true" fieldLabel="Species" @input="value => { model.species = value }" :close="false" />
 
-        <SelectPeople :person="model.leads" :disabled="!isDisabled" fieldLabel="Leads" helpText="Select the project leaders for this project"
-              @input="value => { model.leads = value }" v-if="isDisabled" />
-
-        <SelectPeople :person="model.collabs" :disabled="isDisabled" fieldLabel="Collaborators" helpText="Select collaborators for this project"
-              @input="value => { model.collabs = value }" v-if="!isDisabled" />
-
-        <HuntUnits :units="model.locations" :disabled="isDisabled" @input="value => { model.locations = value }" v-if="!isDisabled" />
+        <HuntUnits :units="model.locations" @input="value => { model.locations = value }" />
 
         <div class="field">
           <label class="label">Start Date</label>
@@ -76,26 +43,6 @@
           </div>
           <p class="help">What is the project start date</p>
           <p class="help is-danger" v-show="errors.has('start')">Start Date is required</p>
-        </div>
-
-        <div class="field">
-          <label class="label">Project Duration</label>
-          <div class="field has-addons">
-            <p class="control is-expanded">
-              <input class="input" type="text" v-model="model.duration">
-            </p>
-            <p class="control">
-              <span class="select">
-                <select v-model="model.time_frame">
-                  <option value="days">Days</option>
-                  <option value="weeks">Weeks</option>
-                  <option value="months">Months</option>
-                  <option value="years" selected>Years</option>
-                </select>
-              </span>
-            </p>
-          </div>
-          <p class="help">How long will the project last and what is the interval</p>
         </div>
 
         <div class="field">

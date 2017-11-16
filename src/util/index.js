@@ -15,3 +15,15 @@ export function pick (o, ...props) {
 export function sentenceCase (string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
+
+export function rmFalsy (obj) {
+  let newObj = {}
+
+  Object.keys(obj).forEach(i => {
+    if (obj[i]) {
+      newObj[i] = obj[i]
+    }
+  })
+
+  return newObj
+}

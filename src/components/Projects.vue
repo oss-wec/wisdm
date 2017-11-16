@@ -4,47 +4,32 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">Projects</h1>
-          <h2 class="subtitle">A list of all projects</h2>
-          <router-link class="button is-info is-outlined" :to="{ name: 'NewProject' }">Add New Project</router-link>
+          <h2 class="subtitle">A list of all groupings</h2>
+          <router-link class="button is-info is-outlined" :to="{ name: 'NewProject' }">Add New Grouping</router-link>
         </div>
       </div>
     </section>
 
     <div class="container">
-      <div class="columns is-multiline">
-
-        <div class="column is-one-third" v-for="(project, index) in projects">
-          <div class="card">
-            <div class="card-content">
-              
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">{{ project.proj_name }}</p>
-                  <p class="subtitle is-6">
-                    {{ localDate(project.proj_start) }} - {{ project.proj_duration }} {{ project.time_frame }}
-                  </p>
-                </div>
-              </div>
-
-              <div class="content">
-                {{ project.proj_desc }}
-              </div>
-
-              <div class="content">
-
-              </div>
-            </div>
-
-            <footer class="card-footer">
-              <!-- TODO: project length needs to be a method that returns zero is stages is null -->
-              <!-- <a href="#" class="card-footer-item">{{ project.stages.length }} Stages</a> --> 
-              <a href="#" class="card-footer-item">View</a>
-            </footer>
-          </div>
-        </div>
-      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Grouping</th>
+            <th>Date</th>
+            <th>Species</th>
+            <th>Hunt Units</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(group, index) in projects" key="index">
+            <td>{{ group.proj_name }}</td>
+            <td>{{ group.proj_start }}</td>
+            <td> {{ group.species.join(', ') }} </td>
+            <td> {{ group.locations.join(', ') }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
   </div>
 </template>
 

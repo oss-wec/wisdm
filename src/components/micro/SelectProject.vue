@@ -48,9 +48,6 @@ export default {
     getProjects()
       .then(response => {
         this.options = response.data.data
-          .filter(f => {
-            return f.proj_type === 'project'
-          })
           .map(m => {
             return {
               id: m.id,
