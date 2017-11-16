@@ -103,7 +103,7 @@
       </p>
     </div>
 
-    <pre><code>{{ formatData }}</code></pre>
+    <!-- <pre><code>{{ formatData }}</code></pre> -->
 
   </fieldset>  
 </template>

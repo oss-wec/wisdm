@@ -11,8 +11,8 @@
       </p>
     </div>
 
-    <pre><code>{{ $data }}</code></pre>
-    <pre><code>{{ parsedIds }}</code></pre>
+    <!-- <pre><code>{{ $data }}</code></pre> -->
+    <!-- <pre><code>{{ parsedIds }}</code></pre> -->
 
   </fieldset>
 </template>

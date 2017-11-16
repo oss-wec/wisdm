@@ -70,8 +70,8 @@
                   :class="{ 'is-loading': submitting }"
                   @click.prevent="submit">Submit Project</button>
         </div>
-        <pre><code>{{ $data }}</code></pre>
-        <pre><code>{{ structure }}</code></pre>
+        <!-- <pre><code>{{ $data }}</code></pre> -->
+        <!-- <pre><code>{{ structure }}</code></pre> -->
       </form>
 
     </div>
