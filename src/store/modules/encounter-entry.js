@@ -264,6 +264,8 @@ const mutations = {
   resetData (state, payload) {
     state.animal = payload.newState.animal
     state.encounter = payload.newState.encounter
+    state.handling = payload.newState.handling
+    state.locations = payload.newState.locations
     state.marks = payload.newState.marks
     state.devices = payload.newState.devices
     state.biometrics = payload.newState.biometrics
