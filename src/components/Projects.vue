@@ -3,8 +3,8 @@
     <section class="hero">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Projects</h1>
-          <h2 class="subtitle">A list of all groupings</h2>
+          <h1 class="title">Groups</h1>
+          <h2 class="subtitle">A list of all groups</h2>
           <router-link class="button is-info is-outlined" :to="{ name: 'NewProject' }">Add New Grouping</router-link>
         </div>
       </div>
@@ -14,7 +14,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Grouping</th>
+            <th>Group</th>
             <th>Date</th>
             <th>Species</th>
             <th>Hunt Units</th>

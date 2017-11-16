@@ -17,7 +17,7 @@
         </div>
 
         <div class="field">
-          <label class="label">Project Name</label>
+          <label class="label">Group Name</label>
           <div class="control">
             <input type="text" class="input" placeholder="Muddy Mtns 2017 DBHS" name="name"
                     v-validate="'required'"
@@ -25,8 +25,8 @@
                     v-model="model.proj_name"
                     >
           </div>
-          <p class="help">Name the project</p>
-          <p v-show="errors.has('name')" class="help is-danger">Project Name is required</p>
+          <p class="help">Name the group</p>
+          <p v-show="errors.has('name')" class="help is-danger">Group Name is required</p>
         </div>
 
         <SelectSpecies :species="model.species" :multiple="true" fieldLabel="Species" @input="value => { model.species = value }" :close="false" />
@@ -41,7 +41,7 @@
                     v-validate="'required'"
                     :class="{ 'is-danger': errors.has('start')}">
           </div>
-          <p class="help">What is the project start date</p>
+          <p class="help">What is the group start date</p>
           <p class="help is-danger" v-show="errors.has('start')">Start Date is required</p>
         </div>
 
@@ -68,7 +68,7 @@
         <div class="has-text-centered">
           <button class="button is-info is-medium is-outlined is-fullwidth"
                   :class="{ 'is-loading': submitting }"
-                  @click.prevent="submit">Submit Project</button>
+                  @click.prevent="submit">Submit Group</button>
         </div>
         <!-- <pre><code>{{ $data }}</code></pre> -->
         <!-- <pre><code>{{ structure }}</code></pre> -->
