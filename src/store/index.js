@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import { getSpecies, getAnimals, getProjectList, getAllUsers } from '../api'
 import { sentenceCase } from '../util'
 import encounterEntry from './modules/encounter-entry.js'
+import enterEvent from './modules/enter-event.js'
 
 Vue.use(Vuex)
 
@@ -117,6 +118,7 @@ export default new Vuex.Store({
   mutations,
   strict: debug,
   modules: {
-    encounterEntry
+    encounterEntry,
+    enterEvent
   }
 })

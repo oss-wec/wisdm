@@ -131,7 +131,6 @@ export default {
     updateField (model) {
       this.$store.commit('encounterEntry/updateModel', {
         model: model,
-        // data: cloneDeep(this[model])
         data: this.formatData
       })
     }

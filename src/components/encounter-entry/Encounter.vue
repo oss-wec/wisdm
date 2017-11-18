@@ -6,13 +6,12 @@
       <label for="ndowid" class="label">NDOW ID
         <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
       </label>
-
       <div class="field has-addons">
         <div class="control is-expanded" :class="{ 'has-icons-left': errors.has('ndowid')}">
           <input type="text" class="input" 
                  placeholder="10342" 
                  name="ndowid" 
-                 @change="updateField('animal')"
+                 @change="updateAnimal"
                  v-model="animal.animal_id"
                  v-validate="'required'"
                  :class="{ 'is-danger': errors.has('ndowid') }"
@@ -25,7 +24,6 @@
           <a class="button is-info" @click="findRecap">Recapture</a>
         </div>
       </div>
-
       <p class="help">
         What is the NDOW ID for this animal?
         <span v-show="errors.has('ndowid')" class="help is-danger">NDOW ID IS REQUIRED</span>
@@ -38,7 +36,7 @@
         :species="animal.species_id" 
         :multiple="false" 
         fieldLabel="Species" 
-        @input="value => { animal.species_id = value; updateField('animal') }" 
+        @input="value => { animal.species_id = value; updateAnimal() }" 
         :close="true"
       />
       <!-- <label for="species" class="label">Species</label>
@@ -65,7 +63,7 @@
         :close="true"
         fieldLabel="Select Project"
         helpText="What project does this animal belong to?"
-        @input="value => { encounter.project_id = value; updateField('encounter') }"
+        @input="value => { encounter.project_id = value; updateEncounter }"
       />
     </div>
 
@@ -81,7 +79,7 @@
                 v-model="encounter.event_date"
                 v-validate="'required'"
                 :class="{ 'is-danger': errors.has('date') }"
-                @change="updateField('encounter')"
+                @change="updateEncounter"
         >
       </div>
       <p class="help">
@@ -99,7 +97,7 @@
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('reencounter') }">
           <select name="reencounter" 
                   class="is-fullwidth" 
-                  @change="updateField('encounter')"
+                  @change="updateEncounter"
                   v-model="encounter.reencounter"
                   v-validate="'required'"
                   required
@@ -125,7 +123,7 @@
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('status') }">
           <select name="status" 
                   class="is-fullwidth" 
-                  @change="updateField('encounter')"
+                  @change="updateEncounter"
                   v-model="encounter.status"
                   v-validate="'required'"
                   required
@@ -152,7 +150,7 @@
           <select name="sex"
                   v-model="animal.sex"
                   v-validate="'required'"
-                  @change="updateField('animal')"
+                  @change="updateAnimal"
                   required
           >
             <option value="" disabled>Select Option...</option>
@@ -176,7 +174,7 @@
       <div class="control">
         <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('age') }">
           <select name="age" 
-                  @change="updateField('encounter')"
+                  @change="updateEncounter"
                   v-model="encounter.age"
                   v-validate="'required'"
                   required
@@ -202,13 +200,16 @@
                   v-model="encounter.comments" 
                   class="textarea" 
                   placeholder="write as much as your heart desires..."
-                  @change="updateField('encounter')"
+                  @change="updateEncounter"
         ></textarea>
       </div>
       <p class="help">
         Any comments associated with this animal.
       </p>
     </div>
+
+    <pre><code>{{ formattedAnimal }}</code></pre>
+    <pre><code>{{ formattedEncounter }}</code></pre>
 
   </fieldset>
 </template>
@@ -218,8 +219,9 @@ import Multiselect from 'vue-multiselect'
 import SelectProject from '../micro/SelectProject'
 import SelectSpecies from '../micro/SelectSpecies'
 import { mapGetters, mapState, mapActions } from 'vuex'
-import { cloneDeep } from 'lodash'
+// import { cloneDeep } from 'lodash'
 import { findById } from '../../api'
+import { rmFalsy } from '../../util'
 
 export default {
   name: 'Encounter',
@@ -228,8 +230,21 @@ export default {
 
   data () {
     return {
-      animal: cloneDeep(this.$store.state.encounterEntry.animal),
-      encounter: cloneDeep(this.$store.state.encounterEntry.encounter)
+      // animal: cloneDeep(this.$store.state.encounterEntry.animal),
+      // encounter: cloneDeep(this.$store.state.encounterEntry.encounter)
+      animal: {
+        animal_id: '',
+        species_id: '',
+        sex: ''
+      },
+      encounter: {
+        project_id: '',
+        status: 'alive',
+        age: '',
+        event_date: '',
+        reencounter: 'false',
+        comments: ''
+      }
     }
   },
 
@@ -240,16 +255,42 @@ export default {
 
     ...mapState({
       projOptions: 'projectList'
-    })
+    }),
+
+    formattedAnimal () {
+      return { ...rmFalsy(this.animal) }
+    },
+
+    formattedEncounter () {
+      return { ...rmFalsy(this.encounter) }
+    },
+
+    vuex () {
+      return this.$store
+    }
   },
 
   methods: {
     ...mapActions('encounterEntry', [ 'getRecap' ]),
 
+    updateAnimal () {
+      this.$store.commit('enterEvent/refreshModel', {
+        model: 'animal',
+        data: this.formattedAnimal
+      })
+    },
+
+    updateEncounter () {
+      this.$store.commit('enterEvent/refreshModel', {
+        model: 'encounter',
+        data: this.formattedEncounter
+      })
+    },
+
     updateField (model) {
       this.$store.commit('encounterEntry/updateModel', {
         model: model,
-        data: cloneDeep(this[model])
+        data: this[model]
       })
     },
 
