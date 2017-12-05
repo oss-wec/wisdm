@@ -10,14 +10,11 @@
       <div class="message-body">
         <!-- side field -->
         <div class="field">
-          <label class="label">Side
-            <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
-          </label>
+          <label class="label">Side</label>
           <div class="control">
-            <div class="select is-fullwidth" :class="{ 'is-danger': errors.has('injury-side' + index) }">
+            <div class="select is-fullwidth">
               <select :name="'injury-side' + index" required
                       v-model="injury.injury_side"
-                      v-validate="'required'"
                       @change="updateField"
               >
                 <option value="" disabled>Select Option...</option>
@@ -28,9 +25,6 @@
           </div>
           <p class="help">
             On which side of the animal is the injury?
-            <span class="help is-danger" v-show="errors.has('injury-side' + index)">
-              INJURY SIDE IS REQUIRED
-            </span>
           </p>
         </div>
         <!-- location field -->
@@ -113,7 +107,7 @@
       </div>
     </div>
 
-    <a class="button is-info is-medium" @click="addDynElement">Add Vitals</a>
+    <a class="button is-info is-medium" @click="addDynElement">Add Injury</a>
 
   </fieldset>
 </template>

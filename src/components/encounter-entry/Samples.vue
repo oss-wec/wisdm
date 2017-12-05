@@ -24,7 +24,9 @@
                 <option value="bladder">Bladder</option>
                 <option value="blood - blue top">Blood - Blue Top</option>
                 <option value="blood - purple top">Blood - Purple Top</option>
-                <option value="blood - tiger top">Blood - Tiger Top</option>
+                <option value="blood - red top">Blood - Red Top</option>
+                <option value="blood - RNA">Blood - RNA</option>
+                <option value="blood - other">Blood - Other</option>
                 <option value="bones">Bones</option>
                 <option value="brain">Brain</option>
                 <option value="bullae">Bullae</option>
@@ -44,6 +46,7 @@
                 <option value="muscle">Muscle</option>
                 <option value="nasal swab">Nasal Swab</option>
                 <option value="obex">Obex</option>
+                <option value="other">Other (report in notes)</option>
                 <option value="parasite">Parasite</option>
                 <option value="pharyngeal swab">Pharyngeal Swab</option>
                 <option value="sinus">Sinus</option>

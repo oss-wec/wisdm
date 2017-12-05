@@ -105,14 +105,14 @@
         </div>
       </article>
 
-      <!-- <article class="message is-primary">
+      <article class="message is-primary">
         <div class="message-header">
           <p>DEBUG DATA: below is the data structure sent to database</p>
         </div>
         <div class="message-body">
           <pre><code>{{ encounterData }}</code></pre>
         </div>
-      </article>  -->
+      </article> 
 
       <ModalContents :visible="modules.modal.visible" @visible="toggle('modal')" />
 
@@ -237,7 +237,10 @@ export default {
         router.push({ path: '/animal-log' })
       })
       // .then(() => this.$store.dispatch('encounterEntry/resetData'))
-      .catch(error => { this.error = error })
+      .catch(error => {
+        console.log(error)
+        this.error = error
+      })
     }
   },
 

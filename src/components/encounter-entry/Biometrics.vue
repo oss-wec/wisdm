@@ -34,6 +34,7 @@
                 <option value="neck circ">Neck Circumfrence</option>
                 <option value="tarsus length">Tarsus Length</option>
                 <option value="weight">Weight</option>
+                <option value="other">Other (report in notes)</option>
               </select>
             </div>
             <p class="help">
@@ -82,9 +83,12 @@
                 <option value="g">g</option>
                 <option value="oz">oz</option>
                 <option value="days">days</option>
-                <option value="weeks">weekds</option>
+                <option value="weeks">weeks</option>
                 <option value="months">months</option>
                 <option value="years">years</option>
+                <option value="count">count</option>
+                <option value="na">N/A</option>
+                <option value="other">Other (report in notes)</option>
               </select>
             </div>
           </div>

@@ -48,6 +48,7 @@
                 <option value="telazol">Telazol</option>
                 <option value="xylazine">Xylazine</option>
                 <option value="zactran">Zactran</option>
+                <option value="other">Other (report in notes)</option>
               </select>
             </div>
           </div>
@@ -60,20 +61,15 @@
         </div>
         <!-- time administered field -->
         <div class="field">
-          <label class="label">Time Administered
-            <span class="icon is-small"><i class="fa fa-asterisk has-text-danger"></i></span>
-          </label>
+          <label class="label">Time Administered</label>
           <div class="control">
             <input type="time" class="input" :name="'med-time' + index"
                    v-model="med.med_time"
-                   v-validate="'required'"
-                   :class="{ 'is-danger': errors.has('med-time' + index) }"
                    @change="updateField"
             >
           </div>
           <p class="help">
             What time was the medication administered?
-            <span class="help is-danger" v-show="errors.has('med-time' + index)">TIME ADMINISTERED IS REQUIRED</span>
           </p>
         </div>
         <!-- dose field -->
@@ -90,8 +86,8 @@
             >
           </div>
           <p class="help">
-            What is the dose of medication administered to this animal?
-            <span class="help is-danger" v-show="errors.has('med-dose')">
+            What is the dose of medication administered to this animal? -1 for Catron or other topical medication.
+            <span class="help is-danger" v-show="errors.has('med-dose' + index)">
               DOSE IS REQUIRED AND MUST BE A NUMBER.
             </span>
           </p>
@@ -113,6 +109,8 @@
                 <option value="ml">ml</option>
                 <option value="cc">cc</option>
                 <option value="g">g</option>
+                <option value="na">N/A</option>
+                <option value="other">Other (report in notes)</option>
               </select>
             </div>
           </div>
@@ -139,6 +137,9 @@
                 <option value="im">IM</option>
                 <option value="iv">IV</option>
                 <option value="sq">SQ</option>
+                <option value="topical">Topical</option>
+                <option value="na">N/A</option>
+                <option value="other">Other (report in notes)</option>
               </select>
             </div>
           </div>

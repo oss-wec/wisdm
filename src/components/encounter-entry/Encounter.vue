@@ -22,7 +22,7 @@
           </span>
         </div>
         <div class="control">
-          <a class="button is-info" @click="findRecap">Recapture</a>
+          <a class="button is-info" @click="findRecap">Re-encounter?</a>
         </div>
       </div>
 
